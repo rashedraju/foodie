@@ -1,0 +1,21 @@
+.bg-black {
+    background-color: #000;
+}
+@media (max-width: 567px) {
+    .pr-sm{
+        padding-right: .5rem;
+    }
+    .w-on-sm-100 {
+        width: 100%;
+    }
+}
+@media (min-width: 567px) {
+    .w-sm-50 {
+        width: 50% !important;
+    }
+}
+@media (min-width: 768px) {
+    .display-md {
+        font-size: 3rem;
+    }
+}

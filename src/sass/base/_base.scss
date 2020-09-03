@@ -1,0 +1,17 @@
+:root {
+    // COLORS
+    --color-primary: #264B77;
+    --color-primary-light: #3C5b75;
+    --color-primary-dark: #00243F;
+    --color-gray: #A3ACB1;
+    
+    // FONT SIZE
+    --font-xl: 3.5rem;
+    --font-lg: 2rem;
+    --font-md: 1.5rem;
+    --font-sm: 1rem;
+}
+button:focus,
+a:focus {
+    outline: none;
+}
