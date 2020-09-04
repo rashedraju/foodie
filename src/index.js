@@ -5,7 +5,6 @@ import { BrowserRouter } from 'react-router-dom';
 
 /** IMPORT BOOTSTRAP */
 import 'bootstrap';
-import '../node_modules/popper.js';
 
 /** IMPORT STYLE */
 import './sass/main.scss';
