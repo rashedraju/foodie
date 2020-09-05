@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/goodie/static/css/main.b3d5c69e.chunk.css",
+    "main.css": "/goodie/static/css/main.41bba49e.chunk.css",
     "main.js": "/goodie/static/js/main.50a1061c.chunk.js",
     "main.js.map": "/goodie/static/js/main.50a1061c.chunk.js.map",
     "runtime-main.js": "/goodie/static/js/runtime-main.0fed4e6c.js",
@@ -13,10 +13,10 @@
     "static/js/4.21b21e0d.chunk.js": "/goodie/static/js/4.21b21e0d.chunk.js",
     "static/js/4.21b21e0d.chunk.js.map": "/goodie/static/js/4.21b21e0d.chunk.js.map",
     "index.html": "/goodie/index.html",
-    "precache-manifest.d7298e956dc73bcfcaced8b3c285f373.js": "/goodie/precache-manifest.d7298e956dc73bcfcaced8b3c285f373.js",
+    "precache-manifest.96d42c9e9cd9a8dd958e2a7017a41def.js": "/goodie/precache-manifest.96d42c9e9cd9a8dd958e2a7017a41def.js",
     "service-worker.js": "/goodie/service-worker.js",
     "static/css/3.1239a866.chunk.css.map": "/goodie/static/css/3.1239a866.chunk.css.map",
-    "static/css/main.b3d5c69e.chunk.css.map": "/goodie/static/css/main.b3d5c69e.chunk.css.map",
+    "static/css/main.41bba49e.chunk.css.map": "/goodie/static/css/main.41bba49e.chunk.css.map",
     "static/js/2.65fc236b.chunk.js.LICENSE.txt": "/goodie/static/js/2.65fc236b.chunk.js.LICENSE.txt",
     "static/media/index.css": "/goodie/static/media/TitilliumWeb-Regular.ed1d014b.ttf",
     "static/media/arrow-forward.svg": "/goodie/static/media/arrow-forward.a7c6928e.svg",
@@ -35,7 +35,7 @@
   "entrypoints": [
     "static/js/runtime-main.0fed4e6c.js",
     "static/js/2.65fc236b.chunk.js",
-    "static/css/main.b3d5c69e.chunk.css",
+    "static/css/main.41bba49e.chunk.css",
     "static/js/main.50a1061c.chunk.js"
   ]
 }
