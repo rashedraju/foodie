@@ -7,10 +7,10 @@ import Modal from '../UI/Modal/Modal';
 
 const navigation = () => (
     <nav className="navbar navbar-light py-2 px-4">
-        <NavLink exact to="/" className="navbar-brand">
+        <NavLink exact to="/goodie" className="navbar-brand">
             <Logo /> <span className="text-primary font-weight-bold">Goodie</span>
         </NavLink>
-         {/** SHOW USER LOGIN MODAL */}
+        {/** SHOW USER LOGIN MODAL */}
         <ul className="navbar-nav flex-row ml-auto">
             <Modal
                 title="Login"
