@@ -7,15 +7,15 @@ const recipes = props => {
         const recipeIndex = props.recipes.findIndex((el) => el.id === id);
         props.recipes[recipeIndex].addToCart = true;
     }
-    let recipe = props.recipes ? <Recipe recipes={props.recipes} cardHandler={cardHandler}/> : null;
+    let recipe = props.recipes ? <Recipe recipes={props.recipes} cardHandler={cardHandler} /> : null;
     return (
-        <div className="recipes p-1 p-md-4">
+        <section className="recipes p-1 p-md-4">
             <div className="container">
                 <div className="row">
                     {recipe}
                 </div>
             </div>
-        </div>
+        </section>
     )
 }
 
