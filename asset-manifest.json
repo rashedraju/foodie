@@ -1,0 +1,41 @@
+{
+  "files": {
+    "main.css": "/goodie/static/css/main.b3d5c69e.chunk.css",
+    "main.js": "/goodie/static/js/main.50a1061c.chunk.js",
+    "main.js.map": "/goodie/static/js/main.50a1061c.chunk.js.map",
+    "runtime-main.js": "/goodie/static/js/runtime-main.0fed4e6c.js",
+    "runtime-main.js.map": "/goodie/static/js/runtime-main.0fed4e6c.js.map",
+    "static/js/2.65fc236b.chunk.js": "/goodie/static/js/2.65fc236b.chunk.js",
+    "static/js/2.65fc236b.chunk.js.map": "/goodie/static/js/2.65fc236b.chunk.js.map",
+    "static/css/3.1239a866.chunk.css": "/goodie/static/css/3.1239a866.chunk.css",
+    "static/js/3.644836e6.chunk.js": "/goodie/static/js/3.644836e6.chunk.js",
+    "static/js/3.644836e6.chunk.js.map": "/goodie/static/js/3.644836e6.chunk.js.map",
+    "static/js/4.21b21e0d.chunk.js": "/goodie/static/js/4.21b21e0d.chunk.js",
+    "static/js/4.21b21e0d.chunk.js.map": "/goodie/static/js/4.21b21e0d.chunk.js.map",
+    "index.html": "/goodie/index.html",
+    "precache-manifest.d7298e956dc73bcfcaced8b3c285f373.js": "/goodie/precache-manifest.d7298e956dc73bcfcaced8b3c285f373.js",
+    "service-worker.js": "/goodie/service-worker.js",
+    "static/css/3.1239a866.chunk.css.map": "/goodie/static/css/3.1239a866.chunk.css.map",
+    "static/css/main.b3d5c69e.chunk.css.map": "/goodie/static/css/main.b3d5c69e.chunk.css.map",
+    "static/js/2.65fc236b.chunk.js.LICENSE.txt": "/goodie/static/js/2.65fc236b.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/goodie/static/media/TitilliumWeb-Regular.ed1d014b.ttf",
+    "static/media/arrow-forward.svg": "/goodie/static/media/arrow-forward.a7c6928e.svg",
+    "static/media/bicycle-outline.aa24f120.svg": "/goodie/static/media/bicycle-outline.aa24f120.svg",
+    "static/media/cart-outline.svg": "/goodie/static/media/cart-outline.f98c1ad2.svg",
+    "static/media/checkmark-done.svg": "/goodie/static/media/checkmark-done.96b24178.svg",
+    "static/media/fb.be038c71.svg": "/goodie/static/media/fb.be038c71.svg",
+    "static/media/main.scss": "/goodie/static/media/header.ea39f4a8.jpg",
+    "static/media/ic_Food_Feature_1.png": "/goodie/static/media/ic_Food_Feature_1.3ad2b243.png",
+    "static/media/ic_Food_Feature_2.png": "/goodie/static/media/ic_Food_Feature_2.f4924615.png",
+    "static/media/ic_Food_Feature_3.png": "/goodie/static/media/ic_Food_Feature_3.0356ed4c.png",
+    "static/media/ig.cfc05c45.svg": "/goodie/static/media/ig.cfc05c45.svg",
+    "static/media/logo.e4684fd0.svg": "/goodie/static/media/logo.e4684fd0.svg",
+    "static/media/person-circle-outline.b78d13d5.svg": "/goodie/static/media/person-circle-outline.b78d13d5.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0fed4e6c.js",
+    "static/js/2.65fc236b.chunk.js",
+    "static/css/main.b3d5c69e.chunk.css",
+    "static/js/main.50a1061c.chunk.js"
+  ]
+}
