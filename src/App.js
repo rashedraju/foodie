@@ -9,7 +9,6 @@ import Goodie from './containers/Goodie/Goodie';
 /** RENDER COMPONENTS WHEN THEY WAKEUP ELSE THEY NEED TO SLEEP**/
 const Signup = React.lazy(() => import('./components/Form/Form'));
 const Cart = React.lazy(() => import('./containers/Cart/Cart'));
-const Search = React.lazy(() => import('./components/Search/Search'));
 
 class App extends Component {
     state = {
@@ -20,11 +19,6 @@ class App extends Component {
             <div>
                 <Layout>
                     <Switch>
-                        {this.state.auth ? <Route path="/search" render={() =>
-                            <Suspense fallback={<Spinner />}>
-                                <Search />
-                            </Suspense>} /> : null};
-
                         {this.state.auth ? <Route path="/signup" render={(props) =>
                             <Suspense fallback={<Spinner />}>
                                 <Signup {...props} type='signup' />
@@ -35,7 +29,7 @@ class App extends Component {
                                 <Cart />
                             </Suspense>} /> : null};
 
-                        <Goodie />
+                        <Route exact path="/goodie" component={Goodie} />
                     </Switch>
                 </Layout>
             </div>
