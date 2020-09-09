@@ -5,6 +5,7 @@ import Aux from '../../hoc/Auxiliary/Auxiliary';
 import Header from '../../components/Header/Header';
 import Recipes from '../../components/Recipes/Recipes';
 import Home from '../../components/Home/Home';
+import Search from '../../components/Search/Search';
 
 class Goodie extends Component {
     state = {
@@ -38,6 +39,7 @@ class Goodie extends Component {
         return (
             <Aux>
                 <Header />
+                <Search />
                 <Recipes
                     recipes={this.state.recipes} />
                 <Home />
