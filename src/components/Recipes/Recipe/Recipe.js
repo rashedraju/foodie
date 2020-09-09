@@ -15,8 +15,7 @@ const recipe = props => {
                     </div>
                     <div className="card-footer d-flex justify-content-between">
                         <Button cls="btn btn-primary btn-sm"
-                            title='Add to cart'
-                            onClick={() => props.cardHandler(el.id)} />
+                            title='Add to cart' />
                         <div>
                             <strong className="text-primary">${el.price - 5}</strong>
                             <strike className="text-muted ml-1"><small>{el.price}</small></strike>
