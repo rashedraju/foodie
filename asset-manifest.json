@@ -1,21 +1,21 @@
 {
   "files": {
     "main.css": "/goodie/static/css/main.ea9a79fc.chunk.css",
-    "main.js": "/goodie/static/js/main.a75ba852.chunk.js",
-    "main.js.map": "/goodie/static/js/main.a75ba852.chunk.js.map",
-    "runtime-main.js": "/goodie/static/js/runtime-main.1ac2dd86.js",
-    "runtime-main.js.map": "/goodie/static/js/runtime-main.1ac2dd86.js.map",
-    "static/js/2.472d2cca.chunk.js": "/goodie/static/js/2.472d2cca.chunk.js",
-    "static/js/2.472d2cca.chunk.js.map": "/goodie/static/js/2.472d2cca.chunk.js.map",
+    "main.js": "/goodie/static/js/main.d8ec52a9.chunk.js",
+    "main.js.map": "/goodie/static/js/main.d8ec52a9.chunk.js.map",
+    "runtime-main.js": "/goodie/static/js/runtime-main.e2d31e84.js",
+    "runtime-main.js.map": "/goodie/static/js/runtime-main.e2d31e84.js.map",
+    "static/js/2.f17947b2.chunk.js": "/goodie/static/js/2.f17947b2.chunk.js",
+    "static/js/2.f17947b2.chunk.js.map": "/goodie/static/js/2.f17947b2.chunk.js.map",
     "static/css/3.1239a866.chunk.css": "/goodie/static/css/3.1239a866.chunk.css",
-    "static/js/3.1d67e5d7.chunk.js": "/goodie/static/js/3.1d67e5d7.chunk.js",
-    "static/js/3.1d67e5d7.chunk.js.map": "/goodie/static/js/3.1d67e5d7.chunk.js.map",
+    "static/js/3.8a294444.chunk.js": "/goodie/static/js/3.8a294444.chunk.js",
+    "static/js/3.8a294444.chunk.js.map": "/goodie/static/js/3.8a294444.chunk.js.map",
     "index.html": "/goodie/index.html",
-    "precache-manifest.7bc30a0b8451410cd88c6dea797bcaa4.js": "/goodie/precache-manifest.7bc30a0b8451410cd88c6dea797bcaa4.js",
+    "precache-manifest.4d1732e08816770b1e354579bc867205.js": "/goodie/precache-manifest.4d1732e08816770b1e354579bc867205.js",
     "service-worker.js": "/goodie/service-worker.js",
     "static/css/3.1239a866.chunk.css.map": "/goodie/static/css/3.1239a866.chunk.css.map",
     "static/css/main.ea9a79fc.chunk.css.map": "/goodie/static/css/main.ea9a79fc.chunk.css.map",
-    "static/js/2.472d2cca.chunk.js.LICENSE.txt": "/goodie/static/js/2.472d2cca.chunk.js.LICENSE.txt",
+    "static/js/2.f17947b2.chunk.js.LICENSE.txt": "/goodie/static/js/2.f17947b2.chunk.js.LICENSE.txt",
     "static/media/index.css": "/goodie/static/media/TitilliumWeb-Regular.ed1d014b.ttf",
     "static/media/arrow-forward.svg": "/goodie/static/media/arrow-forward.a7c6928e.svg",
     "static/media/bicycle-outline.aa24f120.svg": "/goodie/static/media/bicycle-outline.aa24f120.svg",
@@ -31,9 +31,9 @@
     "static/media/person-circle-outline.b78d13d5.svg": "/goodie/static/media/person-circle-outline.b78d13d5.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.1ac2dd86.js",
-    "static/js/2.472d2cca.chunk.js",
+    "static/js/runtime-main.e2d31e84.js",
+    "static/js/2.f17947b2.chunk.js",
     "static/css/main.ea9a79fc.chunk.css",
-    "static/js/main.a75ba852.chunk.js"
+    "static/js/main.d8ec52a9.chunk.js"
   ]
 }
