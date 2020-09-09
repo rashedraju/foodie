@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import Aux from '../../hoc/Auxiliary/Auxiliary';
 import Header from '../../components/Header/Header';
+import Search from '../../components/Search/Search';
 import Recipes from '../../components/Recipes/Recipes';
 import Home from '../../components/Home/Home';
 
@@ -38,6 +39,7 @@ class Goodie extends Component {
         return (
             <Aux>
                 <Header />
+                <Search />
                 <Recipes
                     recipes={this.state.recipes} />
                 <Home />
