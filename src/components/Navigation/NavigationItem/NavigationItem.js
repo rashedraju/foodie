@@ -9,7 +9,7 @@ const navigationItem = () => {
         {
             icon: <PersonIcon fill="#D60E64" width="32" height="32" />,
             title: 'Login',
-            link: './#',
+            link: './',
             toggle: 'modal',
             target: 'loginModal'
         },

@@ -36,8 +36,8 @@ axios.interceptors.response.use(response => {
 });
 
 const app = (
-    <BrowserRouter> 
-        <App/>
+    <BrowserRouter basename="/goodie">
+        <App />
     </BrowserRouter>
 )
 
