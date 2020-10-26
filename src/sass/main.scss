@@ -1,8 +1,4 @@
-@import "../../node_modules/bootstrap/scss/bootstrap.scss";
-
+@import './custom';
 @import './base/base';
-@import './base/animations';
 @import './base/typography';
 @import './base/utility';
-
-@import './abstract/mixin';

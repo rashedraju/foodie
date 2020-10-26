@@ -1,0 +1,3 @@
+export {
+    searchQuery,
+} from './search';

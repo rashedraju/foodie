@@ -1,12 +1,13 @@
 import React, { Component, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
+import './sass/main.scss';
 import Layout from './hoc/Layout/Layout';
 import Spinner from './components/UI/Loader/Loader';
 
-import Goodie from './containers/Goodie/Goodie';
+import LandingPage from './containers/LandingPage/LandingPage';
 
-/** RENDER COMPONENTS WHEN THEY WAKEUP ELSE THEY NEED TO SLEEP**/
 const Signup = React.lazy(() => import('./components/Form/Form'));
 const Cart = React.lazy(() => import('./containers/Cart/Cart'));
 
@@ -16,7 +17,7 @@ class App extends Component {
     }
     render() {
         return (
-            <div>
+            <Router basename="/goodie">
                 <Layout>
                     <Switch>
                         {this.state.auth ? <Route path="/signup" render={(props) =>
@@ -29,10 +30,10 @@ class App extends Component {
                                 <Cart />
                             </Suspense>} /> : null};
 
-                        <Goodie />
+                        <LandingPage />
                     </Switch>
                 </Layout>
-            </div>
+            </Router>
         );
     }
 }
