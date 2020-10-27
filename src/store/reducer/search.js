@@ -2,7 +2,7 @@ import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../../shared/utility';
 
 const initialState = {
-    query: 'burger',
+    query: '',
     loader: false,
     searchResults: null,
     error: false,
