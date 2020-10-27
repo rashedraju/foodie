@@ -10,6 +10,7 @@ import LandingPage from './containers/LandingPage/LandingPage';
 
 const Signup = React.lazy(() => import('./components/Form/Form'));
 const Cart = React.lazy(() => import('./containers/Cart/Cart'));
+const Search = React.lazy(() => import('./containers/Search/Search'));
 
 class App extends Component {
     state = {
@@ -30,7 +31,11 @@ class App extends Component {
                                 <Cart />
                             </Suspense>} /> : null};
 
-                        <LandingPage />
+                        <Route path="/search" exact render={() =>
+                            <Suspense fallback={<Spinner />}>
+                                <Search />
+                            </Suspense>} />
+                        <Route path='/' exact component={LandingPage} />
                     </Switch>
                 </Layout>
             </Router>

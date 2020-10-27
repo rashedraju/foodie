@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import Aux from '../../hoc/Auxiliary/Auxiliary';
 import Header from '../../components/Header/Header';
@@ -35,8 +37,10 @@ class Goodie extends Component {
     }
 
     render() {
+        let redirect = this.props.redirect ? <Redirect to='/search' /> : null;
         return (
             <Aux>
+                {redirect}
                 <Header />
                 <Recipes
                     recipes={this.state.recipes} />
@@ -45,4 +49,10 @@ class Goodie extends Component {
         );
     }
 }
-export default Goodie;
+const mapStateToProps = state => {
+    return {
+        redirect: state.search.redirect
+    }
+}
+
+export default connect(mapStateToProps)(Goodie);
