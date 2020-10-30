@@ -1,5 +1,9 @@
 export {
     searchQuery,
     searchFoodStart,
-    fatchSearchFood
+    searchFood
 } from './search';
+
+export {
+    getInitailFood
+} from './LandingPage';

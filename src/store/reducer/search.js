@@ -10,13 +10,11 @@ const initialState = {
 };
 
 const searchFoodStart = (state) => {
-    if (state.query !== '') {
-        return updateObject(state, { loader: true, redirect: true});
-    }
+    return updateObject(state, { loader: true, redirect: true});
 };
 
-const fatchSearchFoodSuccess = (state, action) => {
-    const updatedResults = action.results.map((recipe, i) => {
+const searchFoodSuccess = (state, action) => {
+    const updatedResults = action.results.map((recipe) => {
         return updateObject(recipe, {
             price: Math.floor(Math.random() * (20 - 10)) + 10,
             addToCart: false,
@@ -30,7 +28,7 @@ const fatchSearchFoodSuccess = (state, action) => {
     });
 };
 
-const fatchSearchFoodFail = (state) => {
+const searchFoodFail = (state) => {
     return updateObject(state, {
         error: true,
         loader: false,
@@ -44,10 +42,10 @@ const reducer = (state = initialState, action) => {
             return updateObject(state, { query: action.query });
         case actionTypes.SEARCH_FOOD_START:
             return searchFoodStart(state, action);
-        case actionTypes.FATCH_SEARCH_FOOD_SUCCESS:
-            return fatchSearchFoodSuccess(state, action);
-        case actionTypes.FATCH_SEARCH_FOOD_FAIL:
-            return fatchSearchFoodFail(state, action);
+        case actionTypes.SEARCH_FOOD_SUCCESS:
+            return searchFoodSuccess(state, action);
+        case actionTypes.SEARCH_FOOD_FAIL:
+            return searchFoodFail(state, action);
         default:
             return state;
     }

@@ -35,7 +35,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onQueryChange: (value) => dispatch(actions.searchQuery(value)),
-        onFatchSearchFood: (value) => dispatch(actions.fatchSearchFood(value))
+        onFatchSearchFood: (value) => dispatch(actions.searchFood(value))
     };
 };
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(searchBar));

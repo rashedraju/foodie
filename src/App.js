@@ -2,7 +2,7 @@ import React, { Component, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import './sass/main.scss';
+import './assets/sass/main.scss';
 import Layout from './hoc/Layout/Layout';
 import Spinner from './components/UI/Loader/Loader';
 

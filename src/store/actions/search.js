@@ -17,20 +17,20 @@ export const searchFoodStart = () => {
     };
 };
 
-export const fatchSearchFoodSuccess = (data) => {
+export const searchFoodSuccess = (data) => {
     return {
-        type: actionTypes.FATCH_SEARCH_FOOD_SUCCESS,
+        type: actionTypes.SEARCH_FOOD_SUCCESS,
         results: data,
         error: false
     };
 };
-export const fatchSearchFoodFail = () => {
+export const searchFoodFail = () => {
     return {
-        type: actionTypes.FATCH_SEARCH_FOOD_FAIL
+        type: actionTypes.SEARCH_FOOD_FAIL
     };
 };
 
-export const fatchSearchFood = (query) => {
+export const searchFood = (query) => {
     return (dispatch) => {
         dispatch(searchFoodStart())
         axios
@@ -38,20 +38,10 @@ export const fatchSearchFood = (query) => {
                 `${API}/search?q=${query}&app_id=${API_ID}&app_key=${API_KEY}&from=0&to=30`
             )
             .then((response) => {
-                dispatch(fatchSearchFoodSuccess(response.data.hits));
+                dispatch(searchFoodSuccess(response.data.hits));
             })
             .catch((err) => {
-                console.log(err)
-                dispatch(fatchSearchFoodFail())
+                dispatch(searchFoodFail())
             });
     };
 };
-
-//             const updatedRecipes = data.map((recipe, i) => {
-//                 return {
-//                     ...recipe,
-//                     price: Math.floor(Math.random() * (20 - 10)) + 10,
-//                     addToCart: false
-//                 }
-//             })
-//             this.setState({ searchResults: updatedRecipes, loader: false });
