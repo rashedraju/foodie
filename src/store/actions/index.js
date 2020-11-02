@@ -7,3 +7,7 @@ export {
 export {
     getInitailFood
 } from './LandingPage';
+
+export {
+    addToCart
+} from './cart'

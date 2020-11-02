@@ -1,30 +1,35 @@
 import * as actionTypes from '../actions/actionTypes';
-import { updateObject } from '../../shared/utility';
+import { updateObject, updateFood } from '../../shared/utility';
+import isAddedToCart from '../../shared/isAddedToCart';
 
 const initialState = {
     query: '',
     loader: false,
-    searchResults: null,
+    foods: [],
     error: false,
-    redirect: false
+    redirect: false,
 };
 
 const searchFoodStart = (state) => {
-    return updateObject(state, { loader: true, redirect: true});
+    return updateObject(state, { loader: true, redirect: true });
 };
 
 const searchFoodSuccess = (state, action) => {
-    const updatedResults = action.results.map((recipe) => {
-        return updateObject(recipe, {
-            price: Math.floor(Math.random() * (20 - 10)) + 10,
-            addToCart: false,
+    const updatedResults = action.results.map((food) => {
+        const isAdded = isAddedToCart(action.cartFoods, food.recipe.url)
+        
+        return updateObject(food, {
+            oldPrice: Math.floor(Math.random() * (20 - 10)) + 10,
+            newPrice: Math.floor(Math.random() * (20 - 10)) + 10 - 5,
+            id: food.recipe.url,
+            addedToCart: isAdded
         });
     });
     return updateObject(state, {
         loader: false,
         error: action.error,
-        searchResults: updatedResults,
-        redirect: false
+        foods: updatedResults,
+        redirect: false,
     });
 };
 
@@ -32,9 +37,19 @@ const searchFoodFail = (state) => {
     return updateObject(state, {
         error: true,
         loader: false,
-        redirect: false
+        redirect: false,
     });
 };
+
+const addToCart = (state, action) => {
+    const updatedFoods = updateFood(state.foods, action.food.id)
+    return updateObject(state, {foods: updatedFoods})
+}
+
+const removeFromCart = (state, action) => {
+    const updatedFoods = updateFood(state.foods, action.food.id)
+    return updateObject(state, {foods: updatedFoods})
+}
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -46,9 +61,12 @@ const reducer = (state = initialState, action) => {
             return searchFoodSuccess(state, action);
         case actionTypes.SEARCH_FOOD_FAIL:
             return searchFoodFail(state, action);
+        case actionTypes.ADD_TO_CART:
+            return addToCart(state, action);
+        case actionTypes.REMOVE_FROM_CART:
+            return removeFromCart(state, action);
         default:
             return state;
     }
 };
-
 export default reducer;

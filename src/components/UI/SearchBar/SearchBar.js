@@ -8,7 +8,7 @@ const searchBar = (props) => {
         <div className="input-group w-100 p-2 w-min-md mx-auto px-sm-4">
             <input
                 type="text"
-                placeholder="Search over million recipes"
+                placeholder="Search over million foods"
                 className="form-control text-muted search__field"
                 onChange={(e) => props.onQueryChange(e.target.value)}
                 value={props.query}
@@ -17,7 +17,7 @@ const searchBar = (props) => {
             <button
                 type="button"
                 className="btn btn-primary input-group-append text-white"
-                onClick={() => props.onFatchSearchFood(props.query)}
+                onClick={() => props.onFatchSearchFood(props.query, props.cartItems)}
             >
                 Search
             </button>
@@ -28,14 +28,15 @@ const searchBar = (props) => {
 
 const mapStateToProps = state => {
     return {
-        query: state.search.query
+        query: state.search.query,
+        cartItems: state.cart.foods
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         onQueryChange: (value) => dispatch(actions.searchQuery(value)),
-        onFatchSearchFood: (value) => dispatch(actions.searchFood(value))
+        onFatchSearchFood: (value, cartItems) => dispatch(actions.searchFood(value, cartItems))
     };
 };
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(searchBar));

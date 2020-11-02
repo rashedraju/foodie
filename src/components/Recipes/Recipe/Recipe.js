@@ -1,13 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import * as actions from '../../../store/actions';
 
 import './Recipe.scss';
 import Button from '../../../components/UI/Button/Button';
 
 const recipe = props => {
-    let recipeItem = props.recipes.map((el, i) => {
+    let recipeItem = props.recipes.map((el, index) => {
         const recipe = el.recipe;
         return (
-            <div className="col-sm-6 col-md-4 mb-2" key={i}>
+            <div className="col-sm-6 col-md-4 mb-2" key={index}>
                 <div className="card">
                     <img className="card-img img-fluid" src={recipe.image} alt={recipe.label} />
                     <div className="card-body p-0 p-1">
@@ -15,10 +17,11 @@ const recipe = props => {
                     </div>
                     <div className="card-footer d-flex justify-content-between">
                         <Button cls="btn btn-primary btn-sm"
-                            title='Add to cart' />
+                            title={el.addedToCart ? 'Added' : 'Add to cart'}
+                            clicked={() => props.onAddToCart(el)} />
                         <div>
-                            <strong className="text-primary">${el.price - 5}</strong>
-                            <strike className="text-muted ml-1"><small>{el.price}</small></strike>
+                            <strong className="text-primary">${el.newPrice}</strong>
+                            <strike className="text-muted ml-1"><small>{el.oldPrice}</small></strike>
                         </div>
                     </div>
                 </div>
@@ -28,4 +31,10 @@ const recipe = props => {
     return (recipeItem);
 }
 
-export default recipe;
+const mapDispatchToProps = dispatch => {
+    return {
+        onAddToCart: (food) => dispatch(actions.addToCart(food)) 
+    }
+}
+
+export default connect(null, mapDispatchToProps)(recipe);

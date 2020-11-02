@@ -7,10 +7,11 @@ const getInitialFoodStart = () => {
     };
 };
 
-export const getInitialFoodSuccess = (data) => {
+export const getInitialFoodSuccess = (data, cartItems) => {
     return {
         type: actionTypes.GET_INITIAL_FOOD_SUCCESS,
         results: data,
+        cartFoods: cartItems,
         error: false
     };
 };
@@ -20,16 +21,17 @@ export const getInitialFoodFail = () => {
     };
 };
 
-export const getInitailFood = () => {
+export const getInitailFood = (cartItems) => {
     return (dispatch) => {
         dispatch(getInitialFoodStart());
         axios
             .get('https://goodie4foods.firebaseio.com/recipes.json')
             .then((response) => {
-                dispatch(getInitialFoodSuccess(response.data));
+                dispatch(getInitialFoodSuccess(response.data, cartItems));
             })
             .catch((err) => {
                 dispatch(getInitialFoodFail());
             });
     };
 };
+

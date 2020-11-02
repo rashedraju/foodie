@@ -9,9 +9,12 @@ import Recipes from '../../components/Recipes/Recipes';
 import Home from '../../components/Home/Home';
 
 class Goodie extends Component {
-    // FATCH RECIPES 
+    // FETCH RECIPES 
     componentDidMount() {
-        this.props.onGetInitialFoods();
+        if (!this.props.foods.length > 0) {
+            this.props.onGetInitialFoods(this.props.cartItems);
+        }
+        
     }
 
     render() {
@@ -30,13 +33,14 @@ class Goodie extends Component {
 const mapStateToProps = state => {
     return {
         redirect: state.search.redirect,
-        foods: state.landingPage.foods
+        foods: state.landingPage.foods,
+        cartItems: state.cart.foods
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onGetInitialFoods: () => dispatch(actions.getInitailFood()),
+        onGetInitialFoods: (cartItems) => dispatch(actions.getInitailFood(cartItems)),
     }
 }
 

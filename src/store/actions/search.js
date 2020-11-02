@@ -17,10 +17,11 @@ export const searchFoodStart = () => {
     };
 };
 
-export const searchFoodSuccess = (data) => {
+export const searchFoodSuccess = (data, cartItems) => {
     return {
         type: actionTypes.SEARCH_FOOD_SUCCESS,
         results: data,
+        cartFoods: cartItems,
         error: false
     };
 };
@@ -29,8 +30,13 @@ export const searchFoodFail = () => {
         type: actionTypes.SEARCH_FOOD_FAIL
     };
 };
+export const isAddedToCart = () => {
+    return {
+        type: actionTypes.IS_ADDED_TO_CART
+    }
+}
 
-export const searchFood = (query) => {
+export const searchFood = (query, cartItems) => {
     return (dispatch) => {
         dispatch(searchFoodStart())
         axios
@@ -38,7 +44,7 @@ export const searchFood = (query) => {
                 `${API}/search?q=${query}&app_id=${API_ID}&app_key=${API_KEY}&from=0&to=30`
             )
             .then((response) => {
-                dispatch(searchFoodSuccess(response.data.hits));
+                dispatch(searchFoodSuccess(response.data.hits, cartItems));
             })
             .catch((err) => {
                 dispatch(searchFoodFail())
