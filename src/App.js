@@ -13,27 +13,24 @@ const Cart = React.lazy(() => import('./containers/Cart/Cart'));
 const Search = React.lazy(() => import('./containers/Search/Search'));
 
 class App extends Component {
-    state = {
-        auth: true
-    }
     render() {
         return (
             <Router basename="/goodie">
                 <Layout>
                     <Switch>
-                        {this.state.auth ? <Route path="/signup" render={(props) =>
+                        <Route path="/signup" render={(props) =>
                             <Suspense fallback={<Spinner />}>
                                 <Signup {...props} type='signup' />
-                            </Suspense>} /> : null};
+                            </Suspense>} />;
 
-                        {this.state.auth ? <Route path="/cart" render={() =>
+                        <Route path="/cart" render={(props) =>
                             <Suspense fallback={<Spinner />}>
-                                <Cart />
-                            </Suspense>} /> : null};
+                                <Cart {...props} />
+                            </Suspense>} />;
 
-                        <Route path="/search" exact render={() =>
+                        <Route path="/search" exact render={(props) =>
                             <Suspense fallback={<Spinner />}>
-                                <Search />
+                                <Search {...props} />
                             </Suspense>} />
                         <Route path='/' exact component={LandingPage} />
                     </Switch>

@@ -10,8 +10,8 @@ const recipe = props => {
         const recipe = el.recipe;
         return (
             <div className="col-sm-6 col-md-4 mb-2" key={index}>
-                <div className="card">
-                    <img className="card-img img-fluid" src={recipe.image} alt={recipe.label} />
+                <div className="card overflow-hidden">
+                    <img className="card-img img-fluid cart__image" src={recipe.image} alt={recipe.label} />
                     <div className="card-body p-0 p-1">
                         <h5 className="card-title text-dark mb-0">{recipe.label}</h5>
                     </div>

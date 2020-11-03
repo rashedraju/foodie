@@ -6,8 +6,7 @@ export const updateObject = (oldState, updatedProperties) => {
 }
 
 export const updateFood = (foodsArr, foodId) => {
-    const foods = [...foodsArr]
-    const updatedFoods = foods.map(food => {
+    const updatedFoods = foodsArr.map(food => {
         if (food.id === foodId) {
             return {
                 ...food,

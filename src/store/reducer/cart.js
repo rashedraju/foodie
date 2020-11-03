@@ -17,9 +17,9 @@ const addToCart = (state, action) => {
 }
 
 const removeFromCart = (state, action) => {
-    const foods = [...state.foods];
-    const foodIndex = foods.findIndex(el => el.food.id === el.id)
-    const updatedFoods = foodIndex ? foods.splice(foodIndex, 1) : foods;
+    const updatedFoods = [...state.foods];
+    const foodIndex = updatedFoods.findIndex(el => action.food.id === el.id)
+    updatedFoods.splice(foodIndex, 1);
     return updateObject(state, { foods: updatedFoods })
 }
 

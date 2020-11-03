@@ -1,3 +1,6 @@
-.card-img-overlay {
-    bottom: 100%;
+.cart__image {
+    transition: all 0.2s linear;
+}
+.cart__image:hover {
+    transform: scale(1.05);
 }
