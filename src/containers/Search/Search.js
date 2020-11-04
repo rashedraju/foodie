@@ -18,6 +18,7 @@ class Search extends Component {
 
 const mapStateToProps = state => {
     return {
+        query: state.search.query,
         results: state.search.foods,
         loader: state.search.loader,
         error: state.search.error

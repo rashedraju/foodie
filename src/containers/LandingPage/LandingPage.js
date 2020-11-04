@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 
 import * as actions from '../../store/actions';
 import Aux from '../../hoc/Auxiliary/Auxiliary';
@@ -18,10 +17,8 @@ class Goodie extends Component {
     }
 
     render() {
-        let redirect = this.props.redirect ? <Redirect to='/search' /> : null;
         return (
             <Aux>
-                {redirect}
                 <Header />
                 <Recipes
                     recipes={this.props.foods} />

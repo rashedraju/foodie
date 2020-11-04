@@ -28,7 +28,7 @@ class App extends Component {
                                 <Cart {...props} />
                             </Suspense>} />;
 
-                        <Route path="/search" exact render={(props) =>
+                        <Route path="/search" render={(props) =>
                             <Suspense fallback={<Spinner />}>
                                 <Search {...props} />
                             </Suspense>} />

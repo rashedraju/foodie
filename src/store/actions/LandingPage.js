@@ -1,12 +1,6 @@
 import axios from 'axios';
 import * as actionTypes from './actionTypes';
 
-const getInitialFoodStart = () => {
-    return {
-        type: actionTypes.GET_INITIAL_FOOD_START,
-    };
-};
-
 export const getInitialFoodSuccess = (data, cartItems) => {
     return {
         type: actionTypes.GET_INITIAL_FOOD_SUCCESS,
@@ -23,7 +17,6 @@ export const getInitialFoodFail = () => {
 
 export const getInitailFood = (cartItems) => {
     return (dispatch) => {
-        dispatch(getInitialFoodStart());
         axios
             .get('https://goodie4foods.firebaseio.com/recipes.json')
             .then((response) => {

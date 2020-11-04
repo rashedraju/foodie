@@ -8,6 +8,10 @@ const searchBar = (props) => {
         <form
             onSubmit={(e) => {
                 e.preventDefault();
+                props.history.push({
+                    pathname: '/search',
+                    search: '?q=' + props.query,
+                })
                 props.onFatchSearchFood(props.query, props.cartItems);
             }}
         >

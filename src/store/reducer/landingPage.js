@@ -3,15 +3,9 @@ import { updateObject, updateFood } from '../../shared/utility';
 import isAddedToCart from '../../shared/isAddedToCart';
 
 const initialState = {
-    loader: false,
     foods: [],
     error: false,
 };
-
-const getInitialFoodStart = (state) => {
-    return updateObject(state, { loader: true});
-};
-
 const getInitialFoodSuccess = (state, action) => {
     const updatedResults = action.results.map((food) => {
         const isAdded = isAddedToCart(action.cartFoods, food.id)
@@ -48,8 +42,6 @@ const removeFromCart = (state, action) => {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.GET_INITIAL_FOOD_START:
-            return getInitialFoodStart(state, action);
         case actionTypes.GET_INITIAL_FOOD_SUCCESS:
             return getInitialFoodSuccess(state, action);
         case actionTypes.GET_INITIAL_FOOD_FAIL:

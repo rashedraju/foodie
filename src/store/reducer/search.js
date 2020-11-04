@@ -7,11 +7,10 @@ const initialState = {
     loader: false,
     foods: [],
     error: false,
-    redirect: false,
 };
 
 const searchFoodStart = (state) => {
-    return updateObject(state, { loader: true, redirect: true });
+    return updateObject(state, { loader: true });
 };
 
 const searchFoodSuccess = (state, action) => {
@@ -28,16 +27,14 @@ const searchFoodSuccess = (state, action) => {
     return updateObject(state, {
         loader: false,
         error: action.error,
-        foods: updatedResults,
-        redirect: false,
+        foods: updatedResults
     });
 };
 
 const searchFoodFail = (state) => {
     return updateObject(state, {
         error: true,
-        loader: false,
-        redirect: false,
+        loader: false
     });
 };
 
