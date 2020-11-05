@@ -15,7 +15,9 @@ class Goodie extends Component {
         }
         
     }
-
+    state = {
+        
+    }
     render() {
         return (
             <Aux>

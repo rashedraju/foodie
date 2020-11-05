@@ -5,7 +5,14 @@ import Button from '../Button/Button';
 import { NavLink } from 'react-router-dom';
 
 const modal = props => {
-    let suggest = <p className="text-muted mx-auto">don't have an account? <NavLink to='/signup' exact className="text-primary">Sign Up here</NavLink></p>;
+    const suggest = (
+        <p className="text-muted mx-auto">
+                Don't have an account?{' '}
+                <NavLink to="/signup" className="text-primary">
+                    Sign Up here
+                </NavLink>
+            </p>
+    );
     return (
         <div className="modal fade" id={props.id}>
             <div className="modal-dialog">
@@ -15,10 +22,11 @@ const modal = props => {
                         <button className="close" data-dismiss="modal"> &times; </button>
                     </div>
                     <div className="modal-body">
-                        <Form {...props} />
+                        <Form {...props}  />
                     </div>
                     <div className="modal-footer">
                         <Button
+                            type="submit"
                             title={props.title}
                             cls="btn btn-primary w-100 text-white text-center"
                         />

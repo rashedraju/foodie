@@ -1,39 +1,27 @@
 import React from 'react';
 
+import Input from '../../UI/Input/input';
 import Button from '../../UI/Button/Button';
 
-const signup = () => {
-    const suggest = <p className="text-muted text-center">You have an account? <a href="/" data-toggle="modal" data-target="#loginModal" className="text-primary">Login</a></p>;
+const signup = (props) => {
     return (
         <div className="card">
-            <div className="card-header text-uppercase text-center">
-                <h5 className="card-title text-uppercase text-success"> Register </h5>
-            </div>
-            <div className="card-body w-100 w-sm-50 mx-auto">
-                <div className="form-group">
-                    <input type="text" placeholder="First Name" className="form-control"></input>
+                <div className="card-header text-uppercase text-center">
+                    <h5 className="card-title text-uppercase text-success">
+                        SignUp
+                    </h5>
                 </div>
-                <div className="form-group">
-                    <input type="text" placeholder="Last Name" className="form-control"></input>
+                <div className="card-body w-100 w-sm-50 mx-auto">
+                    {[props.inputElement.map((el, i) => <Input config={el.config} key={i} value={el.value} changed={(e) => props.changed(e, el.key)} />)]}
                 </div>
-                <div className="form-group">
-                    <input type="email" placeholder="Email" className="form-control"></input>
-                </div>
-                <div className="form-group">
-                    <input type="phone" placeholder="Phone" className="form-control"></input>
-                </div>
-                <div className="form-group">
-                    <input type="password" placeholder="Password" className="form-control"></input>
+                <div className="card-footer text-center">
+                    <Button
+                        type="submit"
+                        title='SignUp'
+                        cls="btn btn-primary w-sm-50 w-100 text-white text-center"
+                    />
                 </div>
             </div>
-            <div className="card-footer text-center">
-                <Button
-                    title="Register"
-                    cls="btn btn-primary w-sm-50 w-100 text-white text-center"
-                />
-                {suggest}
-            </div>
-        </div>
     )
 }
 

@@ -10,6 +10,7 @@ const navigation = () => (
         <NavLink exact to="/" className="navbar-brand">
             <Logo /> <span className="text-primary font-weight-bold">Goodie</span>
         </NavLink>
+        
         {/** SHOW USER LOGIN MODAL */}
         <ul className="navbar-nav flex-row ml-auto">
             <Modal

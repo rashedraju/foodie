@@ -8,7 +8,7 @@ import Spinner from './components/UI/Loader/Loader';
 
 import LandingPage from './containers/LandingPage/LandingPage';
 
-const Signup = React.lazy(() => import('./components/Form/Form'));
+const Auth = React.lazy(() => import('./containers/Auth/Auth'));
 const Cart = React.lazy(() => import('./containers/Cart/Cart'));
 const Search = React.lazy(() => import('./containers/Search/Search'));
 
@@ -20,7 +20,7 @@ class App extends Component {
                     <Switch>
                         <Route path="/signup" render={(props) =>
                             <Suspense fallback={<Spinner />}>
-                                <Signup {...props} type='signup' />
+                                <Auth {...props}/>
                             </Suspense>} />;
 
                         <Route path="/cart" render={(props) =>
@@ -39,5 +39,5 @@ class App extends Component {
         );
     }
 }
-
+// AIzaSyBh4NfdcwHo9A4pHAdf4b-659Xyr4MiG4s
 export default App;

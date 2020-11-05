@@ -10,4 +10,9 @@ export {
 
 export {
     addToCart
-} from './cart'
+} from './cart';
+
+export {
+    loginInputChange,
+    signupInputChange
+} from './auth';
