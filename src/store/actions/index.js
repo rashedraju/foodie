@@ -13,6 +13,5 @@ export {
 } from './cart';
 
 export {
-    loginInputChange,
-    signupInputChange
+    auth
 } from './auth';

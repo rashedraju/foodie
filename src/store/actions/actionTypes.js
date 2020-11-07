@@ -10,5 +10,5 @@ export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const IS_ADDED_TO_CART = 'IS_ADDED_TO_CART';
 
-export const LOGIN_INPUT_CHANGE = 'LOGIN_INPUT_CHANGE';
-export const SIGNUP_INPUT_CHANGE = 'SIGNUP_INPUT_CHANGE';
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const AUTH_FAIL = 'AUTH_FAIL'

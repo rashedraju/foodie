@@ -49,7 +49,7 @@ class Auth extends Component {
             }) 
         }
         return (
-            <Form type="signup" signupInputEl={inputEl} changed={this.inputChangeHandler} />
+            <Form type="signup" inputEl={inputEl} formData={this.state.signupFormData} changed={this.inputChangeHandler} />
         );
     }
 }
