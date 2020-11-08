@@ -7,84 +7,80 @@ import { updateObject } from '../../shared/utility';
 import * as actions from '../../store/actions';
 
 const Form = (props) => {
-    const [loginInputEl, setLoginInputEl] = useState({
-        email: {
-            config: {
-                type: 'email',
-                placeholder: 'Email',
-                className: 'form-control',
-            },
-            value: '',
-        },
-        password: {
-            config: {
-                type: 'password',
-                placeholder: 'Password',
-                className: 'form-control',
-            },
-            value: '',
-        },
+  const [loginInputEl, setLoginInputEl] = useState({
+    email: {
+      config: {
+        method: 'email',
+        placeholder: 'Email',
+        className: 'form-control',
+      },
+      value: '',
+    },
+    password: {
+      config: {
+        method: 'password',
+        placeholder: 'Password',
+        className: 'form-control',
+      },
+      value: '',
+    },
+  });
+
+  const inputEl = [];
+
+  for (const key in loginInputEl) {
+    inputEl.push({
+      key,
+      config: {
+        ...loginInputEl[key].config,
+      },
+      value: loginInputEl[key].value,
+    });
+  }
+
+  const inputChangeHandler = (e, key) => {
+    const updatedData = updateObject(loginInputEl, {
+      [key]: {
+        ...loginInputEl[key],
+        value: e.target.value,
+      },
     });
 
-    let inputEl = [];
-    for (let key in loginInputEl) {
-        inputEl.push({
-            key: key,
-            config: {
-                ...loginInputEl[key].config,
-            },
-            value: loginInputEl[key].value,
-        });
-    }
+    setLoginInputEl(updatedData);
+  };
 
-    const inputChangeHandler = (e, key) => {
-        const updatedData = updateObject(loginInputEl, {
-            [key]: {
-                ...loginInputEl[key],
-                value: e.target.value,
-            },
-        });
+  const login = inputEl.map((el, i) => (
+    <Input
+      config={el.config}
+      key={i}
+      value={el.value}
+      changed={(e) => inputChangeHandler(e, el.key)}
+    />
+  ));
 
-        setLoginInputEl(updatedData);
-    };
+  const formInput =
+    props.method === 'signup' ? (
+      <Signup inputElement={props.inputEl} changed={props.changed} />
+    ) : (
+        login
+      );
 
-    let login = inputEl.map((el, i) => (
-        <Input
-            config={el.config}
-            key={i}
-            value={el.value}
-            changed={(e) => inputChangeHandler(e, el.key)}
-        />
-    ));
-
-    let formInput =
-        props.type === 'signup' ? (
-            <Signup
-                inputElement={props.inputEl}
-                changed={props.changed}
-            />
-        ) : (
-            login
-        );
-
-    return (
-        <form
-            onSubmit={(e) => {
-                e.preventDefault();
-                props.type === 'signup'
-                    ? props.onAuthSubmit(props.formData, props.type)
-                    : props.onAuthSubmit(loginInputEl, props.type);
-            }}
-        >
-            {formInput}
-        </form>
-    );
+  return (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        props.method === 'signup'
+          ? props.onAuthSubmit(props.formData, props.method)
+          : props.onAuthSubmit(loginInputEl, props.method);
+      }}
+    >
+      {formInput}
+    </form>
+  );
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onAuthSubmit: (data, type) => dispatch(actions.auth(data, type)),
-    };
-};
+const mapDispatchToProps = (dispatch) => ({
+  onAuthSubmit: (data, method) => dispatch(actions.auth(data, method)),
+});
 
 export default connect(null, mapDispatchToProps)(Form);
