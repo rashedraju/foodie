@@ -14,7 +14,7 @@ const Search = React.lazy(() => import('./containers/Search/Search'));
 class App extends PureComponent {
   render() {
     return (
-      <Router basename="/goodie">
+      <Router basename="/foodie">
         <Layout>
           <Switch>
             <Route
