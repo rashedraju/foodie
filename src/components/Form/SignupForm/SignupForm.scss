@@ -1,0 +1,40 @@
+@import '../../../assets/sass/main.scss';
+.form {
+    &__header {
+    }
+    &__label {
+        color: #6c757d;
+        padding-left: 0.8rem;
+        transform: translateY(-4rem);
+        transition: all 0.2s ease;
+        opacity: 1;
+        visibility: visible;
+    }
+    &__field {
+        border-radius: 0.5rem;
+        &:focus {
+            box-shadow: none;
+            border: 1px solid #ced4da;
+        }
+        @media screen and(max-width: 567px) {
+            border: none;
+            &:focus {
+                border: none;
+            }
+        }
+    }
+    &__field:placeholder-shown + &__label {
+        transform: translateY(-2rem);
+        opacity: 0;
+        visibility: hidden;
+    }
+    &__checkbox-label {
+        color: #6c757d !important;
+        @media screen and(max-width: 567px) {
+            color: #fff !important;
+        }
+    }
+}
+.custom-control-input:focus ~ .custom-control-label::before {
+    box-shadow: none;
+}

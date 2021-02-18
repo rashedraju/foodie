@@ -7,7 +7,7 @@ import Spinner from './components/UI/Loader/Loader';
 
 import LandingPage from './containers/LandingPage/LandingPage';
 
-const Auth = React.lazy(() => import('./containers/Auth/Auth'));
+const Signup = React.lazy(() => import('./containers/Signup/Signup'));
 const Cart = React.lazy(() => import('./containers/Cart/Cart'));
 const Search = React.lazy(() => import('./containers/Search/Search'));
 
@@ -21,7 +21,7 @@ class App extends PureComponent {
               path="/signup"
               render={(props) => (
                 <Suspense fallback={<Spinner />}>
-                  <Auth {...props} />
+                  <Signup {...props} />
                 </Suspense>
               )}
             />

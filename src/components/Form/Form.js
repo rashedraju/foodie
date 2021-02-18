@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import Input from '../UI/Input/input';
-import Signup from './Signup/Signup';
+import Signup from './SignupForm/SignupForm';
 import { updateObject } from '../../shared/utility';
 import * as actions from '../../store/actions';
 

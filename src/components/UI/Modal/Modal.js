@@ -1,41 +1,32 @@
 import React from 'react';
 
-import Form from '../../Form/Form';
-import Button from '../Button/Button';
-import { NavLink } from 'react-router-dom';
+import { Modal as BSModal } from 'react-bootstrap';
+import './Modal.scss';
 
-const modal = props => {
-    const suggest = (
-        <p className="text-muted mx-auto">
-                Don't have an account?{' '}
-                <NavLink to="/signup" className="text-primary">
-                    Sign Up here
-                </NavLink>
-            </p>
-    );
+const Modal = props => {
+    // const suggest = (
+    //     <p className="text-muted mx-auto">
+    //             Don't have an account?{' '}
+    //             <NavLink to="/signup" className="text-primary" onClick={props.setClose}>
+    //                 Sign Up here
+    //             </NavLink>
+    //         </p>
+    // );
     return (
-        <div className="modal fade" id={props.id}>
-            <div className="modal-dialog">
-                <div className="modal-content">
-                    <div className="modal-header text-uppercase">
-                        <h5 className="modal-title"> {props.title} </h5>
-                        <button className="close" data-dismiss="modal"> &times; </button>
-                    </div>
-                    <div className="modal-body">
-                        <Form {...props}  />
-                    </div>
-                    <div className="modal-footer">
-                        <Button
-                            type="submit"
-                            title={props.title}
-                            cls="btn btn-primary w-100 text-white text-center"
-                        />
-                        {suggest}
-                    </div>
-                </div>
+        <BSModal show={props.show} onHide={props.setClose}>
+            <div className="modal__close" onClick={props.setClose}>
+                <button className="modal__close-btn" onClick={props.setClose}></button>
             </div>
-        </div>
+            <BSModal.Body> {props.children} </BSModal.Body>
+            {/* <BSModal.Footer>
+                <Button
+                    type="submit"
+                    title={props.title}
+                    cls="btn btn-primary w-100 text-white text-center" />
+                {suggest}
+            </BSModal.Footer> */}
+        </BSModal>
     );
 }
 
-export default modal;
+export default Modal;

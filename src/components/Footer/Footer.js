@@ -1,7 +1,7 @@
 import React from 'react';
 
 const footer = () => {
-    let footerNavItem = ['About Us', 'Career', 'Blog', 'Press', 'Contact', 'Goodie from Business', 'Term & conditions', 'Privacy Policy'].map((el, i) => (
+    let footerNavItem = ['About Us', 'Career', 'Blog', 'Press', 'Contact', 'Foodie for Business', 'Term & conditions', 'Privacy Policy'].map((el, i) => (
         <div className="col-6 col-md-4 p-2" key={i}>
             <li><a href="/" className="text-white">{el}</a></li>
         </div>

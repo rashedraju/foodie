@@ -2,8 +2,8 @@
     background-color: #000;
 }
 @media (max-width: 567px) {
-    .pr-sm{
-        padding-right: .5rem;
+    .pr-sm {
+        padding-right: 0.5rem;
     }
     .w-on-sm-100 {
         width: 100%;
@@ -20,5 +20,13 @@
     }
     .w-min-md {
         width: 75% !important;
+    }
+    .w-md-75 {
+        width: 75% !important;
+    }
+}
+@media (max-width: 767px) {
+    .w-mx-md-100 {
+        width: 100%;
     }
 }

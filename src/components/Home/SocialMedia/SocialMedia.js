@@ -8,7 +8,7 @@ const social = () => (
         <div className="container">
             <div className="d-flex justify-content-between py-5">
                 <div>
-                    <Logo /> <span className="text-primary font-weight-bold">Goodie</span>
+                    <Logo /> <span className="text-primary font-weight-bold">Foodie</span>
                 </div>
                 <div>
                     <a href="https://facebook.com" className="pr-3"><Fb width="32" height="32" /></a>
