@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Modal as BSModal } from 'react-bootstrap';
-import './Modal.scss';
+import styles from './Modal.module.scss';
 
 const Modal = props => {
     // const suggest = (
@@ -13,9 +13,9 @@ const Modal = props => {
     //         </p>
     // );
     return (
-        <BSModal show={props.show} onHide={props.setClose}>
-            <div className="modal__close" onClick={props.setClose}>
-                <button className="modal__close-btn" onClick={props.setClose}></button>
+        <BSModal show={props.show} onHide={props.setClose} className={styles.modal}>
+            <div className={styles.close} onClick={props.setClose}>
+                <button className={styles['close-btn']} onClick={props.setClose}></button>
             </div>
             <BSModal.Body> {props.children} </BSModal.Body>
             {/* <BSModal.Footer>

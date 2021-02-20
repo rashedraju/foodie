@@ -1,0 +1,24 @@
+.label {
+    color: #6c757d;
+    margin-left: 15.333%;
+    transform: translateY(-4rem);
+    transition: all 0.2s ease;
+    opacity: 1;
+    visibility: visible;
+}
+
+.field {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 1px 1px 5px #ced4da;
+    &:focus {
+        box-shadow: 1px 1px 5px #ced4da;
+        border: none;
+    }
+}
+
+.field:placeholder-shown + .label {
+    transform: translateY(-2rem);
+    opacity: 0;
+    visibility: hidden;
+}

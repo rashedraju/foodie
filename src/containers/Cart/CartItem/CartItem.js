@@ -1,15 +1,15 @@
 import React from 'react';
 
-import './CartItem.scss';
+import styles from './CartItem.module.scss';
 
 const cartItem = props => {
     let item = props.items.length > 0 ? props.items.map((el, i) => {
         return (
-            <div className="row p-2 mx-0 border cartItem" key={i}>
-                <div className="col-sm-6 d-flex justify-content-start align-items-center cartItem__header">
-                    <button className="btn btn-light bg-white align-self-center cartItem__delete" title="remove">&times;</button>
+            <div className="row p-2 mx-0 border" key={i}>
+                <div className={`${styles.header} col-sm-6 d-flex justify-content-start align-items-center`}>
+                    <button className={`${styles.delete} btn btn-light bg-white align-self-center`} title="remove">&times;</button>
                     <img src={el.recipe.image} alt={el.alt} className="img-fluid m-1 w-25"></img>
-                    <h4 className="cartItem__title ml-2">{el.recipe.label}</h4>
+                    <h4 className={`${styles.title} ml-2`}>{el.recipe.label}</h4>
                 </div>
                 <div className="col-sm-6 d-flex justify-content-around align-items-center">
                     <div>

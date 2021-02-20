@@ -1,8 +1,8 @@
 import React from 'react';
-import './Loader.scss';
+import styles from './Loader.module.scss';
 
 const loader = () => (
-    <div className="lds-ring my-1"><div></div><div></div><div></div><div></div></div>
+    <div className={`${styles.ldrRing} my-1`}><div></div><div></div><div></div><div></div></div>
 );
 
 export default loader;

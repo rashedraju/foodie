@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Form from '../../components/Form/SignupForm/SignupForm';
 import { updateObject } from '../../shared/utility';
-import './Signup.scss';
+import styles from './Signup.module.scss';
 import mobileBg from "../../assets/img/signup-bg-mobile.png";
 
 class Signup extends Component {
@@ -54,9 +54,9 @@ class Signup extends Component {
       });
     }
     return (
-      <div className="signup">
-        <img src={mobileBg} className="signup__bg-mobile" alt="signup background" />
-        <div className="signup__container row">
+      <div className={styles.signup}>
+        <img src={mobileBg} className={styles.BgSm} alt="signup background" />
+        <div className={`${styles.container} row`}>
           <div className="signup__left col-md-6">
             <Form
               method="signup"
@@ -65,9 +65,7 @@ class Signup extends Component {
               changed={this.inputChangeHandler}
             />
           </div>
-          <div className="signup__right col-md-6">
-
-          </div>
+          <div className={`${styles.right} col-md-6`}></div>
         </div>
       </div>
     );

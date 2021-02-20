@@ -1,4 +1,5 @@
 $theme-colors: (
     'primary': #d60e64,
 );
-@import '~bootstrap/scss/bootstrap';
+
+@import '../../../node_modules/bootstrap/scss/bootstrap';

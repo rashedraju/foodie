@@ -1,26 +1,27 @@
 import React from 'react';
 
 import { Form, Button } from 'react-bootstrap';
-import './SignupForm.scss';
+import styles from './SignupForm.module.scss';
 
 const signupForm = (props) => {
     return (
-        <Form className="form">
-            <h1 className="form__header text-primary mb-5"> Sign Up</h1>
+        <Form>
+            <h1 className="text-primary mb-5"> Sign Up</h1>
 
-            <Form.Control placeholder="First Name" className="form__field w-md-75" />
-            <Form.Label className="form__label"> First Name</Form.Label>
+            <Form.Control placeholder="First Name" className={`${styles.field} w-md-75`} />
+            <Form.Label className={styles.label}> First Name</Form.Label>
 
-            <Form.Control placeholder="Last Name" className="form__field w-md-75" />
-            <Form.Label className="form__label"> Last Name</Form.Label>
+            <Form.Control placeholder="Last Name" className={`${styles.field} w-md-75`} />
+            <Form.Label className={styles.label}> Last Name</Form.Label>
 
-            <Form.Control placeholder="Email Address" className="form__field w-md-75" />
-            <Form.Label className="form__label"> Email Address </Form.Label>
+            <Form.Control placeholder="Email Address" className={`${styles.field} w-md-75`} />
+            <Form.Label className={styles.label}> Email Address </Form.Label>
 
-            <Form.Control placeholder="Password" className="form__field w-md-75" />
-            <Form.Label className="form__label"> Password </Form.Label>
+            <Form.Control type="password" placeholder="Password" className={`${styles.field} w-md-75`} />
+            <Form.Label className={styles.label}> Password </Form.Label>
 
-            <Form.Check type="checkbox" id="customControlInline" label="I've read and agree with Terms of Service and our Privacy Policy" className="ml-1 mb-4 text-white w-md-75 form__checkbox-label" custom />
+            <Form.Check type="checkbox" id="customControlInline" label="I've read and agree with Terms of Service and our Privacy Policy" className={`${styles.checkbox} ml-1 mb-4 text-white w-md-75`} custom />
+
             <Button type="submit" variant="primary" className="w-mx-md-100">Signup</Button>
         </Form>
         // <div className="card">
