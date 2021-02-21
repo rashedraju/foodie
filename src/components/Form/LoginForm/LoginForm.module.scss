@@ -1,10 +1,14 @@
+@import '../../../assets/sass/app.scss';
 .label {
     color: #6c757d;
-    margin-left: 15.333%;
     transform: translateY(-4rem);
     transition: all 0.2s ease;
     opacity: 1;
     visibility: visible;
+}
+.loginLabel {
+    composes: label;
+    margin-left: 15.333%;
 }
 
 .field {
@@ -15,6 +19,10 @@
         box-shadow: 1px 1px 5px #ced4da;
         border: none;
     }
+}
+.validation {
+    display: block;
+    margin: -2rem 0 1.8rem 0.5rem;
 }
 
 .field:placeholder-shown + .label {

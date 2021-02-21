@@ -1,26 +1,16 @@
-.label {
-    color: #6c757d;
+.signupLabel {
     padding-left: 0.8rem;
-    transform: translateY(-4rem);
-    transition: all 0.2s ease;
-    opacity: 1;
-    visibility: visible;
+    composes: label from '../LoginForm/LoginForm.module.scss';
 }
 
 .field {
-    border-radius: 0.5rem;
-    &:focus {
-        box-shadow: none;
-        border: 1px solid #ced4da;
-    }
+    composes: field from '../LoginForm/LoginForm.module.scss';
 }
 
-.field:placeholder-shown + .label {
-    transform: translateY(-2rem);
-    opacity: 0;
-    visibility: hidden;
+// .filed placeholder-shown applied from loginForm.module.scss
+.validation {
+    composes: validation from '../LoginForm/LoginForm.module.scss';
 }
-
 .checkbox {
     color: #6c757d !important;
     > :first-child:focus + :last-child::before {
@@ -30,12 +20,6 @@
 
 // responsive
 @media screen and(max-width: 567px) {
-    .field {
-        border: none;
-        &:focus {
-            border: none;
-        }
-    }
     .checkbox {
         color: #fff !important;
     }

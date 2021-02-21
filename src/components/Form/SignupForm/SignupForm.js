@@ -1,46 +1,98 @@
 import React from 'react';
 
+import { Formik } from 'formik';
+import * as Yup from 'yup';
 import { Form, Button } from 'react-bootstrap';
 import styles from './SignupForm.module.scss';
 
 const signupForm = (props) => {
+    const formData = {
+        firstName: {
+            config: {
+                type: 'text',
+                placeholder: 'First Name',
+            },
+            label: 'First Name'
+        },
+        lastName: {
+            config: {
+                type: 'text',
+                placeholder: 'Last Name',
+            },
+            label: 'Last Name'
+        },
+        email: {
+            config: {
+                type: 'email',
+                placeholder: 'Email Address',
+            },
+            label: 'Email Address'
+        },
+        password: {
+            config: {
+                type: 'password',
+                placeholder: 'Password',
+            },
+            label: 'Password'
+        }
+    }
+
+    const formInput = formik => {
+        let inputFields = [];
+        for (let key in formData) {
+            let item = (
+                <Form.Group key={key}>
+                    <Form.Control {...formData[key].config} className={`${styles.field} w-md-75`} {...formik.getFieldProps(key)} />
+                    <Form.Label className={styles.signupLabel}> {formData[key].label} </Form.Label>
+
+                    {formik.touched[key] && formik.errors[key] ? (<small className={`${styles.validation} text-muted`}><span className="text-danger">* </span>{formik.errors[key]}</small>) : <span className="mb-3">&nbsp;</span>}
+                </Form.Group>
+            );
+            inputFields.push(item);
+        }
+        return inputFields;
+    }
+
     return (
-        <Form>
-            <h1 className="text-primary mb-5"> Sign Up</h1>
+        <Formik
+            initialValues={{
+                firstName: '',
+                lastName: '',
+                email: '',
+                password: ''
+            }}
+            validationSchema={Yup.object({
+                firstName: Yup.string()
+                    .max(25, 'Must be 25 characters or less.')
+                    .required('First Name required.'),
+                lastName: Yup.string()
+                    .max(25, 'Must be 25 characters or less.')
+                    .required('Last Name required.'),
+                email: Yup.string()
+                    .email('Invalid email address!')
+                    .required('Email required.'),
+                password: Yup.string()
+                    .min(8, 'Password is too short - should be 8 chars minimum.')
+                    .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.')
+                    .required('Password required.'),
+            })}
+            onSubmit={values => console.log(values)}
+        >
+            {formik => (
+                <Form onSubmit={formik.handleSubmit}>
+                    <h1 className="text-primary mb-5"> Sign Up</h1>
 
-            <Form.Control placeholder="First Name" className={`${styles.field} w-md-75`} />
-            <Form.Label className={styles.label}> First Name</Form.Label>
+                    {/* render all form innput */}
+                    {formInput(formik)}
 
-            <Form.Control placeholder="Last Name" className={`${styles.field} w-md-75`} />
-            <Form.Label className={styles.label}> Last Name</Form.Label>
+                    <Form.Group>
+                        <Form.Check type="checkbox" id="customControlInline" label="I've read and agree with Terms of Service and our Privacy Policy" className={`${styles.checkbox} ml-1 mb-4 text-white w-md-75`} custom />
+                    </Form.Group>
 
-            <Form.Control placeholder="Email Address" className={`${styles.field} w-md-75`} />
-            <Form.Label className={styles.label}> Email Address </Form.Label>
-
-            <Form.Control type="password" placeholder="Password" className={`${styles.field} w-md-75`} />
-            <Form.Label className={styles.label}> Password </Form.Label>
-
-            <Form.Check type="checkbox" id="customControlInline" label="I've read and agree with Terms of Service and our Privacy Policy" className={`${styles.checkbox} ml-1 mb-4 text-white w-md-75`} custom />
-
-            <Button type="submit" variant="primary" className="w-mx-md-100">Signup</Button>
-        </Form>
-        // <div className="card">
-        //     <div className="card-header text-uppercase text-center">
-        //         <h5 className="card-title text-uppercase text-success">
-        //             SignUp
-        //             </h5>
-        //     </div>
-        //     <div className="card-body w-100 w-sm-50 mx-auto">
-        //         {[props.inputElement.map((el, i) => <Input config={el.config} key={i} value={el.value} changed={(e) => props.changed(e, el.key)} />)]}
-        //     </div>
-        //     <div className="card-footer text-center">
-        //         <Button
-        //             type="submit"
-        //             title='SignUp'
-        //             cls="btn btn-primary w-sm-50 w-100 text-white text-center"
-        //         />
-        //     </div>
-        // </div>
+                    <Button type="submit" variant="primary" className="w-mx-md-100">Signup</Button>
+                </Form>
+            )}
+        </Formik>
     )
 }
 

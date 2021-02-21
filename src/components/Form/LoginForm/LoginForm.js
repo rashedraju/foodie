@@ -10,10 +10,10 @@ const loginForm = props => (
         <h5 className="text-dark text-center mb-5">Sign in to your account</h5>
 
         <Form.Control placeholder="Email Address" className={`${styles.field} w-md-75 mx-auto`} />
-        <Form.Label className={styles.label}> Email Address </Form.Label>
+        <Form.Label className={styles.loginLabel}> Email Address </Form.Label>
 
         <Form.Control type="password" placeholder="Password" className={`${styles.field} w-md-75 mx-auto`} />
-        <Form.Label className={styles.label}> Password </Form.Label>
+        <Form.Label className={styles.loginLabel}> Password </Form.Label>
 
         <Button type="submit" variant="primary" className="w-75 d-block mx-auto mb-2">Signin</Button>
         <p className="text-muted text-center">
