@@ -5,7 +5,8 @@ export {
 } from './search';
 
 export {
-    getInitailFood
+    getInitailFood,
+    autRedirectPath
 } from './LandingPage';
 
 export {
@@ -13,5 +14,5 @@ export {
 } from './cart';
 
 export {
-    auth
+    signup
 } from './auth';

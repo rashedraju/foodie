@@ -4,12 +4,14 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Form, Button } from 'react-bootstrap';
 import styles from './SignupForm.module.scss';
+import { Spinner, Alert } from 'react-bootstrap';
 
 const signupForm = (props) => {
     const formData = {
         firstName: {
             config: {
                 type: 'text',
+                name: 'firstName',
                 placeholder: 'First Name',
             },
             label: 'First Name'
@@ -17,6 +19,7 @@ const signupForm = (props) => {
         lastName: {
             config: {
                 type: 'text',
+                name: 'lastName',
                 placeholder: 'Last Name',
             },
             label: 'Last Name'
@@ -24,6 +27,7 @@ const signupForm = (props) => {
         email: {
             config: {
                 type: 'email',
+                name: 'email',
                 placeholder: 'Email Address',
             },
             label: 'Email Address'
@@ -31,6 +35,7 @@ const signupForm = (props) => {
         password: {
             config: {
                 type: 'password',
+                name: 'password',
                 placeholder: 'Password',
             },
             label: 'Password'
@@ -59,7 +64,8 @@ const signupForm = (props) => {
                 firstName: '',
                 lastName: '',
                 email: '',
-                password: ''
+                password: '',
+                acceptedTerms: false,
             }}
             validationSchema={Yup.object({
                 firstName: Yup.string()
@@ -75,24 +81,50 @@ const signupForm = (props) => {
                     .min(8, 'Password is too short - should be 8 chars minimum.')
                     .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.')
                     .required('Password required.'),
+                acceptedTerms: Yup.boolean()
+                    .required('You must accept the terms and conditions.')
+                    .oneOf([true], 'You must accept the terms and conditions.'),
             })}
-            onSubmit={values => console.log(values)}
+            onSubmit={values => props.submit(values)}
         >
             {formik => (
                 <Form onSubmit={formik.handleSubmit}>
                     <h1 className="text-primary mb-5"> Sign Up</h1>
 
+                    {/** show error */}
+                    {props.error && (
+                        <Alert variant="danger" style={{ marginBottom: "2rem" }}>
+                            {props.errMsg}
+                        </Alert>
+                    )}
+
                     {/* render all form innput */}
                     {formInput(formik)}
 
                     <Form.Group>
-                        <Form.Check type="checkbox" id="customControlInline" label="I've read and agree with Terms of Service and our Privacy Policy" className={`${styles.checkbox} ml-1 mb-4 text-white w-md-75`} custom />
+                        <Form.Check type="checkbox" name="acceptedTerms" id="customControlInline" label="I've read and agree with Terms of Service and our Privacy Policy" className={`${styles.checkbox} ml-1 mb-4 text-white w-md-75`} {...formik.getFieldProps('acceptedTerms')} custom />
+
+
+                        {formik.touched.acceptedTerms && formik.errors.acceptedTerms ? (<small className={`${styles.validation} text-muted`} style={{ marginTop: '-.5rem' }}><span className="text-danger">* </span>{formik.errors.acceptedTerms}</small>) : <span>&nbsp;</span>}
                     </Form.Group>
 
-                    <Button type="submit" variant="primary" className="w-mx-md-100">Signup</Button>
+                    <Button
+                        type="submit"
+                        variant="primary"
+                        className="w-75 shadow-none"
+                        disabled={props.disabled}>
+                        {props.loading ? (
+                            <Spinner
+                                as="span"
+                                role="status"
+                                animation="border"
+                                size="sm" />
+                        ) : 'Signup'}
+                    </Button>
                 </Form>
-            )}
-        </Formik>
+            )
+            }
+        </Formik >
     )
 }
 

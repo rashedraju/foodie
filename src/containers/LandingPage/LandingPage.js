@@ -10,13 +10,16 @@ import Home from '../../components/Home/Home';
 class Goodie extends Component {
     // FETCH RECIPES 
     componentDidMount() {
+        // set redirect path
+        this.props.onAuthRedirectPath('/');
+
         if (!this.props.foods.length > 0) {
             this.props.onGetInitialFoods(this.props.cartItems);
         }
-        
+
     }
     state = {
-        
+
     }
     render() {
         return (
@@ -40,6 +43,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onGetInitialFoods: (cartItems) => dispatch(actions.getInitailFood(cartItems)),
+        onAuthRedirectPath: path => dispatch(actions.autRedirectPath(path))
     }
 }
 

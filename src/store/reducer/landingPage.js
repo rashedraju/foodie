@@ -5,11 +5,12 @@ import isAddedToCart from '../../shared/isAddedToCart';
 const initialState = {
     foods: [],
     error: false,
+    authRedirectPath: '/'
 };
 const getInitialFoodSuccess = (state, action) => {
     const updatedResults = action.results.map((food) => {
         const isAdded = isAddedToCart(action.cartFoods, food.id)
-        
+
         return updateObject(food, {
             oldPrice: Math.floor(Math.random() * (20 - 10)) + 10,
             newPrice: (Math.floor(Math.random() * (20 - 10)) + 10) - 5,
@@ -32,13 +33,18 @@ const getInitialFoodFail = (state) => {
 
 const addToCart = (state, action) => {
     const updatedFoods = updateFood(state.foods, action.food.id)
-    return updateObject(state, {foods: updatedFoods})
+    return updateObject(state, { foods: updatedFoods })
 }
 
 const removeFromCart = (state, action) => {
     const updatedFoods = updateFood(state.foods, action.food.id)
-    return updateObject(state, {foods: updatedFoods})
+    return updateObject(state, { foods: updatedFoods })
 }
+
+const authRedirectPath = (state, action) => ({
+    ...state,
+    authRedirectPath: action.path
+});
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -50,6 +56,8 @@ const reducer = (state = initialState, action) => {
             return addToCart(state, action)
         case actionTypes.REMOVE_FROM_CART:
             return removeFromCart(state, action)
+        case actionTypes.AUTH_REDIRECT_PATH:
+            return authRedirectPath(state, action)
         default:
             return state;
     }

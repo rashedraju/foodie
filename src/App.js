@@ -1,7 +1,8 @@
 import React, { PureComponent, Suspense } from 'react';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 
-import './assets/sass/app.scss';
+import './styles/app.scss';
+
 import Layout from './hoc/Layout/Layout';
 import Spinner from './components/UI/Loader/Loader';
 

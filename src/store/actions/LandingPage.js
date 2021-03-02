@@ -15,6 +15,11 @@ export const getInitialFoodFail = () => {
     };
 };
 
+export const autRedirectPath = (path) => ({
+    type: actionTypes.AUTH_REDIRECT_PATH,
+    path
+});
+
 export const getInitailFood = (cartItems) => {
     return (dispatch) => {
         axios

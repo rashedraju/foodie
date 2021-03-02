@@ -1,80 +1,44 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 
-import Form from '../../components/Form/SignupForm/SignupForm';
-import { updateObject } from '../../shared/utility';
+import SignupForm from '../../components/Form/SignupForm/SignupForm';
 import styles from './Signup.module.scss';
 import mobileBg from "../../assets/img/signup-bg-mobile.png";
+import * as actions from '../../store/actions';
 
-class Signup extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      signupFormData: {
-        email: {
-          config: {
-            type: 'email',
-            placeholder: 'Email',
-            className: 'form-control',
-          },
-          value: '',
-        },
-        password: {
-          config: {
-            type: 'password',
-            placeholder: 'Password',
-            className: 'form-control',
-          },
-          value: '',
-        },
-      },
-    };
-  }
+const Signup = (props) => {
+    const { isAuthenticated, redirectPath, isLoading, error, errMsg, onSignup, history } = props;
 
-  inputChangeHandler = (e, key) => {
-    const formData = { ...this.state.signupFormData };
-    const updatedData = updateObject(formData, {
-      [key]: {
-        ...formData[key],
-        value: e.target.value,
-      },
-    });
+    useEffect(() => {
+        if (isAuthenticated) history.replace(redirectPath)
+    }, [isAuthenticated, history, redirectPath]);
 
-    this.setState({ signupFormData: updatedData });
-  };
-
-  render() {
-    const inputEl = [];
-    for (const key in this.state.signupFormData) {
-      inputEl.push({
-        key,
-        config: {
-          ...this.state.signupFormData[key].config,
-        },
-        value: this.state.signupFormData[key].value,
-      });
-    }
     return (
-      <div className={styles.signup}>
-        <img src={mobileBg} className={styles.BgSm} alt="signup background" />
-        <div className={`${styles.container} row`}>
-          <div className="signup__left col-md-6">
-            <Form
-              method="signup"
-              inputEl={inputEl}
-              formData={this.state.signupFormData}
-              changed={this.inputChangeHandler}
-            />
-          </div>
-          <div className={`${styles.right} col-md-6`}></div>
+        <div className={styles.signup}>
+            <img src={mobileBg} className={styles.BgSm} alt="signup background" />
+            <div className={`${styles.container} row`}>
+                <div className="signup__left col-md-6">
+                    <SignupForm
+                        submit={(values) => onSignup(values)}
+                        {...(isLoading && { disabled: true, loading: true })}
+                        {...(error && { error, errMsg })} />
+                </div>
+                <div className={`${styles.right} col-md-6`}></div>
+            </div>
         </div>
-      </div>
     );
-  }
 }
 
-// const mapStateToProps = state => {
-//     return {
-//         signupInputEl : state.auth.formData.signup,
-//     }
-// }
-export default Signup;
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.authStatus.isAuthenticated,
+    redirectPath: state.landingPage.authRedirectPath,
+    isLoading: state.auth.authStatus.loading,
+    error: state.auth.authStatus.error,
+    errMsg: state.auth.authStatus.msg
+})
+
+const mapDispatchToProps = dispatch => ({
+    onSignup: (values) => dispatch(actions.signup(values)),
+})
+
+export default React.memo(connect(mapStateToProps, mapDispatchToProps)(Signup));

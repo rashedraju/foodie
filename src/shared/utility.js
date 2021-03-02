@@ -1,9 +1,7 @@
-export const updateObject = (oldState, updatedProperties) => {
-    return {
-        ...oldState,
-        ...updatedProperties
-    }
-}
+export const updateObject = (oldState, updatedProperties) => ({
+    ...oldState,
+    ...updatedProperties
+});
 
 export const updateFood = (foodsArr, foodId) => {
     const updatedFoods = foodsArr.map(food => {
