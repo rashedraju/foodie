@@ -7,7 +7,7 @@
     composes: field from '../LoginForm/LoginForm.module.scss';
 }
 
-// .filed placeholder-shown applied from loginForm.module.scss
+// field placeholder-shown applied from loginForm.module.scss
 .validation {
     composes: validation from '../LoginForm/LoginForm.module.scss';
 }

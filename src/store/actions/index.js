@@ -14,5 +14,6 @@ export {
 } from './cart';
 
 export {
-    signup
+    signup,
+    login
 } from './auth';

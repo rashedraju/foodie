@@ -1,6 +1,6 @@
 @import '../../../styles/app.scss';
 .label {
-    color: #6c757d;
+    color: $color-gray-dark;
     transform: translateY(-4rem);
     transition: all 0.2s ease;
     opacity: 1;
@@ -14,9 +14,9 @@
 .field {
     border: none;
     border-radius: 0.5rem;
-    box-shadow: 1px 1px 5px #ced4da;
+    box-shadow: $box-shadow-light;
     &:focus {
-        box-shadow: 1px 1px 5px #ced4da;
+        box-shadow: $box-shadow-light;
         border: none;
     }
 }

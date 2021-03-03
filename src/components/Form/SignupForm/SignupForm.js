@@ -2,9 +2,8 @@ import React from 'react';
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Spinner, Alert } from 'react-bootstrap';
 import styles from './SignupForm.module.scss';
-import { Spinner, Alert } from 'react-bootstrap';
 
 const signupForm = (props) => {
     const formData = {
@@ -103,7 +102,6 @@ const signupForm = (props) => {
 
                     <Form.Group>
                         <Form.Check type="checkbox" name="acceptedTerms" id="customControlInline" label="I've read and agree with Terms of Service and our Privacy Policy" className={`${styles.checkbox} ml-1 mb-4 text-white w-md-75`} {...formik.getFieldProps('acceptedTerms')} custom />
-
 
                         {formik.touched.acceptedTerms && formik.errors.acceptedTerms ? (<small className={`${styles.validation} text-muted`} style={{ marginTop: '-.5rem' }}><span className="text-danger">* </span>{formik.errors.acceptedTerms}</small>) : <span>&nbsp;</span>}
                     </Form.Group>

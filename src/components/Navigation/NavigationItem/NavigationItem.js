@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import { NavLink, withRouter } from 'react-router-dom';
 import { ReactComponent as PersonIcon } from '../../../assets/svg/person-circle-outline.svg';
 import { ReactComponent as CartIcon } from '../../../assets/svg/cart-outline.svg';
@@ -7,9 +9,9 @@ const navigationItem = props => {
     const navItem = [
         {
             icon: <PersonIcon fill="#D60E64" width="32" height="32" />,
-            title: 'Login',
+            title: props.isAuthenticated ? props.userDisplayName : 'Login',
             link: props.location.pathname,
-            clicked: props.showLoginModal
+            clicked: !props.isAuthenticated ? props.showLoginModal : () => { }
         },
         {
             icon: <CartIcon width="32" height="32" />,
@@ -23,4 +25,9 @@ const navigationItem = props => {
     );
 }
 
-export default withRouter(navigationItem);
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.authStatus.isAuthenticated,
+    userDisplayName: state.auth.logedUser.displayName,
+});
+
+export default withRouter(connect(mapStateToProps)(navigationItem));

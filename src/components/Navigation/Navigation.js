@@ -27,7 +27,7 @@ const Navigation = () => {
                     setClose={handleModalClose} >
                     <LoginForm closeLoginModal={handleModalClose} />
                 </Modal>
-                <NavigationItem showLoginModal={() => setShowModal(!showModal)} />
+                <NavigationItem showLoginModal={() => setShowModal((showModal) => !showModal)} />
             </ul>
         </nav >
     )

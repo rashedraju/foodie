@@ -13,7 +13,7 @@ const initialState = {
     }
 }
 
-function signupStart(state) {
+function authStart(state) {
     return {
         ...state,
         authStatus: {
@@ -23,7 +23,7 @@ function signupStart(state) {
     }
 }
 
-function signupSuccess(state, action) {
+function authSuccess(state, action) {
     return {
         ...state,
         logedUser: {
@@ -40,7 +40,7 @@ function signupSuccess(state, action) {
     }
 }
 
-function signupFail(state, action) {
+function authFail(state, action) {
     return {
         ...state,
         authStatus: {
@@ -55,12 +55,12 @@ function signupFail(state, action) {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.SIGNUP_START:
-            return signupStart(state);
-        case actionTypes.SIGNUP_SUCCESS:
-            return signupSuccess(state, action)
-        case actionTypes.SIGNUP_FAIL:
-            return signupFail(state, action)
+        case actionTypes.AUTH_START:
+            return authStart(state);
+        case actionTypes.AUTH_SUCCESS:
+            return authSuccess(state, action)
+        case actionTypes.AUTH_FAIL:
+            return authFail(state, action)
         default:
             break;
     }
