@@ -1,1 +1,1 @@
-foodie is a online food delevery network. see live on :- (https://rashedraju.github.io/foodie/).
+foodie is an online food delivery network. see live on :- (https://rashedraju.github.io/foodie/).
