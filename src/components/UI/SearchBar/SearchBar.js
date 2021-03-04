@@ -15,7 +15,7 @@ const searchBar = (props) => {
                 props.onFatchSearchFood(props.query, props.cartItems);
             }}
         >
-            <div className="input-group w-100 p-2 w-min-md mx-auto px-sm-4">
+            <div className={`input-group w-100 my-3 ${props.center && 'mx-auto w-md-75'}`}>
                 <input
                     type="text"
                     placeholder="Search over million foods"

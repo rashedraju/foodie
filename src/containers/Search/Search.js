@@ -6,10 +6,10 @@ import SearchBar from '../../components/UI/SearchBar/SearchBar';
 import SearchList from '../../components/SearchList/SearchList';
 
 class Search extends Component {
-    render () {
+    render() {
         return (
             <Aux>
-                <SearchBar />
+                <SearchBar center />
                 <SearchList loader={this.props.loader} results={this.props.results} error={this.props.error} />
             </Aux>
         );
@@ -25,4 +25,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps) (Search);
+export default connect(mapStateToProps)(Search);

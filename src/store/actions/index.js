@@ -15,5 +15,7 @@ export {
 
 export {
     signup,
-    login
+    login,
+    getSession,
+    logout
 } from './auth';

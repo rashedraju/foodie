@@ -1,0 +1,14 @@
+@import '../../../styles/app.scss';
+.dropdown {
+    display: inline;
+    > :first-child,
+    > :first-child:hover,
+    > :first-child:active,
+    > :first-child:focus {
+        color: $primary !important;
+        background-color: #fff !important;
+        border-color: #fff !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+    }
+}

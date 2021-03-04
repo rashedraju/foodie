@@ -1,5 +1,7 @@
 import React, { PureComponent, Suspense } from 'react';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from './store/actions';
 
 import './styles/app.scss';
 
@@ -13,6 +15,10 @@ const Cart = React.lazy(() => import('./containers/Cart/Cart'));
 const Search = React.lazy(() => import('./containers/Search/Search'));
 
 class App extends PureComponent {
+  componentDidMount() {
+    this.props.onGetSession()
+  }
+
   render() {
     return (
       <Router basename="/foodie">
@@ -52,4 +58,8 @@ class App extends PureComponent {
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  onGetSession: () => dispatch(actions.getSession())
+})
+
+export default connect(null, mapDispatchToProps)(App);

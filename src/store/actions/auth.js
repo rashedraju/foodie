@@ -1,14 +1,43 @@
 import * as actionTypes from './actionTypes';
 import { auth } from '../../adapters/firebase';
 
-const authSuccess = data => ({
+const setSession = (sessId, dName) => {
+    sessionStorage.setItem('foodie_sess', sessId);
+    sessionStorage.setItem('user_dname', dName);
+}
+
+export const getSession = () => dispatch => {
+    const tokenId = sessionStorage.getItem('foodie_sess');
+    const displayName = sessionStorage.getItem('user_dname');
+    tokenId && displayName && dispatch(authSuccess(tokenId, displayName))
+}
+const removeSession = () => {
+    sessionStorage.removeItem('foodie_sess');
+    sessionStorage.removeItem('user_dname');
+}
+
+export const authSuccess = (refreshToken, displayName) => ({
     type: actionTypes.AUTH_SUCCESS,
-    data
+    refreshToken: refreshToken,
+    displayName: displayName
 })
+
 const authFail = msg => ({
     type: actionTypes.AUTH_FAIL,
     msg
 })
+
+const authLogout = () => ({
+    type: actionTypes.AUTH_LOGOUT
+});
+
+export const logout = () => dispatch => {
+    dispatch({ type: actionTypes.AUTH_START })
+    auth.signOut().then(() => {
+        removeSession();
+        dispatch(authLogout())
+    }).catch(err => dispatch(authFail(err.message)))
+}
 
 export const signup = ({ firstName, lastName, email, password }) => dispatch => {
     dispatch({ type: actionTypes.AUTH_START })
@@ -19,7 +48,8 @@ export const signup = ({ firstName, lastName, email, password }) => dispatch => 
                 displayName: firstName + ' ' + lastName,
             })
                 .then(() => {
-                    dispatch(authSuccess(user))
+                    setSession(user.refreshToken, user.displayName);
+                    dispatch(authSuccess(user.refreshToken, user.displayName))
                 })
                 .catch(err => dispatch(authFail(err.message)))
 
@@ -31,7 +61,8 @@ export const login = ({ email, password }) => dispatch => {
     dispatch({ type: actionTypes.AUTH_START })
     auth.signInWithEmailAndPassword(email, password)
         .then(() => {
-            dispatch(authSuccess(auth.currentUser))
+            setSession(auth.currentUser.refreshToken, auth.currentUser.displayName);
+            dispatch(authSuccess(auth.currentUser.refreshToken, auth.currentUser.displayName))
         })
         .catch(err => dispatch(authFail(err.message)))
 }
