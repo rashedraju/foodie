@@ -66,8 +66,8 @@ const Navigation = props => {
             sticky="top"
             className={`py-2 px-4 bg-white justify-content-between ${scroll && 'shadow-md'}`} >
             <div className="flex-md-grow-1 order-2">
-                <NavLink exact to="/" className="navbar-brand">
-                    <Logo /> <span className="text-primary font-weight-bold">Foodie</span>
+                <NavLink exact to="/" className="navbar-brand d-inline-flex align-items-center">
+                    <Logo /> <span className="text-primary font-weight-bold ml-1">Foodie</span>
                 </NavLink>
             </div>
 

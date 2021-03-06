@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from './store/actions';
 
 import './styles/app.scss';
+import './adapters/fontawesome';
 
 import Layout from './hoc/Layout/Layout';
 import Spinner from './components/UI/Loader/Loader';

@@ -2,10 +2,12 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const searchBar = (props) => {
     return (
         <form
+            className="m-2"
             onSubmit={(e) => {
                 e.preventDefault();
                 props.history.push({
@@ -15,19 +17,19 @@ const searchBar = (props) => {
                 props.onFatchSearchFood(props.query, props.cartItems);
             }}
         >
-            <div className={`input-group w-100 my-3 ${props.center && 'mx-auto w-md-75'}`}>
+            <div className={`input-group w-100 my-3 w-md-75 ${props.center && 'mx-auto'}`}>
                 <input
                     type="text"
                     placeholder="Search over million foods"
-                    className="form-control text-muted search__field outline-none"
+                    className="form-control text-muted outline-none shadow-none"
                     onChange={(e) => props.onQueryChange(e.target.value)}
                     value={props.query}
                 ></input>
                 <button
                     type="submit"
-                    className="btn btn-primary input-group-append text-white"
+                    className="btn btn-primary input-group-append text-white shadow-none d-flex align-items-center"
                 >
-                    Search
+                    <FontAwesomeIcon icon={['fas', 'search']} size="lg" />
                 </button>
             </div>
         </form>
