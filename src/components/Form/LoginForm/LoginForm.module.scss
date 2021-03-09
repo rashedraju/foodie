@@ -1,32 +1,32 @@
-@import '../../../styles/app.scss';
+@import "../../../styles/app.scss";
 .label {
-    color: $color-gray-dark;
-    transform: translateY(-4rem);
-    transition: all 0.2s ease;
-    opacity: 1;
-    visibility: visible;
+  color: $color-gray-dark;
+  transform: translateY(-4rem);
+  transition: all 0.2s ease;
+  opacity: 1;
+  visibility: visible;
 }
 .loginLabel {
-    composes: label;
-    margin-left: 15.333%;
+  composes: label;
+  margin-left: 15.333%;
 }
 
 .field {
-    border: none;
-    border-radius: 0.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: $box-shadow-light;
+  &:focus {
     box-shadow: $box-shadow-light;
-    &:focus {
-        box-shadow: $box-shadow-light;
-        border: none;
-    }
+    border: none;
+  }
 }
 .validation {
-    display: block;
-    margin: -2rem 0 1.8rem 0.5rem;
+  display: block;
+  margin: -2rem 0 1.8rem 0.5rem;
 }
 
 .field:placeholder-shown + .label {
-    transform: translateY(-2rem);
-    opacity: 0;
-    visibility: hidden;
+  transform: translateY(-2rem);
+  opacity: 0;
+  visibility: hidden;
 }

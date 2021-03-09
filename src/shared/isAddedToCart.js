@@ -1,5 +1,3 @@
-const isAddedToCart = (foods, foodId) => {
-    return foods.findIndex(food => food.id === foodId) !== -1 ? true : false;
-}
+const isAddedToCart = (foods, foodId) => foods.findIndex((food) => food.id === foodId) !== -1;
 
 export default isAddedToCart;

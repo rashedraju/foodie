@@ -1,4 +1,4 @@
-.header {
+.hero {
     position: relative;
     height: 300px;
     &__bg {
@@ -12,8 +12,8 @@
         background-size: cover;
         background-position: left;
     }
-}
-.hero {
-    width: 70%;
-    padding: 0 1.5rem;
+    &__text {
+        width: 70%;
+        padding: 0 0.5rem;
+    }
 }

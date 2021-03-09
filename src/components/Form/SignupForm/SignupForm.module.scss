@@ -1,33 +1,33 @@
 .signupLabel {
-    padding-left: 0.8rem;
-    composes: label from '../LoginForm/LoginForm.module.scss';
+  padding-left: 0.8rem;
+  composes: label from "../LoginForm/LoginForm.module.scss";
 }
 
 .field {
-    composes: field from '../LoginForm/LoginForm.module.scss';
+  composes: field from "../LoginForm/LoginForm.module.scss";
 }
 
 // field placeholder-shown applied from loginForm.module.scss
 .validation {
-    composes: validation from '../LoginForm/LoginForm.module.scss';
+  composes: validation from "../LoginForm/LoginForm.module.scss";
 }
 .checkbox {
-    color: #6c757d !important;
-    > :first-child:focus + :last-child::before {
-        box-shadow: none;
-    }
+  color: #6c757d !important;
+  > :first-child:focus + :last-child::before {
+    box-shadow: none;
+  }
 }
 
 // responsive
 @media screen and(max-width: 567px) {
-    .checkbox {
-        color: #fff !important;
-    }
+  .checkbox {
+    color: #fff !important;
+  }
 }
 @media screen and(max-width: 767px) {
-    .btn {
-        width: 100%;
-        display: block;
-        margin: 0 auto;
-    }
+  .btn {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+  }
 }

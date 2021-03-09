@@ -1,28 +1,44 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-
-import Aux from '../../hoc/Auxiliary/Auxiliary';
-import SearchBar from '../../components/UI/SearchBar/SearchBar';
 import SearchList from '../../components/SearchList/SearchList';
+import SearchBar from '../../components/UI/SearchBar/SearchBar';
+import Aux from '../../hoc/Auxiliary/Auxiliary';
+import * as actions from '../../store/actions';
 
-class Search extends Component {
+class Search extends PureComponent {
+    componentDidMount() {
+        const { location, history, onSearchQuery, onSearchFood, cartItems } = this.props;
+        const urlParams = new URLSearchParams(location.search);
+        if (urlParams.has('q') && urlParams.get('q') !== '') {
+            const query = urlParams.get('q');
+            onSearchQuery(query);
+            onSearchFood(query, cartItems);
+        } else {
+            history.replace('./');
+        }
+    }
+
     render() {
+        const { loader, results, error } = this.props;
         return (
             <Aux>
                 <SearchBar center />
-                <SearchList loader={this.props.loader} results={this.props.results} error={this.props.error} />
+                <SearchList loader={loader} results={results} error={error} />
             </Aux>
         );
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        query: state.search.query,
-        results: state.search.foods,
-        loader: state.search.loader,
-        error: state.search.error
-    }
-}
+const mapStateToProps = (state) => ({
+    results: state.search.foods,
+    loader: state.search.loader,
+    error: state.search.error,
+    cartItems: state.cart.foods,
+});
 
-export default connect(mapStateToProps)(Search);
+const mapDispatchToProps = (dispatch) => ({
+    onSearchQuery: (query) => dispatch(actions.searchQuery(query)),
+    onSearchFood: (query, cartItems) => dispatch(actions.searchFood(query, cartItems)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

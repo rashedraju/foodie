@@ -4,12 +4,11 @@ export const addToCart = (food) => {
     if (food.addedToCart) {
         return {
             type: actionTypes.REMOVE_FROM_CART,
-            food
-        }
+            food,
+        };
     }
     return {
         type: actionTypes.ADD_TO_CART,
-        food
-    }
-    
-}
+        food,
+    };
+};

@@ -1,21 +1,5 @@
-export {
-    searchQuery,
-    searchFoodStart,
-    searchFood
-} from './search';
+export { getSession, login, logout, signup } from './auth';
+export { addToCart } from './cart';
+export { autRedirectPath, getInitailFood } from './LandingPage';
+export { searchFood, searchFoodStart, searchQuery } from './search';
 
-export {
-    getInitailFood,
-    autRedirectPath
-} from './LandingPage';
-
-export {
-    addToCart
-} from './cart';
-
-export {
-    signup,
-    login,
-    getSession,
-    logout
-} from './auth';

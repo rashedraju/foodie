@@ -1,35 +1,25 @@
-import axios from 'axios';
+import { database } from '../../adapters/firebase';
 import * as actionTypes from './actionTypes';
 
-export const getInitialFoodSuccess = (data, cartItems) => {
-    return {
-        type: actionTypes.GET_INITIAL_FOOD_SUCCESS,
-        results: data,
-        cartFoods: cartItems,
-        error: false
-    };
-};
-export const getInitialFoodFail = () => {
-    return {
-        type: actionTypes.GET_INITIAL_FOOD_FAIL
-    };
-};
-
-export const autRedirectPath = (path) => ({
-    type: actionTypes.AUTH_REDIRECT_PATH,
-    path
+// fetch foods success
+export const getInitialFoodSuccess = (data, cartItems) => ({
+    type: actionTypes.GET_INITIAL_FOOD_SUCCESS,
+    results: data,
+    cartFoods: cartItems,
+    error: false,
 });
 
-export const getInitailFood = (cartItems) => {
-    return (dispatch) => {
-        axios
-            .get('https://goodie4foods.firebaseio.com/recipes.json')
-            .then((response) => {
-                dispatch(getInitialFoodSuccess(response.data, cartItems));
-            })
-            .catch((err) => {
-                dispatch(getInitialFoodFail());
-            });
-    };
-};
+// auth redirect path on landing page
+export const autRedirectPath = (path) => ({
+    type: actionTypes.AUTH_REDIRECT_PATH,
+    path,
+});
 
+// fetch inital foods
+export const getInitailFood = (cartItems) => (dispatch) => {
+    const initialFoodsRef = database.ref('initialfoods');
+    initialFoodsRef.on('value', (snapshot) => {
+        const data = snapshot.val();
+        dispatch(getInitialFoodSuccess(data, cartItems));
+    });
+};

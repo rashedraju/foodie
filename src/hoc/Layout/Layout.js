@@ -1,12 +1,11 @@
 import React from 'react';
-
-import Aux from '../Auxiliary/Auxiliary';
-import Navigation from '../../components/Navigation/Navigation';
 import Footer from '../../components/Footer/Footer';
+import Header from '../../components/Header/Header';
+import Aux from '../Auxiliary/Auxiliary';
 
-const layout = props => (
+const layout = (props) => (
     <Aux>
-        <Navigation />
+        <Header />
         <main {...props}> {props.children} </main>
         <Footer />
     </Aux>

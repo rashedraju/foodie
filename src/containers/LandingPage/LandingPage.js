@@ -1,50 +1,40 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-
-import * as actions from '../../store/actions';
-import Aux from '../../hoc/Auxiliary/Auxiliary';
-import Header from '../../components/Header/Header';
-import Recipes from '../../components/Recipes/Recipes';
+import Hero from '../../components/Hero/Hero';
 import Home from '../../components/Home/Home';
+import Recipes from '../../components/Recipes/Recipes';
+import Aux from '../../hoc/Auxiliary/Auxiliary';
+import * as actions from '../../store/actions';
 
-class Goodie extends Component {
-    // FETCH RECIPES 
-    componentDidMount() {
-        // set redirect path
-        this.props.onAuthRedirectPath('/');
+const Goodie = (props) => {
+    const { onAuthRedirectPath, foods, onGetInitialFoods, cartItems } = props;
+    useEffect(() => {
+        // set auth redirect path
+        onAuthRedirectPath('/');
 
-        if (!this.props.foods.length > 0) {
-            this.props.onGetInitialFoods(this.props.cartItems);
-        }
+        // fetch foods
+        // if (!foods.length > 0) {
+        //     onGetInitialFoods(cartItems);
+        // }
+    }, [cartItems, foods.length, onAuthRedirectPath, onGetInitialFoods]);
 
-    }
-    state = {
+    return (
+        <Aux>
+            <Hero />
+            <Recipes recipes={foods} />
+            <Home />
+        </Aux>
+    );
+};
+const mapStateToProps = (state) => ({
+    redirect: state.search.redirect,
+    foods: state.landingPage.foods,
+    cartItems: state.cart.foods,
+});
 
-    }
-    render() {
-        return (
-            <Aux>
-                <Header />
-                <Recipes
-                    recipes={this.props.foods} />
-                <Home />
-            </Aux>
-        );
-    }
-}
-const mapStateToProps = state => {
-    return {
-        redirect: state.search.redirect,
-        foods: state.landingPage.foods,
-        cartItems: state.cart.foods
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        onGetInitialFoods: (cartItems) => dispatch(actions.getInitailFood(cartItems)),
-        onAuthRedirectPath: path => dispatch(actions.autRedirectPath(path))
-    }
-}
+const mapDispatchToProps = (dispatch) => ({
+    onGetInitialFoods: (cartItems) => dispatch(actions.getInitailFood(cartItems)),
+    onAuthRedirectPath: (path) => dispatch(actions.autRedirectPath(path)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Goodie);
