@@ -9,9 +9,11 @@ import styles from './LoginForm.module.scss';
 
 const LoginForm = (props) => {
     const { isAuthenticated, onLogin, isLoading, error, errMsg, closeLoginModal } = props;
+
     useEffect(() => {
         if (isAuthenticated) closeLoginModal();
     }, [isAuthenticated, closeLoginModal]);
+
     return (
         <Formik
             initialValues={{

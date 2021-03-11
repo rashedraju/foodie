@@ -16,7 +16,7 @@
   border-radius: 0.5rem;
   box-shadow: $box-shadow-light;
   &:focus {
-    box-shadow: $box-shadow-light;
+    box-shadow: $box-shadow-light !important;
     border: none;
   }
 }

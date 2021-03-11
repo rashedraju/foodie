@@ -1,37 +1,45 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
+import { Button, Col, Form, FormControl, InputGroup, Row } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import * as actions from '../../../store/actions';
 
 const searchBar = (props) => (
-    <form
-        className="m-2"
-        onSubmit={(e) => {
-            e.preventDefault();
-            props.history.push({
-                pathname: '/search',
-                search: `?q=${props.query}`,
-            });
-            props.onFatchSearchFood(props.query, props.cartItems);
-        }}
-    >
-        <div className={`input-group w-100 my-3 w-md-75 w-xl-50 ${props.center && 'mx-auto'}`}>
-            <input
-                type="text"
-                placeholder="Search over million foods"
-                className="form-control text-muted outline-none shadow-none"
-                onChange={(e) => props.onQueryChange(e.target.value)}
-                value={props.query}
-            />
-            <button
-                type="submit"
-                className="btn btn-primary input-group-append text-white shadow-none d-flex align-items-center"
+    <Row>
+        <Col xl={6} sm={8} className={props.center && 'mx-auto'}>
+            <Form
+                className="m-2"
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    props.history.push({
+                        pathname: '/search',
+                        search: `?q=${props.query}`,
+                    });
+                    props.onFatchSearchFood(props.query, props.cartItems);
+                }}
             >
-                <FontAwesomeIcon icon={['fas', 'search']} size="lg" />
-            </button>
-        </div>
-    </form>
+                <InputGroup className="mb-3">
+                    <FormControl
+                        type="text"
+                        placeholder="Search over million foods"
+                        className="text-muted outline-none shadow-none"
+                        onChange={(e) => props.onQueryChange(e.target.value)}
+                        value={props.query}
+                    />
+                    <InputGroup.Append>
+                        <Button
+                            type="submit"
+                            variant="primary"
+                            className="text-white shadow-none d-flex align-items-center"
+                        >
+                            <FontAwesomeIcon icon={['fas', 'search']} size="lg" />
+                        </Button>
+                    </InputGroup.Append>
+                </InputGroup>
+            </Form>
+        </Col>
+    </Row>
 );
 
 const mapStateToProps = (state) => ({

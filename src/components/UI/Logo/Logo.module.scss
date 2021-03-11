@@ -1,11 +1,11 @@
-@import '../../../styles/app.scss';
+@import "../../../styles/app.scss";
 .logo {
-    width: 1.8rem;
-    height: 1.8rem;
-    border-radius: 50%;
-    padding: 0.5rem;
-    align-items: center;
-    background-color: $primary;
-    display: flex;
-    align-items: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  padding: 0.5rem;
+  align-items: center;
+  background-color: $color-primary;
+  display: flex;
+  align-items: center;
 }

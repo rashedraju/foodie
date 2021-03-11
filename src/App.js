@@ -7,6 +7,7 @@ import LandingPage from './containers/LandingPage/LandingPage';
 import Layout from './hoc/Layout/Layout';
 import * as actions from './store/actions';
 import './styles/app.scss';
+import './styles/custom.scss';
 
 const Signup = React.lazy(() => import('./containers/Signup/Signup'));
 const Cart = React.lazy(() => import('./containers/Cart/Cart'));
