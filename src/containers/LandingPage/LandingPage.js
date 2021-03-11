@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import Foods from '../../components/Foods/Foods';
 import Hero from '../../components/Hero/Hero';
 import Home from '../../components/Home/Home';
-import Recipes from '../../components/Recipes/Recipes';
 import Aux from '../../hoc/Auxiliary/Auxiliary';
 import * as actions from '../../store/actions';
 
@@ -13,15 +13,15 @@ const Goodie = (props) => {
         onAuthRedirectPath('/');
 
         // fetch foods
-        // if (!foods.length > 0) {
-        //     onGetInitialFoods(cartItems);
-        // }
+        if (!foods.length > 0) {
+            onGetInitialFoods(cartItems);
+        }
     }, [cartItems, foods.length, onAuthRedirectPath, onGetInitialFoods]);
 
     return (
         <Aux>
             <Hero />
-            <Recipes recipes={foods} />
+            <Foods foods={foods} />
             <Home />
         </Aux>
     );
@@ -33,7 +33,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    onGetInitialFoods: (cartItems) => dispatch(actions.getInitailFood(cartItems)),
+    onGetInitialFoods: () => dispatch(actions.getInitailFood()),
     onAuthRedirectPath: (path) => dispatch(actions.autRedirectPath(path)),
 });
 

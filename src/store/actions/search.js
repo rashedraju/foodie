@@ -14,12 +14,24 @@ export const searchFoodStart = () => ({
     type: actionTypes.SEARCH_FOOD_START,
 });
 
-export const searchFoodSuccess = (data, cartItems) => ({
-    type: actionTypes.SEARCH_FOOD_SUCCESS,
-    results: data,
-    cartFoods: cartItems,
-    error: false,
-});
+export const searchFoodSuccess = (data) => {
+    const foods = data.map((food) => {
+        const id = food.recipe.uri.split('_')[1];
+        const oldPrice = Math.floor(Math.random() * (20 - 10)) + 10;
+        const newPrice = Math.floor(Math.random() * (20 - 10)) + 10 - 5;
+        return {
+            id,
+            title: food.recipe.label,
+            image: food.recipe.image,
+            oldPrice,
+            newPrice,
+        };
+    });
+    return {
+        type: actionTypes.SEARCH_FOOD_SUCCESS,
+        foods,
+    };
+};
 
 export const searchFoodFail = () => ({
     type: actionTypes.SEARCH_FOOD_FAIL,

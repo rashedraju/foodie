@@ -1,4 +1,3 @@
-import isAddedToCart from '../../shared/isAddedToCart';
 import { updateFood, updateObject } from '../../shared/utility';
 import * as actionTypes from '../actions/actionTypes';
 
@@ -11,23 +10,12 @@ const initialState = {
 
 const searchFoodStart = (state) => updateObject(state, { loader: true });
 
-const searchFoodSuccess = (state, action) => {
-    const updatedResults = action.results.map((food) => {
-        const isAdded = isAddedToCart(action.cartFoods, food.recipe.url);
-
-        return updateObject(food, {
-            oldPrice: Math.floor(Math.random() * (20 - 10)) + 10,
-            newPrice: Math.floor(Math.random() * (20 - 10)) + 10 - 5,
-            id: food.recipe.url,
-            addedToCart: isAdded,
-        });
-    });
-    return updateObject(state, {
+const searchFoodSuccess = (state, action) =>
+    updateObject(state, {
+        foods: action.foods,
         loader: false,
-        error: action.error,
-        foods: updatedResults,
+        error: false,
     });
-};
 
 const searchFoodFail = (state) =>
     updateObject(state, {

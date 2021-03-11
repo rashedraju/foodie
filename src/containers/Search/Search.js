@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import SearchList from '../../components/SearchList/SearchList';
+import Foods from '../../components/Foods/Foods';
+import Loader from '../../components/UI/Loader/Loader';
 import SearchBar from '../../components/UI/SearchBar/SearchBar';
 import Aux from '../../hoc/Auxiliary/Auxiliary';
 import * as actions from '../../store/actions';
@@ -19,19 +20,28 @@ class Search extends PureComponent {
     }
 
     render() {
-        const { loader, results, error } = this.props;
+        const { loading, foods, error } = this.props;
+
+        let searchResult;
+        if (foods.length > 0) {
+            searchResult = <Foods foods={foods} />;
+        } else if (loading) {
+            searchResult = <Loader />;
+        } else if (error) {
+            searchResult = <p style={{ textAlign: 'center' }}>!Recipes not found</p>;
+        }
         return (
             <Aux>
                 <SearchBar center />
-                <SearchList loader={loader} results={results} error={error} />
+                {searchResult}
             </Aux>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-    results: state.search.foods,
-    loader: state.search.loader,
+    foods: state.search.foods,
+    loading: state.search.loader,
     error: state.search.error,
     cartItems: state.cart.foods,
 });

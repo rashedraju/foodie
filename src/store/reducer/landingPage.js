@@ -1,4 +1,3 @@
-import isAddedToCart from '../../shared/isAddedToCart';
 import { updateFood, updateObject } from '../../shared/utility';
 import * as actionTypes from '../actions/actionTypes';
 
@@ -6,20 +5,10 @@ const initialState = {
     foods: [],
     authRedirectPath: '/',
 };
-const getInitialFoodSuccess = (state, action) => {
-    const updatedResults = action.results.map((food) => {
-        const isAdded = isAddedToCart(action.cartFoods, food.id);
-
-        return updateObject(food, {
-            oldPrice: Math.floor(Math.random() * (20 - 10)) + 10,
-            newPrice: Math.floor(Math.random() * (20 - 10)) + 10 - 5,
-            addedToCart: isAdded,
-        });
+const getInitialFoodSuccess = (state, action) =>
+    updateObject(state, {
+        foods: action.foods,
     });
-    return updateObject(state, {
-        foods: updatedResults,
-    });
-};
 
 const addToCart = (state, action) => {
     const updatedFoods = updateFood(state.foods, action.food.id);
