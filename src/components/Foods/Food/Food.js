@@ -15,6 +15,16 @@ const Food = (props) => {
                         className={styles.image}
                         style={{ backgroundImage: `url(${item.image})` }}
                     />
+                    <div className={styles.addCart}>
+                        <button
+                            type="button"
+                            className={styles.addCartTitle}
+                            onClick={() => props.onToggleToCart(!item.isAddedToCart, item)}
+                        >
+                            {' '}
+                            {item.isAddedToCart ? 'remove from cart' : 'add to cart'}{' '}
+                        </button>
+                    </div>
                 </picture>
                 <figcaption>
                     <div className={styles.headline}>{item.title} </div>

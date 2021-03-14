@@ -1,13 +1,14 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useRef, useState } from 'react';
 import { Dropdown } from 'react-bootstrap';
+import { connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
 import { ReactComponent as CartIcon } from '../../../assets/svg/cart-outline.svg';
 import { ReactComponent as PersonIcon } from '../../../assets/svg/person-circle-outline.svg';
 import styles from './HeaderNav.module.scss';
 
 const HeaderNav = (props) => {
-    const { userDisplayName, showModal, isAuthenticated } = props;
+    const { userDisplayName, showModal, isAuthenticated, cartItemCount } = props;
     const navUserRef = useRef(null);
     const navUserMenuRef = useRef(null);
     const navUserMenuToggleRef = useRef(null);
@@ -72,8 +73,19 @@ const HeaderNav = (props) => {
         {
             id: 2,
             icon: <CartIcon width="32" height="32" />,
-            classes: 'order-3',
+            classes: `order-3 ${styles.cartIcon}`,
             clicked: () => props.history.push('./cart'),
+            child: (
+                <div
+                    className={[
+                        styles.cartItemCount,
+                        cartItemCount && styles.cartItemCountShow,
+                    ].join(' ')}
+                >
+                    {' '}
+                    {cartItemCount && cartItemCount.toString()}{' '}
+                </div>
+            ),
         },
     ];
 
@@ -89,8 +101,13 @@ const HeaderNav = (props) => {
             {el.icon}
             <div className="d-none d-sm-flex align-items-center"> {el.title} </div>
             {el.dropdown}
+            {el.child}
         </div>
     ));
 };
 
-export default withRouter(HeaderNav);
+const mapStateToProps = (state) => ({
+    cartItemCount: state.cart.cartItems.length,
+});
+
+export default withRouter(connect(mapStateToProps)(HeaderNav));
