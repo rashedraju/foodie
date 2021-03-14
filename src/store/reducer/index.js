@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 import auth from './auth';
 import cart from './cart';
-import landingPage from './landingPage';
+import home from './home';
 import search from './search';
 
 export default combineReducers({
-    landingPage,
+    home,
     search,
     cart,
     auth,

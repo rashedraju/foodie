@@ -33,7 +33,7 @@ const Signup = (props) => {
 
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.authStatus.isAuthenticated,
-    redirectPath: state.landingPage.authRedirectPath,
+    redirectPath: state.home.authRedirectPath,
     isLoading: state.auth.authStatus.loading,
     error: state.auth.authStatus.error,
     errMsg: state.auth.authStatus.msg,

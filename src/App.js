@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './adapters/fontawesome';
 import Spinner from './components/UI/Loader/Loader';
-import LandingPage from './containers/LandingPage/LandingPage';
+import Home from './containers/Home/Home';
 import Layout from './hoc/Layout/Layout';
 import * as actions from './store/actions';
 import './styles/app.scss';
@@ -48,7 +48,7 @@ class App extends PureComponent {
                                 </Suspense>
                             )}
                         />
-                        <Route path="/" exact component={LandingPage} />
+                        <Route path="/" exact component={Home} />
                     </Switch>
                 </Layout>
             </Router>
