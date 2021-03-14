@@ -10,6 +10,7 @@ export const getInitialFoodSuccess = (data) => {
             ...food,
             oldPrice,
             newPrice,
+            isAddedToCart: false,
         };
     });
     return {

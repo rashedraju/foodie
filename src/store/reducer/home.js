@@ -11,12 +11,12 @@ const getInitialFoodSuccess = (state, action) =>
     });
 
 const addToCart = (state, action) => {
-    const updatedFoods = updateFood(state.foods, action.food.id);
+    const updatedFoods = updateFood(state.foods, action.item.id);
     return updateObject(state, { foods: updatedFoods });
 };
 
 const removeFromCart = (state, action) => {
-    const updatedFoods = updateFood(state.foods, action.food.id);
+    const updatedFoods = updateFood(state.foods, action.item.id);
     return updateObject(state, { foods: updatedFoods });
 };
 

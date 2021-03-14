@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Alert, Button, Spinner } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import * as actions from '../../store/actions';
 import LoginForm from '../Form/LoginForm/LoginForm';
 import Logo from '../UI/Logo/Logo';
@@ -68,13 +67,7 @@ const Header = (props) => {
             }`}
         >
             <div className="flex-md-grow-1 order-2">
-                <NavLink
-                    exact
-                    to="/"
-                    className="d-inline-flex align-items-center text-decoration-none"
-                >
-                    <Logo /> <span className="text-primary font-weight-bold ml-1">Foodie</span>
-                </NavLink>
+                <Logo />
             </div>
 
             <HeaderNav

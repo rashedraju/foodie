@@ -1,23 +1,26 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../../../store/actions';
 import styles from './CartItem.module.scss';
 
 const CartItem = (props) => {
-    const { items } = props;
+    const { items, onRemoveFromCart } = props;
     if (items.length) {
-        return items.map((el) => (
-            <div className="row p-2 mx-0 border" key={el.id}>
+        return items.map((item) => (
+            <div className="row p-2 mx-0 border" key={item.id}>
                 <div
                     className={`${styles.header} col-sm-6 d-flex justify-content-start align-items-center`}
                 >
                     <button
                         type="button"
-                        className={`${styles.delete} btn btn-light bg-white align-self-center`}
+                        className={`${styles.ditemete} btn btn-light bg-white align-sitemf-center`}
                         title="remove"
+                        onClick={() => onRemoveFromCart(false, item)}
                     >
                         &times;
                     </button>
-                    <img src={el.recipe.image} alt={el.alt} className="img-fluid m-1 w-25" />
-                    <h4 className={`${styles.title} ml-2`}>{el.recipe.label}</h4>
+                    <img src={item.image} alt={item.alt} className="img-fluid m-1 w-25" />
+                    <h4 className={`${styles.title} ml-2`}>{item.title}</h4>
                 </div>
                 <div className="col-sm-6 d-flex justify-content-around align-items-center">
                     <div>
@@ -31,7 +34,7 @@ const CartItem = (props) => {
                             +{' '}
                         </button>
                     </div>
-                    <h2 className="text-primary ml-auto">${el.newPrice}</h2>
+                    <h2 className="text-primary ml-auto">${item.newPrice}</h2>
                 </div>
             </div>
         ));
@@ -39,4 +42,8 @@ const CartItem = (props) => {
     return <p className="text-center my-2"> Start adding items to your cart </p>;
 };
 
-export default CartItem;
+const mapDispatchToProps = (dispatch) => ({
+    onRemoveFromCart: (add, item) => dispatch(actions.toggleToCart(add, item)),
+});
+
+export default connect(null, mapDispatchToProps)(CartItem);

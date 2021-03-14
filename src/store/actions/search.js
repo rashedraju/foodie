@@ -25,6 +25,7 @@ export const searchFoodSuccess = (data) => {
             image: food.recipe.image,
             oldPrice,
             newPrice,
+            isAddedToCart: false,
         };
     });
     return {

@@ -8,7 +8,7 @@ export const updateFood = (foodsArr, foodId) => {
         if (food.id === foodId) {
             return {
                 ...food,
-                addedToCart: !food.addedToCart,
+                isAddedToCart: !food.isAddedToCart,
             };
         }
         return food;

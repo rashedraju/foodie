@@ -2,25 +2,23 @@ import { updateObject } from '../../shared/utility';
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-    foods: [],
+    cartItems: [],
 };
 
 const addToCart = (state, action) => {
-    const foods = [...state.foods];
-    const updatedFood = updateObject(action.food, {
-        addedToCart: true,
-    });
-    foods.push(updatedFood);
+    const cartItems = [...state.cartItems];
+    const updatedItem = updateObject(action.item, { isAddedToCart: true });
+    cartItems.push(updatedItem);
     return updateObject(state, {
-        foods,
+        cartItems,
     });
 };
 
 const removeFromCart = (state, action) => {
-    const updatedFoods = [...state.foods];
-    const foodIndex = updatedFoods.findIndex((el) => action.food.id === el.id);
-    updatedFoods.splice(foodIndex, 1);
-    return updateObject(state, { foods: updatedFoods });
+    const cartItems = [...state.cartItems];
+    const itemIndex = cartItems.findIndex((item) => action.item.id === item.id);
+    cartItems.splice(itemIndex, 1);
+    return updateObject(state, { cartItems });
 };
 
 const reducer = (state = initialState, action) => {

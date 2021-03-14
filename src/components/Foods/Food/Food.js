@@ -21,10 +21,9 @@ const Food = (props) => {
                 <div className="card-footer d-flex justify-content-between">
                     <Button
                         className="btn btn-primary btn-sm"
-                        // onClick={() => props.onAddToCart(el)}
+                        onClick={() => props.onToggleToCart(!item.isAddedToCart, item)}
                     >
-                        {/* {el.addedToCart ? 'Added' : 'Add to cart'} */}
-                        Add to cart
+                        {item.isAddedToCart ? 'Added' : 'Add to cart'}
                     </Button>
                     <div>
                         <strong className="text-primary">${item.newPrice}</strong>
@@ -39,7 +38,7 @@ const Food = (props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    onAddToCart: (food) => dispatch(actions.addToCart(food)),
+    onToggleToCart: (add, item) => dispatch(actions.toggleToCart(add, item)),
 });
 
 export default connect(null, mapDispatchToProps)(Food);
