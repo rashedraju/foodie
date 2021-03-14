@@ -1,5 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions';
 import styles from './Food.module.scss';
@@ -8,31 +8,31 @@ const Food = (props) => {
     const { item } = props;
 
     return (
-        <div className="col-sm-6 col-md-4 mb-2">
-            <div className="card overflow-hidden">
-                <img
-                    className={`${styles.image} card-img img-fluid`}
-                    src={item.image}
-                    alt={item.title}
-                />
-                <div className="card-body p-0 p-1">
-                    <h5 className="card-title text-dark mb-0">{item.title}</h5>
-                </div>
-                <div className="card-footer d-flex justify-content-between">
-                    <Button
-                        className="btn btn-primary btn-sm"
+        <div className="col-lg-3 col-md-4 col-sm-6">
+            <figure className={styles.figure}>
+                <picture className={styles.imageWrapper}>
+                    <div
+                        className={styles.image}
+                        style={{ backgroundImage: `url(${item.image})` }}
+                    />
+                </picture>
+                <figcaption>
+                    <div className={styles.headline}>{item.title} </div>
+                </figcaption>
+                <div className="d-flex justify-content-between align-items-center px-2">
+                    <strong className="text-primary">${item.newPrice}</strong>
+
+                    <FontAwesomeIcon
+                        icon={['fas', 'cart-plus']}
+                        className={styles.cartIcon}
+                        style={{
+                            color: item.isAddedToCart ? '#d60e64' : '#495057',
+                            fontSize: '1.2rem',
+                        }}
                         onClick={() => props.onToggleToCart(!item.isAddedToCart, item)}
-                    >
-                        {item.isAddedToCart ? 'Added' : 'Add to cart'}
-                    </Button>
-                    <div>
-                        <strong className="text-primary">${item.newPrice}</strong>
-                        <strike className="text-muted ml-1">
-                            <small>{item.oldPrice}</small>
-                        </strike>
-                    </div>
+                    />
                 </div>
-            </div>
+            </figure>
         </div>
     );
 };

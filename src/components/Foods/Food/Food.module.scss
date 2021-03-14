@@ -1,6 +1,54 @@
+.figure {
+  min-height: 150px;
+}
+
+.imageWrapper {
+  display: block;
+  height: 150px;
+  overflow: hidden;
+}
+
 .image {
-    transition: all 0.2s linear;
-    &:hover {
-        transform: scale(1.05);
-    }
+  display: block;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  padding: 0.5rem;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    opacity 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  &:hover {
+    transform: scale(1.06);
+  }
+}
+
+.headline {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+  line-height: 1.3em;
+  padding: 0.3rem 0;
+  font-weight: 600;
+}
+
+.cartIcon {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:focus,
+  &:active {
+    scale: (1.5);
+  }
+}
+
+@media only screen and (max-width: 567px) {
+  .figure {
+    min-height: 200px;
+  }
+
+  .imageWrapper {
+    height: 200px;
+  }
 }

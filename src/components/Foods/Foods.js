@@ -5,10 +5,8 @@ const Foods = (props) => {
     const { foods } = props;
     const foodElelments = foods.map((item) => <Food item={item} key={item.id} />);
     return (
-        <section className="recipes p-1 p-md-4">
-            <div className="container">
-                <div className="row">{foodElelments}</div>
-            </div>
+        <section className="container">
+            <div className="row">{foodElelments}</div>
         </section>
     );
 };
