@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import mobileBg from '../../assets/img/signup-bg-mobile.png';
 import SignupForm from '../../components/Form/SignupForm/SignupForm';
 import * as actions from '../../store/actions';
 import styles from './Signup.module.scss';
@@ -14,7 +13,6 @@ const Signup = (props) => {
 
     return (
         <div className={styles.signup}>
-            <img src={mobileBg} className={styles.BgSm} alt="signup background" />
             <div className={`${styles.container} row`}>
                 <div className="signup__left col-md-6">
                     <SignupForm

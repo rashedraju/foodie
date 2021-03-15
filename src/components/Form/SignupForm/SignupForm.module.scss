@@ -18,16 +18,19 @@
   }
 }
 
-// responsive
-@media screen and(max-width: 567px) {
-  .checkbox {
-    color: #fff !important;
-  }
+.button {
+  width: 75%;
 }
+
+// responsive
+
 @media screen and(max-width: 767px) {
   .btn {
     width: 100%;
     display: block;
     margin: 0 auto;
+  }
+  .button {
+    width: 100%;
   }
 }

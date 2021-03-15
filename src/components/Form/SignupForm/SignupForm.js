@@ -114,7 +114,7 @@ const signupForm = (props) => {
                             name="acceptedTerms"
                             id="customControlInline"
                             label="I've read and agree with Terms of Service and our Privacy Policy"
-                            className={`${styles.checkbox} ml-1 mb-4 text-white w-md-75`}
+                            className={`${styles.checkbox} ml-1 mb-4 w-md-75`}
                             {...formik.getFieldProps('acceptedTerms')}
                             custom
                         />
@@ -135,7 +135,7 @@ const signupForm = (props) => {
                     <Button
                         type="submit"
                         variant="primary"
-                        className="w-75 shadow-none"
+                        className={`shadow-none ${styles.button}`}
                         disabled={props.disabled}
                     >
                         {props.loading ? (

@@ -12,10 +12,11 @@
 }
 
 .field {
-  border: none;
+  border: none !important;
   border-radius: 0.5rem;
-  box-shadow: $box-shadow-light;
-  &:focus {
+  box-shadow: $box-shadow-light !important;
+  &:focus,
+  &:active {
     box-shadow: $box-shadow-light !important;
     border: none;
   }
