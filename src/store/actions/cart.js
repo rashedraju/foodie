@@ -1,5 +1,9 @@
 import * as actionTypes from './actionTypes';
 
+export const toggleCart = () => ({
+    type: actionTypes.CART_SHOW_TOGGLE,
+});
+
 export const toggleToCart = (add, item) => {
     if (add) {
         return {

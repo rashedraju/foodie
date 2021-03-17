@@ -5,10 +5,11 @@ import { connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
 import { ReactComponent as CartIcon } from '../../../assets/svg/cart-outline.svg';
 import { ReactComponent as PersonIcon } from '../../../assets/svg/person-circle-outline.svg';
+import * as actions from '../../../store/actions';
 import styles from './HeaderNav.module.scss';
 
 const HeaderNav = (props) => {
-    const { userDisplayName, showModal, isAuthenticated, cartItemCount } = props;
+    const { userDisplayName, showModal, isAuthenticated, cartItemCount, onToggleCart } = props;
     const navUserRef = useRef(null);
     const navUserMenuRef = useRef(null);
     const navUserMenuToggleRef = useRef(null);
@@ -74,7 +75,7 @@ const HeaderNav = (props) => {
             id: 2,
             icon: <CartIcon width="32" height="32" />,
             classes: `order-3 ${styles.cartIcon}`,
-            clicked: () => props.history.push('./cart'),
+            clicked: onToggleCart,
             child: (
                 <div
                     className={[
@@ -110,4 +111,8 @@ const mapStateToProps = (state) => ({
     cartItemCount: state.cart.cartItems.length,
 });
 
-export default withRouter(connect(mapStateToProps)(HeaderNav));
+const mapDispatchToProps = (dispatch) => ({
+    onToggleCart: () => dispatch(actions.toggleCart()),
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HeaderNav));

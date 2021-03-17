@@ -3,7 +3,10 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
     cartItems: [],
+    cartShow: false,
 };
+
+const cartShowToggle = (state) => updateObject(state, { cartShow: !state.cartShow });
 
 const addToCart = (state, action) => {
     const cartItems = [...state.cartItems];
@@ -27,6 +30,8 @@ const reducer = (state = initialState, action) => {
             return addToCart(state, action);
         case actionTypes.REMOVE_FROM_CART:
             return removeFromCart(state, action);
+        case actionTypes.CART_SHOW_TOGGLE:
+            return cartShowToggle(state);
         default:
             return state;
     }

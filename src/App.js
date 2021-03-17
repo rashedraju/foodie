@@ -10,7 +10,6 @@ import './styles/app.scss';
 import './styles/custom.scss';
 
 const Signup = React.lazy(() => import('./containers/Signup/Signup'));
-const Cart = React.lazy(() => import('./containers/Cart/Cart'));
 const Search = React.lazy(() => import('./containers/Search/Search'));
 
 class App extends PureComponent {
@@ -29,14 +28,6 @@ class App extends PureComponent {
                             render={(props) => (
                                 <Suspense fallback={<Spinner />}>
                                     <Signup {...props} />
-                                </Suspense>
-                            )}
-                        />
-                        <Route
-                            path="/cart"
-                            render={(props) => (
-                                <Suspense fallback={<Spinner />}>
-                                    <Cart {...props} />
                                 </Suspense>
                             )}
                         />

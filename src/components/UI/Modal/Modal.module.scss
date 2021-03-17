@@ -1,6 +1,7 @@
 @import "../../../styles/app.scss";
 
 .modal {
+  z-index: 999;
   > :first-child {
     > :first-child {
       background-image: url("../../../assets/svg/login-bg-mobile.svg");
