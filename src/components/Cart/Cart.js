@@ -1,21 +1,24 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Button } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import { ReactComponent as DeliveryIcon } from '../../assets/svg/bicycle-outline.svg';
 import { ReactComponent as CartIcon } from '../../assets/svg/cart-outline.svg';
-import * as actions from '../../store/actions';
 import styles from './Cart.module.scss';
 import CartItem from './CartItem/CartItem';
 
 const Cart = (props) => {
-    const { cartItems, onAuthRedirectPath, history, cartShow, onToggleCart } = props;
-    useEffect(() => {
-        onAuthRedirectPath(history.location.pathname);
-    }, [cartItems, onAuthRedirectPath, history]);
+    const { cartItems, cartShow, toggleCartUI, toggleToCart } = props;
 
+    // Add style conditionaly
     const cartStyle = [styles.cart];
     if (cartShow) cartStyle.push(styles.show);
+
+    const itemElements = cartItems.length ? (
+        cartItems.map((item) => (
+            <CartItem item={item} toggleToCart={() => toggleToCart(false, item)} key={item.id} />
+        ))
+    ) : (
+        <p className="text-center my-2"> Start adding items to your cart </p>
+    );
 
     return (
         <div className={cartStyle.join(' ')}>
@@ -28,7 +31,7 @@ const Cart = (props) => {
                 </div>
                 <Button
                     className="p-1 btn btn-light px-3 shadow-none border border-secondary radius-0"
-                    onClick={onToggleCart}
+                    onClick={toggleCartUI}
                 >
                     Close
                 </Button>
@@ -36,19 +39,15 @@ const Cart = (props) => {
             <div className="bg-primary text-white px-3 py-2">
                 Shop $30 more and get 20% cashback
             </div>
-            <div className="card-body">
+            <div className="px-2">
                 <div className="bg-light px-3 py-2">
                     <DeliveryIcon width="32" height="32" /> <span>Regular Delivery</span>
                 </div>
-                <CartItem items={cartItems} />
+                {/* render all cart items */}
+                {itemElements}
 
                 <div className="card-footer d-flex justify-content-between">
-                    <Button
-                        className="btn btn-success mr-4 text-white p-1"
-                        onClick={() => history.goBack()}
-                    >
-                        Add More
-                    </Button>
+                    <Button className="btn btn-success mr-4 text-white p-1">Add More</Button>
                     <Button className="btn btn-primary mr-4 text-white p-1"> Checkout </Button>
                 </div>
             </div>
@@ -56,13 +55,4 @@ const Cart = (props) => {
     );
 };
 
-const mapStateToProps = (state) => ({
-    cartShow: state.cart.cartShow,
-    cartItems: state.cart.cartItems,
-});
-const mapDispatchToProps = (dispatch) => ({
-    onAuthRedirectPath: (path) => dispatch(actions.autRedirectPath(path)),
-    onToggleCart: () => dispatch(actions.toggleCart()),
-});
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Cart));
+export default Cart;

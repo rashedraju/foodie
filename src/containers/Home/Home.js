@@ -10,7 +10,20 @@ import Aux from '../../hoc/Auxiliary/Auxiliary';
 import * as actions from '../../store/actions';
 
 const Home = (props) => {
-    const { onAuthRedirectPath, foods, onGetInitialFoods, cartItems } = props;
+    const {
+        onAuthRedirectPath,
+        foods,
+        onGetInitialFoods,
+        cartItems,
+        onToggleToCart,
+        query,
+        onQueryChange,
+        onSearchFood,
+    } = props;
+
+    const handleToggleCartItem = (isAddedToCart, item) => {
+        onToggleToCart(isAddedToCart, item);
+    };
     useEffect(() => {
         // set auth redirect path
         onAuthRedirectPath('/');
@@ -19,12 +32,12 @@ const Home = (props) => {
         if (!foods.length > 0) {
             onGetInitialFoods(cartItems);
         }
-    }, [cartItems, foods.length, onAuthRedirectPath, onGetInitialFoods]);
+    }, [onAuthRedirectPath, cartItems, foods, onGetInitialFoods]);
 
     return (
         <Aux>
-            <Hero />
-            <Foods foods={foods} />
+            <Hero query={query} queryChange={onQueryChange} searchFood={onSearchFood} />
+            <Foods foods={foods} toggleToCart={handleToggleCartItem} />
             <Feature />
             <OurApp />
             <Partner />
@@ -33,6 +46,7 @@ const Home = (props) => {
     );
 };
 const mapStateToProps = (state) => ({
+    query: state.search.query,
     redirect: state.search.redirect,
     foods: state.home.foods,
     cartItems: state.cart.foods,
@@ -41,6 +55,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     onGetInitialFoods: () => dispatch(actions.getInitailFood()),
     onAuthRedirectPath: (path) => dispatch(actions.autRedirectPath(path)),
+    onToggleToCart: (isAdded, item) => dispatch(actions.toggleToCart(isAdded, item)),
+    onQueryChange: (value) => dispatch(actions.queryChange(value)),
+    onSearchFood: (query) => dispatch(actions.searchFood(query)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

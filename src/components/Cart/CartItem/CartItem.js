@@ -1,49 +1,30 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { connect } from 'react-redux';
-import * as actions from '../../../store/actions';
 import styles from './CartItem.module.scss';
 
 const CartItem = (props) => {
-    const { items, onRemoveFromCart } = props;
-    if (items.length) {
-        return items.map((item) => (
-            <div className="row p-2 mx-0 border" key={item.id}>
-                <div
-                    className={`${styles.header} col-sm-6 d-flex justify-content-start align-items-center`}
-                >
-                    <button
-                        type="button"
-                        className={`${styles.ditemete} btn btn-light bg-white align-sitemf-center`}
-                        title="remove"
-                        onClick={() => onRemoveFromCart(false, item)}
-                    >
-                        &times;
-                    </button>
-                    <img src={item.image} alt={item.alt} className="img-fluid m-1 w-25" />
-                    <h4 className={`${styles.title} ml-2`}>{item.title}</h4>
-                </div>
-                <div className="col-sm-6 d-flex justify-content-around align-items-center">
-                    <div>
-                        <button type="button" className="btn btn-light btn-sm" title="less">
-                            {' '}
-                            -{' '}
-                        </button>
-                        <strong className="mx-2">1</strong>
-                        <button type="button" className="btn btn-light btn-sm" title="more">
-                            {' '}
-                            +{' '}
-                        </button>
-                    </div>
-                    <h2 className="text-primary ml-auto">${item.newPrice}</h2>
-                </div>
+    const { item, toggleToCart } = props;
+    return (
+        <div className={styles.item}>
+            <div className={styles.count}>
+                <button type="button" title="more">
+                    <FontAwesomeIcon icon={['fas', 'angle-up']} />
+                </button>
+                <span>1</span>
+                <button type="button" title="less">
+                    <FontAwesomeIcon icon={['fas', 'angle-down']} />
+                </button>
             </div>
-        ));
-    }
-    return <p className="text-center my-2"> Start adding items to your cart </p>;
+            <img src={item.image} alt={item.alt} className={styles.image} />
+            <div className={`${styles.title}`}>{item.title}</div>
+            <div className={styles.price}>${item.newPrice}</div>
+            {/* Remove item from cart. onToggleToCart takes two arguments: 1. isAddedToCart
+                yet 2. item itself */}
+            <button type="button" className={styles.delete} title="remove" onClick={toggleToCart}>
+                &times;
+            </button>
+        </div>
+    );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-    onRemoveFromCart: (add, item) => dispatch(actions.toggleToCart(add, item)),
-});
-
-export default connect(null, mapDispatchToProps)(CartItem);
+export default CartItem;

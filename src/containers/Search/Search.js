@@ -7,24 +7,33 @@ import Aux from '../../hoc/Auxiliary/Auxiliary';
 import * as actions from '../../store/actions';
 
 class Search extends PureComponent {
+    constructor(props) {
+        super(props);
+        this.onToggleToCart = props.onToggleToCart;
+    }
+
     componentDidMount() {
-        const { location, history, onSearchQuery, onSearchFood, cartItems } = this.props;
+        const { location, history, onQueryChange, onSearchFood, cartItems } = this.props;
         const urlParams = new URLSearchParams(location.search);
         if (urlParams.has('q') && urlParams.get('q') !== '') {
             const query = urlParams.get('q');
-            onSearchQuery(query);
+            onQueryChange(query);
             onSearchFood(query, cartItems);
         } else {
             history.replace('./');
         }
     }
 
+    handleToggleCartItem = (isAddedToCart, item) => {
+        this.onToggleToCart(isAddedToCart, item);
+    };
+
     render() {
-        const { loading, foods, error } = this.props;
+        const { loading, foods, error, query, onQueryChange, onSearchFood } = this.props;
 
         let searchResult;
         if (foods.length > 0) {
-            searchResult = <Foods foods={foods} />;
+            searchResult = <Foods foods={foods} toggleToCart={this.handleToggleCartItem} />;
         } else if (loading) {
             searchResult = <Loader />;
         } else if (error) {
@@ -32,7 +41,12 @@ class Search extends PureComponent {
         }
         return (
             <Aux>
-                <SearchBar center />
+                <SearchBar
+                    center
+                    query={query}
+                    queryChange={onQueryChange}
+                    searchFood={onSearchFood}
+                />
                 {searchResult}
             </Aux>
         );
@@ -40,6 +54,7 @@ class Search extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
+    query: state.search.query,
     foods: state.search.foods,
     loading: state.search.loader,
     error: state.search.error,
@@ -47,8 +62,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    onSearchQuery: (query) => dispatch(actions.searchQuery(query)),
-    onSearchFood: (query, cartItems) => dispatch(actions.searchFood(query, cartItems)),
+    onQueryChange: (value) => dispatch(actions.queryChange(value)),
+    onSearchFood: (query) => dispatch(actions.searchFood(query)),
+    onToggleToCart: (isAdded, item) => dispatch(actions.toggleToCart(isAdded, item)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

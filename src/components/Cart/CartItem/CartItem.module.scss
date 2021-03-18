@@ -1,13 +1,64 @@
-@media (max-width: 567px) {
-    .title {
-        font-size: 1.2rem;
-    }
-    .delete {
-        position: absolute;
-        right: 2%;
-        top: 2%;
-    }
-    .header {
-        justify-content: flex-start !important;
-    }
+// .itemImage {
+//   max-width: 3rem;
+//   max-height: 3rem;
+// }
+// @media only screen and (min-width: 991px) {
+//   .title {
+//     font-size: 1rem;
+//   }
+// }
+
+// @media (max-width: 567px) {
+//   .title {
+//     font-size: 1.2rem;
+//   }
+//   .delete {
+//     position: absolute;
+//     right: 2%;
+//     top: 2%;
+//   }
+//   .header {
+//     justify-content: flex-start !important;
+//   }
+// }
+
+.item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  border: 1px solid #eee;
+  margin: 0.5rem 0;
+}
+
+.count {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  button {
+    border: none;
+    background: transparent;
+    color: gray;
+  }
+}
+
+.image {
+  max-width: 3rem;
+  max-height: 3rem;
+  padding: 0 0.5rem;
+}
+
+.title {
+  flex: 1;
+}
+
+.price {
+  padding: 0 0.5rem;
+  color: #d60e64;
+}
+
+.delete {
+  border: none;
+  background: transparent;
 }

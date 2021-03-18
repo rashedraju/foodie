@@ -1,10 +1,8 @@
 import { Formik } from 'formik';
 import React, { useEffect } from 'react';
 import { Alert, Button, Form, Spinner } from 'react-bootstrap';
-import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import * as Yup from 'yup';
-import * as actions from '../../../store/actions';
 import styles from './LoginForm.module.scss';
 
 const LoginForm = (props) => {
@@ -80,15 +78,4 @@ const LoginForm = (props) => {
     );
 };
 
-const mapStateToProps = (state) => ({
-    isAuthenticated: state.auth.authStatus.isAuthenticated,
-    isLoading: state.auth.authStatus.loading,
-    error: state.auth.authStatus.error,
-    errMsg: state.auth.authStatus.msg,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-    onLogin: (values) => dispatch(actions.login(values)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+export default LoginForm;

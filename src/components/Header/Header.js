@@ -1,14 +1,22 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Alert, Button, Spinner } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import * as actions from '../../store/actions';
 import LoginForm from '../Form/LoginForm/LoginForm';
 import Logo from '../UI/Logo/Logo';
 import Modal from '../UI/Modal/Modal';
 import HeaderNav from './HeaderNav/HeaderNav';
 
 const Header = (props) => {
-    const { error, errMsg, isLoading, onLogout, isAuthenticated, userDisplayName } = props;
+    const {
+        error,
+        errMsg,
+        isLoading,
+        onLogout,
+        isAuthenticated,
+        userDisplayName,
+        cartShow,
+        cartItemCount,
+        onToggleCartUI,
+    } = props;
 
     const [showModal, setShowModal] = useState(false);
     const [scroll, setScroll] = useState(false);
@@ -71,8 +79,11 @@ const Header = (props) => {
             </div>
 
             <HeaderNav
+                cartShow={cartShow}
+                cartItemCount={cartItemCount}
                 isAuthenticated={isAuthenticated}
                 userDisplayName={userDisplayName}
+                onToggleCartUI={onToggleCartUI}
                 showModal={() => setShowModal((show) => !show)}
             />
 
@@ -86,23 +97,11 @@ const Header = (props) => {
                 {isAuthenticated ? (
                     logoutConfirmDialog
                 ) : (
-                    <LoginForm closeLoginModal={handleModalClose} />
+                    <LoginForm {...props} closeLoginModal={handleModalClose} />
                 )}
             </Modal>
         </header>
     );
 };
 
-const mapStateToProps = (state) => ({
-    isAuthenticated: state.auth.authStatus.isAuthenticated,
-    isLoading: state.auth.authStatus.loading,
-    error: state.auth.authStatus.error,
-    errMsg: state.auth.authStatus.msg,
-    userDisplayName: state.auth.logedUser.displayName,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-    onLogout: () => dispatch(actions.logout()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default Header;

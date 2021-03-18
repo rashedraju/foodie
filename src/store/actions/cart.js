@@ -1,9 +1,12 @@
 import * as actionTypes from './actionTypes';
 
-export const toggleCart = () => ({
-    type: actionTypes.CART_SHOW_TOGGLE,
+// Show or hide cart from UI
+export const toggleCartUI = (bool = false) => ({
+    type: actionTypes.TOGGLE_CART_UI,
+    bool,
 });
 
+// Add or remove items from cart state
 export const toggleToCart = (add, item) => {
     if (add) {
         return {

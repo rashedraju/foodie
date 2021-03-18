@@ -5,7 +5,7 @@ const API = 'https://api.edamam.com';
 const API_ID = 'da74e8ed';
 const API_KEY = 'ed17032dee115bf17bfeb5bb5aea6381';
 
-export const searchQuery = (value) => ({
+export const queryChange = (value) => ({
     type: actionTypes.SEARCH_QUERY,
     query: value,
 });
@@ -42,12 +42,12 @@ export const isAddedToCart = () => ({
     type: actionTypes.IS_ADDED_TO_CART,
 });
 
-export const searchFood = (query, cartItems) => (dispatch) => {
+export const searchFood = (query) => (dispatch) => {
     dispatch(searchFoodStart());
     axios
         .get(`${API}/search?q=${query}&app_id=${API_ID}&app_key=${API_KEY}&from=0&to=30`)
         .then((response) => {
-            dispatch(searchFoodSuccess(response.data.hits, cartItems));
+            dispatch(searchFoodSuccess(response.data.hits));
         })
         .catch(() => {
             dispatch(searchFoodFail());

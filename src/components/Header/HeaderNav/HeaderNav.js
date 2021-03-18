@@ -1,15 +1,19 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useRef, useState } from 'react';
 import { Dropdown } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import { NavLink, withRouter } from 'react-router-dom';
 import { ReactComponent as CartIcon } from '../../../assets/svg/cart-outline.svg';
 import { ReactComponent as PersonIcon } from '../../../assets/svg/person-circle-outline.svg';
-import * as actions from '../../../store/actions';
 import styles from './HeaderNav.module.scss';
 
 const HeaderNav = (props) => {
-    const { userDisplayName, showModal, isAuthenticated, cartItemCount, onToggleCart } = props;
+    const {
+        userDisplayName,
+        showModal,
+        isAuthenticated,
+        cartItemCount,
+        cartShow,
+        onToggleCartUI,
+    } = props;
     const navUserRef = useRef(null);
     const navUserMenuRef = useRef(null);
     const navUserMenuToggleRef = useRef(null);
@@ -37,9 +41,6 @@ const HeaderNav = (props) => {
 
     const navUser = (
         <ul className={styles.navUser__menu} ref={navUserMenuRef}>
-            <NavLink to="./cart" className="dropdown-item pr-5 py-2">
-                My Order
-            </NavLink>
             <Dropdown.Item className="pointer pr-5 py-2" onClick={showModal}>
                 Logout
             </Dropdown.Item>
@@ -60,7 +61,7 @@ const HeaderNav = (props) => {
                 <>
                     {userDisplayName}
                     <span className="ml-2" ref={navUserMenuToggleRef}>
-                        <FontAwesomeIcon icon={['fas', 'caret-down']} />
+                        <FontAwesomeIcon icon={['fas', 'angle-down']} />
                     </span>
                 </>
             ) : (
@@ -75,7 +76,7 @@ const HeaderNav = (props) => {
             id: 2,
             icon: <CartIcon width="32" height="32" />,
             classes: `order-3 ${styles.cartIcon}`,
-            clicked: onToggleCart,
+            clicked: () => onToggleCartUI(!cartShow),
             child: (
                 <div
                     className={[
@@ -83,7 +84,6 @@ const HeaderNav = (props) => {
                         cartItemCount && styles.cartItemCountShow,
                     ].join(' ')}
                 >
-                    {' '}
                     {cartItemCount && cartItemCount.toString()}{' '}
                 </div>
             ),
@@ -107,12 +107,4 @@ const HeaderNav = (props) => {
     ));
 };
 
-const mapStateToProps = (state) => ({
-    cartItemCount: state.cart.cartItems.length,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-    onToggleCart: () => dispatch(actions.toggleCart()),
-});
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HeaderNav));
+export default HeaderNav;

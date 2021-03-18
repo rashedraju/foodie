@@ -1,8 +1,6 @@
 import React from 'react';
 import { Button, Form, FormControl, InputGroup } from 'react-bootstrap';
-import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import * as actions from '../../../store/actions';
 import styles from './SearchBar.module.scss';
 
 const searchBar = (props) => (
@@ -14,7 +12,7 @@ const searchBar = (props) => (
                 pathname: '/search',
                 search: `?q=${props.query}`,
             });
-            props.onFatchSearchFood(props.query, props.cartItems);
+            props.searchFood(props.query);
         }}
     >
         <InputGroup>
@@ -22,7 +20,7 @@ const searchBar = (props) => (
                 type="text"
                 placeholder="Search over million foods"
                 className="text-muted outline-none shadow-none p-sm-4"
-                onChange={(e) => props.onQueryChange(e.target.value)}
+                onChange={(e) => props.queryChange(e.target.value)}
                 value={props.query}
             />
             <InputGroup.Append>
@@ -39,13 +37,4 @@ const searchBar = (props) => (
     </Form>
 );
 
-const mapStateToProps = (state) => ({
-    query: state.search.query,
-    cartItems: state.cart.foods,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-    onQueryChange: (value) => dispatch(actions.searchQuery(value)),
-    onFatchSearchFood: (value, cartItems) => dispatch(actions.searchFood(value, cartItems)),
-});
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(searchBar));
+export default withRouter(searchBar);

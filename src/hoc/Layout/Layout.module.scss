@@ -8,3 +8,8 @@
     padding-right: 20rem;
   }
 }
+.bodyOverflow {
+  @media only screen and (max-width: 991px) {
+    overflow: hidden;
+  }
+}
