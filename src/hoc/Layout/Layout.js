@@ -7,7 +7,7 @@ import * as actions from '../../store/actions';
 import Aux from '../Auxiliary/Auxiliary';
 import styles from './Layout.module.scss';
 
-const layout = (props) => {
+const Layout = (props) => {
     const {
         cartShow,
         children,
@@ -21,6 +21,8 @@ const layout = (props) => {
         error,
         errMsg,
         userDisplayName,
+        onUpdateItemCount,
+        price,
     } = props;
 
     const layoutStyle = [styles.contentWrapper];
@@ -50,6 +52,8 @@ const layout = (props) => {
                 cartItems={cartItems}
                 toggleCartUI={() => onToggleCartUI(!cartShow)}
                 toggleToCart={onToggleToCart}
+                updateCount={onUpdateItemCount}
+                price={price}
             />
             <main className={layoutStyle.join(' ')}>{children}</main>
             <Footer />
@@ -63,6 +67,7 @@ const mapStateToProps = (state) => ({
     error: state.auth.authStatus.error,
     errMsg: state.auth.authStatus.msg,
     cartShow: state.cart.cartShow,
+    price: state.cart.price,
     cartItems: state.cart.cartItems,
     userDisplayName: state.auth.logedUser.displayName,
 });
@@ -72,6 +77,7 @@ const mapDispatchToProps = (dispatch) => ({
     onToggleToCart: (add, item) => dispatch(actions.toggleToCart(add, item)),
     onLogin: (values) => dispatch(actions.login(values)),
     onLogout: () => dispatch(actions.logout()),
+    onUpdateItemCount: (id, identifier) => dispatch(actions.updateItemCount(id, identifier)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(layout);
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

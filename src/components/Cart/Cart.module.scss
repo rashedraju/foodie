@@ -3,7 +3,7 @@
   height: 100%;
   position: fixed;
   right: -20rem;
-  background-color: #fff;
+  background-color: #f7f7f7;
   transition: right 0.2s ease;
   box-shadow: 1px 1px 5px #ced4da;
   z-index: 888;
@@ -14,4 +14,21 @@
   @media only screen and (max-width: 991px) {
     width: 100%;
   }
+}
+
+.cartSummary {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.orderItems {
+  flex: 1;
+  overflow: auto;
+}
+
+.orderAmount {
+  padding: 1rem 1rem 0 1rem;
+  background-color: #fff;
+  flex: 1 auto;
 }

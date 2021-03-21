@@ -9,6 +9,7 @@ export const TOGGLE_CART_UI = 'TOGGLE_CART_UI';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const IS_ADDED_TO_CART = 'IS_ADDED_TO_CART';
+export const UPDATE_ITEM_COUNT = 'UPDATE_ITEM_COUNT';
 
 export const AUTH_START = 'AUTH_START';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';

@@ -1,6 +1,7 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useRef, useState } from 'react';
 import { Dropdown } from 'react-bootstrap';
+import { AiOutlineLogin } from 'react-icons/ai';
+import { BsChevronCompactDown } from 'react-icons/bs';
 import { ReactComponent as CartIcon } from '../../../assets/svg/cart-outline.svg';
 import { ReactComponent as PersonIcon } from '../../../assets/svg/person-circle-outline.svg';
 import styles from './HeaderNav.module.scss';
@@ -41,8 +42,8 @@ const HeaderNav = (props) => {
 
     const navUser = (
         <ul className={styles.navUser__menu} ref={navUserMenuRef}>
-            <Dropdown.Item className="pointer pr-5 py-2" onClick={showModal}>
-                Logout
+            <Dropdown.Item className="pointer py-2" onClick={showModal}>
+                Logout <AiOutlineLogin />
             </Dropdown.Item>
         </ul>
     );
@@ -61,7 +62,7 @@ const HeaderNav = (props) => {
                 <>
                     {userDisplayName}
                     <span className="ml-2" ref={navUserMenuToggleRef}>
-                        <FontAwesomeIcon icon={['fas', 'angle-down']} />
+                        <BsChevronCompactDown />
                     </span>
                 </>
             ) : (

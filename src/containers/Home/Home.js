@@ -11,33 +11,32 @@ import * as actions from '../../store/actions';
 
 const Home = (props) => {
     const {
-        onAuthRedirectPath,
         foods,
-        onGetInitialFoods,
-        cartItems,
+        onAuthRedirectPath,
         onToggleToCart,
         query,
         onQueryChange,
-        onSearchFood,
+        cartItems,
+        onGetInitialFoods,
     } = props;
 
-    const handleToggleCartItem = (isAddedToCart, item) => {
-        onToggleToCart(isAddedToCart, item);
-    };
     useEffect(() => {
         // set auth redirect path
         onAuthRedirectPath('/');
 
-        // fetch foods
+        // fetch initial foods
         if (!foods.length > 0) {
             onGetInitialFoods(cartItems);
         }
-    }, [onAuthRedirectPath, cartItems, foods, onGetInitialFoods]);
+    }, [cartItems, foods.length, onAuthRedirectPath, onGetInitialFoods]);
 
     return (
         <Aux>
-            <Hero query={query} queryChange={onQueryChange} searchFood={onSearchFood} />
-            <Foods foods={foods} toggleToCart={handleToggleCartItem} />
+            <Hero query={query} queryChange={onQueryChange} />
+            <Foods
+                foods={foods.length > 0 ? foods : new Array(6).fill({})}
+                toggleToCart={onToggleToCart}
+            />
             <Feature />
             <OurApp />
             <Partner />
@@ -46,18 +45,17 @@ const Home = (props) => {
     );
 };
 const mapStateToProps = (state) => ({
+    foods: state.home.foods,
     query: state.search.query,
     redirect: state.search.redirect,
-    foods: state.home.foods,
-    cartItems: state.cart.foods,
+    cartItems: state.cart.cartItems,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    onGetInitialFoods: () => dispatch(actions.getInitailFood()),
     onAuthRedirectPath: (path) => dispatch(actions.autRedirectPath(path)),
     onToggleToCart: (isAdded, item) => dispatch(actions.toggleToCart(isAdded, item)),
     onQueryChange: (value) => dispatch(actions.queryChange(value)),
-    onSearchFood: (query) => dispatch(actions.searchFood(query)),
+    onGetInitialFoods: (cartItems) => dispatch(actions.getInitailFood(cartItems)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

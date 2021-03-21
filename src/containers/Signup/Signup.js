@@ -8,16 +8,15 @@ const Signup = (props) => {
     const {
         isAuthenticated,
         redirectPath,
-        isLoading,
         error,
         errMsg,
         onSignup,
+        isLoading,
         history,
         onToggleCartUI,
     } = props;
 
     useEffect(() => {
-        console.log('signup.js [component did mount]');
         onToggleCartUI();
         if (isAuthenticated) history.replace(redirectPath);
     }, [history, isAuthenticated, onToggleCartUI, redirectPath]);

@@ -16,7 +16,7 @@ const addToCart = (state, action) => {
 };
 
 const removeFromCart = (state, action) => {
-    const updatedFoods = updateFood(state.foods, action.item.id);
+    const updatedFoods = updateFood(state.foods, action.id);
     return updateObject(state, { foods: updatedFoods });
 };
 

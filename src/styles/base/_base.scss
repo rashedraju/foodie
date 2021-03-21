@@ -37,3 +37,11 @@ button:focus,
 a:focus {
   outline: none;
 }
+
+button,
+button:focus,
+button:active,
+button:hover {
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}

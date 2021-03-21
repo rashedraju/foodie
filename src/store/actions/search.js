@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { isAddedToCart } from '../../shared/utility';
 import * as actionTypes from './actionTypes';
 
 const API = 'https://api.edamam.com';
@@ -14,20 +15,14 @@ export const searchFoodStart = () => ({
     type: actionTypes.SEARCH_FOOD_START,
 });
 
-export const searchFoodSuccess = (data) => {
-    const foods = data.map((food) => {
-        const id = food.recipe.uri.split('_')[1];
-        const oldPrice = Math.floor(Math.random() * (20 - 10)) + 10;
-        const newPrice = Math.floor(Math.random() * (20 - 10)) + 10 - 5;
-        return {
-            id,
-            title: food.recipe.label,
-            image: food.recipe.image,
-            oldPrice,
-            newPrice,
-            isAddedToCart: false,
-        };
-    });
+export const searchFoodSuccess = (data, cartItems) => {
+    const foods = data.map((food) => ({
+        id: food.recipe.uri.split('_')[1],
+        title: food.recipe.label,
+        image: food.recipe.image,
+        price: Math.floor(Math.random() * (20 - 10)) + 10 - 5,
+        isAddedToCart: isAddedToCart(cartItems, food.id),
+    }));
     return {
         type: actionTypes.SEARCH_FOOD_SUCCESS,
         foods,
@@ -38,16 +33,12 @@ export const searchFoodFail = () => ({
     type: actionTypes.SEARCH_FOOD_FAIL,
 });
 
-export const isAddedToCart = () => ({
-    type: actionTypes.IS_ADDED_TO_CART,
-});
-
-export const searchFood = (query) => (dispatch) => {
+export const searchFood = (query, cartItems) => (dispatch) => {
     dispatch(searchFoodStart());
     axios
         .get(`${API}/search?q=${query}&app_id=${API_ID}&app_key=${API_KEY}&from=0&to=30`)
         .then((response) => {
-            dispatch(searchFoodSuccess(response.data.hits));
+            dispatch(searchFoodSuccess(response.data.hits, cartItems));
         })
         .catch(() => {
             dispatch(searchFoodFail());

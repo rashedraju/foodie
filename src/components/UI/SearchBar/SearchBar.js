@@ -12,7 +12,6 @@ const searchBar = (props) => (
                 pathname: '/search',
                 search: `?q=${props.query}`,
             });
-            props.searchFood(props.query);
         }}
     >
         <InputGroup>
@@ -30,7 +29,6 @@ const searchBar = (props) => (
                     className="text-white shadow-none d-flex align-items-center font-weight-bold"
                 >
                     SEARCH
-                    {/* <FontAwesomeIcon icon={['fas', 'search']} size="lg" /> */}
                 </Button>
             </InputGroup.Append>
         </InputGroup>
