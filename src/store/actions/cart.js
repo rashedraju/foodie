@@ -26,3 +26,5 @@ export const toggleToCart = (add, item) => {
         id: item.id,
     };
 };
+
+export const onClearCart = () => ({ type: actionTypes.CLEAR_CART });

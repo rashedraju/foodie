@@ -16,3 +16,28 @@ const config = {
 export const app = firebase.initializeApp(config);
 export const auth = app.auth();
 export const database = app.database();
+
+export const signup = (firstName, lastName, email, password) =>
+    auth.createUserWithEmailAndPassword(email, password).then(() => {
+        const user = auth.currentUser;
+        user.updateProfile({
+            displayName: `${firstName} ${lastName}`,
+        });
+    });
+
+export const login = (email, password) => auth.signInWithEmailAndPassword(email, password);
+
+export const logout = () => auth.signOut();
+
+export const submitOrder = (data) => {
+    const myuid = auth.currentUser.uid;
+    const orderData = {
+        id: myuid,
+        ...data,
+    };
+    const newOrderKey = database.ref().child('orders').push().key;
+    const updates = {};
+    updates[`/orders/${newOrderKey}`] = orderData;
+
+    return database.ref().update(updates);
+};

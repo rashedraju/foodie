@@ -1,12 +1,30 @@
 import { combineReducers } from 'redux';
-import auth from './auth';
-import cart from './cart';
-import home from './home';
-import search from './search';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import authReducer from './auth';
+import cartReducer from './cart';
+import homeReducer from './home';
+import searchReducer from './search';
 
-export default combineReducers({
-    home,
-    search,
-    cart,
-    auth,
+const rootPersistConfig = {
+    key: 'root',
+    storage,
+    whitelist: ['cart'],
+};
+
+const searchPersistConfig = {
+    key: 'search',
+    storage,
+    whitelist: ['query'],
+};
+
+const rootReducer = combineReducers({
+    home: homeReducer,
+    search: persistReducer(searchPersistConfig, searchReducer),
+    cart: cartReducer,
+    auth: authReducer,
 });
+
+const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
+
+export default persistedReducer;

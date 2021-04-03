@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Dropdown } from 'react-bootstrap';
 import { AiOutlineLogin } from 'react-icons/ai';
 import { BsChevronCompactDown } from 'react-icons/bs';
+import { IoBagCheckOutline } from 'react-icons/io5';
+import { withRouter } from 'react-router-dom';
 import { ReactComponent as CartIcon } from '../../../assets/svg/cart-outline.svg';
 import { ReactComponent as PersonIcon } from '../../../assets/svg/person-circle-outline.svg';
 import styles from './HeaderNav.module.scss';
@@ -14,6 +16,7 @@ const HeaderNav = (props) => {
         cartItemCount,
         cartShow,
         onToggleCartUI,
+        history,
     } = props;
     const navUserRef = useRef(null);
     const navUserMenuRef = useRef(null);
@@ -42,8 +45,15 @@ const HeaderNav = (props) => {
 
     const navUser = (
         <ul className={styles.navUser__menu} ref={navUserMenuRef}>
-            <Dropdown.Item className="pointer py-2" onClick={showModal}>
-                Logout <AiOutlineLogin />
+            <Dropdown.Item
+                className="pointer py-2"
+                eventKey="2"
+                onClick={() => history.push('./my-orders')}
+            >
+                <IoBagCheckOutline /> &nbsp; My orders
+            </Dropdown.Item>
+            <Dropdown.Item className="pointer py-2" onClick={showModal} eventKey="1">
+                <AiOutlineLogin /> &nbsp; Logout
             </Dropdown.Item>
         </ul>
     );
@@ -74,7 +84,7 @@ const HeaderNav = (props) => {
             clicked: !isAuthenticated ? showModal : toggleUserMenu,
         },
         {
-            id: 2,
+            id: 'cartToggler',
             icon: <CartIcon width="32" height="32" />,
             classes: `order-3 ${styles.cartIcon}`,
             clicked: () => onToggleCartUI(!cartShow),
@@ -93,6 +103,7 @@ const HeaderNav = (props) => {
 
     return navItems.map((el) => (
         <div
+            id={el.id}
             className={`d-flex align-items-center pr-sm-4 pr-sm pointer outline-none ${el.classes}`}
             key={el.id}
             onClick={el.clicked}
@@ -108,4 +119,4 @@ const HeaderNav = (props) => {
     ));
 };
 
-export default HeaderNav;
+export default withRouter(HeaderNav);

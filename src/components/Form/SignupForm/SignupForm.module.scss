@@ -3,10 +3,6 @@
   composes: label from "../LoginForm/LoginForm.module.scss";
 }
 
-.field {
-  composes: field from "../LoginForm/LoginForm.module.scss";
-}
-
 // field placeholder-shown applied from loginForm.module.scss
 .validation {
   composes: validation from "../LoginForm/LoginForm.module.scss";

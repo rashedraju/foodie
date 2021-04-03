@@ -1,0 +1,92 @@
+@import "../../styles/app.scss";
+
+.checkout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.steps {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 50%;
+  margin-bottom: 4rem;
+}
+
+.stepsItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.stepsNo {
+  background-color: $color-light-1;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  text-align: center;
+  line-height: 3rem;
+  font-size: 1.5rem;
+  color: $color-gray-600;
+  z-index: 2;
+  position: relative;
+  &::after,
+  &::before {
+    content: "";
+    width: 150%;
+    height: 0.3rem;
+    background-color: $color-light-1;
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+  }
+  &::before {
+    right: 100%;
+  }
+  &::after {
+    left: 100%;
+  }
+}
+
+.steps {
+  > :first-child {
+    > :first-child {
+      &::before {
+        display: none;
+      }
+    }
+  }
+  > :last-child {
+    > :first-child {
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
+
+.activeStepNo {
+  background-color: $color-primary;
+  color: #fff;
+}
+
+.stepsTitle {
+  text-align: center;
+  color: $color-gray-600;
+}
+
+@media only screen and (max-width: 767px) {
+  .steps {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 567px) {
+  .stepsNo {
+    &::after,
+    &::before {
+      width: 100%;
+    }
+  }
+}

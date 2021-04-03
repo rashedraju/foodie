@@ -1,36 +1,43 @@
-import React, { useEffect } from 'react';
+import { signup } from 'adapters/firebase';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import SignupForm from '../../components/Form/SignupForm/SignupForm';
 import * as actions from '../../store/actions';
 import styles from './Signup.module.scss';
 
 const Signup = (props) => {
-    const {
-        isAuthenticated,
-        redirectPath,
-        error,
-        errMsg,
-        onSignup,
-        isLoading,
-        history,
-        onToggleCartUI,
-    } = props;
+    const { redirectPath, onToggleCartUI, user } = props;
+
+    const history = useHistory();
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState();
 
     useEffect(() => {
         onToggleCartUI();
-        if (isAuthenticated) history.replace(redirectPath);
-    }, [history, isAuthenticated, onToggleCartUI, redirectPath]);
+        if (user.isAuthenticated) history.replace(redirectPath);
+    }, [history, onToggleCartUI, redirectPath, user.isAuthenticated]);
+
+    const handleSignup = ({ firstName, lastName, email, password }) => {
+        setLoading(true);
+        signup(firstName, lastName, email, password)
+            .then(() => {
+                setError(null);
+            })
+            .catch((err) => setError(err));
+        setLoading(false);
+    };
 
     return (
         <div className={styles.signup}>
             <div className={`${styles.container} row`}>
                 <div className="signup__left col-md-6">
                     <SignupForm
-                        submit={(values) => onSignup(values)}
-                        disabled={isLoading}
-                        loading={isLoading}
+                        submit={handleSignup}
+                        disabled={loading}
+                        loading={loading}
                         error={error}
-                        errMsg={errMsg}
+                        errMsg={error?.message}
                     />
                 </div>
                 <div className={`${styles.right} col-md-6`} />
@@ -40,16 +47,11 @@ const Signup = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-    isAuthenticated: state.auth.authStatus.isAuthenticated,
-    redirectPath: state.home.authRedirectPath,
-    isLoading: state.auth.authStatus.loading,
-    error: state.auth.authStatus.error,
-    errMsg: state.auth.authStatus.msg,
     cartShow: state.cart.cartShow,
+    user: state.auth.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    onSignup: (values) => dispatch(actions.signup(values)),
     onToggleCartUI: (bool) => dispatch(actions.toggleCartUI(bool)),
 });
 

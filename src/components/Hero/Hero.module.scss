@@ -1,6 +1,6 @@
 .hero {
   position: relative;
-  height: 85vh;
+  max-height: 85vh;
   margin-bottom: 2rem;
 
   &__bg {
@@ -36,7 +36,7 @@
     line-height: 1.4;
   }
   .hero {
-    height: 50vh;
+    height: auto;
     &__content {
       justify-content: flex-start;
     }

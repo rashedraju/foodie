@@ -1,54 +1,50 @@
-import React, { PureComponent } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import Foods from '../../components/Foods/Foods';
 import SearchBar from '../../components/UI/SearchBar/SearchBar';
-import Aux from '../../hoc/Auxiliary/Auxiliary';
 import * as actions from '../../store/actions';
 
-class Search extends PureComponent {
-    constructor(props) {
-        super(props);
-        this.onToggleToCart = props.onToggleToCart;
-    }
+const Search = (props) => {
+    const {
+        searchQuery,
+        location,
+        history,
+        onQueryChange,
+        onSearchFood,
+        cartItems,
+        loading,
+        foods,
+        error,
+        onToggleToCart,
+    } = props;
 
-    componentDidMount() {
-        const { location, history, onQueryChange, onSearchFood, cartItems } = this.props;
+    useEffect(() => {
+        // redirect if no search query
         const urlParams = new URLSearchParams(location.search);
         if (urlParams.has('q') && urlParams.get('q') !== '') {
             const query = urlParams.get('q');
             onQueryChange(query);
-            onSearchFood(query, cartItems);
         } else {
             history.replace('./');
         }
-    }
+        onSearchFood(searchQuery, cartItems);
+    }, [cartItems, history, location.search, onQueryChange, onSearchFood, searchQuery]);
 
-    handleToggleCartItem = (isAddedToCart, item) => {
-        this.onToggleToCart(isAddedToCart, item);
-    };
+    let searchResult;
+    if (foods.length > 0) searchResult = <Foods foods={foods} toggleToCart={onToggleToCart} />;
+    if (loading) searchResult = <Foods foods={new Array(10).fill({})} />;
+    if (error) searchResult = <p style={{ textAlign: 'center' }}>Foods not found!</p>;
 
-    render() {
-        const { loading, foods, error, query, onQueryChange } = this.props;
-
-        let searchResult;
-        if (foods.length > 0) {
-            searchResult = <Foods foods={foods} toggleToCart={this.handleToggleCartItem} />;
-        } else if (loading) {
-            searchResult = <Foods foods={new Array(10).fill({})} />;
-        } else if (error) {
-            searchResult = <p style={{ textAlign: 'center' }}>Foods not found!</p>;
-        }
-        return (
-            <Aux>
-                <SearchBar center query={query} queryChange={onQueryChange} />
-                {searchResult}
-            </Aux>
-        );
-    }
-}
+    return (
+        <>
+            <SearchBar center queryChange={onQueryChange} />
+            {searchResult}
+        </>
+    );
+};
 
 const mapStateToProps = (state) => ({
-    query: state.search.query,
+    searchQuery: state.search.query,
     foods: state.search.foods,
     cartItems: state.cart.cartItems,
     loading: state.search.loader,

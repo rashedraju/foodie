@@ -3,7 +3,7 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
     foods: [],
-    authRedirectPath: '/',
+    authRedirectPath: './',
 };
 const getInitialFoodSuccess = (state, action) =>
     updateObject(state, {
@@ -20,11 +20,6 @@ const removeFromCart = (state, action) => {
     return updateObject(state, { foods: updatedFoods });
 };
 
-const authRedirectPath = (state, action) => ({
-    ...state,
-    authRedirectPath: action.path,
-});
-
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.GET_INITIAL_FOOD_SUCCESS:
@@ -34,7 +29,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.REMOVE_FROM_CART:
             return removeFromCart(state, action);
         case actionTypes.AUTH_REDIRECT_PATH:
-            return authRedirectPath(state, action);
+            return { ...state, authRedirectPath: action.path };
         default:
             return state;
     }

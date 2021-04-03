@@ -47,7 +47,7 @@ const signupForm = (props) => {
                 <Form.Group key={key}>
                     <Form.Control
                         {...formData[key].config}
-                        className={`${styles.field} w-md-75`}
+                        className="w-md-75"
                         {...formik.getFieldProps(key)}
                     />
                     <Form.Label className={styles.signupLabel}> {formData[key].label} </Form.Label>

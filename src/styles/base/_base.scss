@@ -44,4 +44,16 @@ button:active,
 button:hover {
   box-shadow: none !important;
   border-radius: 0 !important;
+  outline: none;
+}
+
+input {
+  border: none !important;
+  border-radius: none;
+  box-shadow: $box-shadow-light !important;
+  &:focus,
+  &:active {
+    box-shadow: $box-shadow-light !important;
+    border: none;
+  }
 }

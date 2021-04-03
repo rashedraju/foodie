@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import styles from './LoginForm.module.scss';
 
 const LoginForm = (props) => {
-    const { isAuthenticated, onLogin, isLoading, error, errMsg, closeLoginModal } = props;
+    const { isAuthenticated, onLogin, isLoading, error, closeLoginModal } = props;
 
     useEffect(() => {
         if (isAuthenticated) closeLoginModal();
@@ -33,14 +33,14 @@ const LoginForm = (props) => {
                     {/** show error */}
                     {error && (
                         <Alert variant="danger" style={{ marginBottom: '2rem' }}>
-                            {errMsg}
+                            {error.message}
                         </Alert>
                     )}
 
                     <Form.Control
                         id="email"
                         placeholder="Email Address"
-                        className={`${styles.field} w-md-75 mx-auto`}
+                        className="w-md-75 mx-auto"
                         {...formik.getFieldProps('email')}
                     />
                     <Form.Label className={styles.loginLabel}> Email Address </Form.Label>
@@ -49,7 +49,7 @@ const LoginForm = (props) => {
                         id="password"
                         type="password"
                         placeholder="Password"
-                        className={`${styles.field} w-md-75 mx-auto`}
+                        className="w-md-75 mx-auto"
                         {...formik.getFieldProps('password')}
                     />
                     <Form.Label className={styles.loginLabel}> Password </Form.Label>

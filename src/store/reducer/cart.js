@@ -55,6 +55,17 @@ const removeFromCart = (state, action) => {
     });
 };
 
+const clearCart = () => ({
+    cartItems: [],
+    cartShow: false,
+    price: {
+        subTotal: 0,
+        deliveryFee: 0.8,
+        vat: 0.5,
+        total: 0,
+    },
+});
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.ADD_TO_CART:
@@ -65,6 +76,8 @@ const reducer = (state = initialState, action) => {
             return toggleCartUI(state, action);
         case actionTypes.UPDATE_ITEM_COUNT:
             return updateItemCount(state, action);
+        case actionTypes.CLEAR_CART:
+            return clearCart();
         default:
             return state;
     }

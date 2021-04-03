@@ -1,13 +1,27 @@
-import React from 'react';
+import { ReactComponent as DeliveryIcon } from 'assets/svg/bicycle-outline.svg';
+import { ReactComponent as CartIcon } from 'assets/svg/cart-outline.svg';
+import LoginBeforeCheckout from 'components/LoginBeforeCheckout/LoginBeforeCheckout';
+import Modal from 'components/UI/Modal/Modal';
+import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
-import { ReactComponent as DeliveryIcon } from '../../assets/svg/bicycle-outline.svg';
-import { ReactComponent as CartIcon } from '../../assets/svg/cart-outline.svg';
+import { useHistory } from 'react-router-dom';
+import AmountSummary from '../AmountSummary/AmountSummary';
 import styles from './Cart.module.scss';
 import CartItem from './CartItem/CartItem';
 
 const Cart = (props) => {
-    const { cartItems, cartShow, toggleCartUI, toggleToCart, updateCount, price } = props;
-
+    const {
+        cartItems,
+        cartShow,
+        toggleCartUI,
+        toggleToCart,
+        updateCount,
+        price,
+        showLoginModal,
+        isAuthenticated,
+    } = props;
+    const history = useHistory();
+    const [showModal, setShowModal] = useState(false);
     // Add style conditionaly
     const cartStyle = [styles.cart];
     if (cartShow) cartStyle.push(styles.show);
@@ -24,24 +38,6 @@ const Cart = (props) => {
     ) : (
         <p className="text-center my-2"> Start adding items to your cart </p>
     );
-
-    const amountSummary = [
-        [1, 'Subtotal', price.subTotal],
-        [2, 'Delivery fee', price.deliveryFee],
-        [3, 'VAT', price.vat],
-        [4, 'Total(incl. VAT)', price.total],
-    ].map((el, idx, arr) => (
-        <dl className="d-flex justify-content-between mb-0" key={el[0]}>
-            <dt className={`mb-0 font-weight-${idx !== arr.length - 1 ? 'light' : 'bold'}`}>
-                {' '}
-                {el[1]}{' '}
-            </dt>
-            <dd className={idx === arr.length - 1 ? 'font-weight-bold' : ''}>
-                {' '}
-                {el[2].toFixed(2)}{' '}
-            </dd>
-        </dl>
-    ));
 
     return (
         <div className={cartStyle.join(' ')}>
@@ -69,16 +65,32 @@ const Cart = (props) => {
 
                 {cartItems.length > 0 && (
                     <div className={styles.orderAmount}>
-                        {amountSummary}
+                        <AmountSummary price={price} />
                         <button
                             type="button"
                             className="btn btn-primary text-uppercase p-2 y-2 w-100 d-block"
+                            onClick={() =>
+                                isAuthenticated ? history.replace('./checkout') : setShowModal(true)
+                            }
                         >
                             go to checkout
                         </button>
                     </div>
                 )}
             </div>
+            <Modal
+                show={showModal}
+                setShow={() => setShowModal(true)}
+                setClose={() => setShowModal(false)}
+            >
+                <LoginBeforeCheckout
+                    loginModalShow={() => {
+                        setShowModal(false);
+                        showLoginModal();
+                    }}
+                    modalClose={() => setShowModal(false)}
+                />
+            </Modal>
         </div>
     );
 };

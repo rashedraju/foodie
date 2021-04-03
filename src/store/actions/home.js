@@ -1,5 +1,5 @@
-import { database } from '../../adapters/firebase';
-import { isAddedToCart } from '../../shared/utility';
+import { database } from 'adapters/firebase';
+import { isAddedToCart } from 'shared/utility';
 import * as actionTypes from './actionTypes';
 
 // fetch foods success
@@ -15,12 +15,6 @@ export const getInitialFoodSuccess = (data, cartItems) => {
     };
 };
 
-// auth redirect path on landing page
-export const autRedirectPath = (path) => ({
-    type: actionTypes.AUTH_REDIRECT_PATH,
-    path,
-});
-
 // fetch inital foods
 export const getInitailFood = (cartItems) => (dispatch) => {
     const initialFoodsRef = database.ref('initialfoods');
@@ -29,3 +23,12 @@ export const getInitailFood = (cartItems) => (dispatch) => {
         dispatch(getInitialFoodSuccess(data, cartItems));
     });
 };
+// export const getInitailFood = (cartItems) => (dispatch) => {
+//     console.log(initailFood());
+//     // dispatch(getInitialFoodSuccess(initialFoods, cartItems));
+// };
+
+export const authRedirectPath = (path) => ({
+    type: actionTypes.AUTH_REDIRECT_PATH,
+    path,
+});
