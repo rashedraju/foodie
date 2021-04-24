@@ -1,10 +1,10 @@
 {
   "files": {
     "main.css": "/foodie/static/css/main.a068936c.chunk.css",
-    "main.js": "/foodie/static/js/main.11a8993b.chunk.js",
-    "main.js.map": "/foodie/static/js/main.11a8993b.chunk.js.map",
-    "runtime-main.js": "/foodie/static/js/runtime-main.a9aaef72.js",
-    "runtime-main.js.map": "/foodie/static/js/runtime-main.a9aaef72.js.map",
+    "main.js": "/foodie/static/js/main.c7739080.chunk.js",
+    "main.js.map": "/foodie/static/js/main.c7739080.chunk.js.map",
+    "runtime-main.js": "/foodie/static/js/runtime-main.20f2a541.js",
+    "runtime-main.js.map": "/foodie/static/js/runtime-main.20f2a541.js.map",
     "static/js/2.e6b8b468.chunk.js": "/foodie/static/js/2.e6b8b468.chunk.js",
     "static/js/2.e6b8b468.chunk.js.map": "/foodie/static/js/2.e6b8b468.chunk.js.map",
     "static/js/3.13fe6dc1.chunk.js": "/foodie/static/js/3.13fe6dc1.chunk.js",
@@ -18,10 +18,10 @@
     "static/css/6.a837ba30.chunk.css": "/foodie/static/css/6.a837ba30.chunk.css",
     "static/js/6.44f13245.chunk.js": "/foodie/static/js/6.44f13245.chunk.js",
     "static/js/6.44f13245.chunk.js.map": "/foodie/static/js/6.44f13245.chunk.js.map",
-    "static/js/7.9a81a860.chunk.js": "/foodie/static/js/7.9a81a860.chunk.js",
-    "static/js/7.9a81a860.chunk.js.map": "/foodie/static/js/7.9a81a860.chunk.js.map",
+    "static/js/7.435cf5ec.chunk.js": "/foodie/static/js/7.435cf5ec.chunk.js",
+    "static/js/7.435cf5ec.chunk.js.map": "/foodie/static/js/7.435cf5ec.chunk.js.map",
     "index.html": "/foodie/index.html",
-    "precache-manifest.6d9b0109be1390eb6a63a447505691d2.js": "/foodie/precache-manifest.6d9b0109be1390eb6a63a447505691d2.js",
+    "precache-manifest.e2a2ba10d27809ac8b679f693b37a6b0.js": "/foodie/precache-manifest.e2a2ba10d27809ac8b679f693b37a6b0.js",
     "service-worker.js": "/foodie/service-worker.js",
     "static/css/4.89cc85fc.chunk.css.map": "/foodie/static/css/4.89cc85fc.chunk.css.map",
     "static/css/5.5293285f.chunk.css.map": "/foodie/static/css/5.5293285f.chunk.css.map",
@@ -44,9 +44,9 @@
     "static/media/Signup.module.scss": "/foodie/static/media/signup-bg.8bdd259f.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.a9aaef72.js",
+    "static/js/runtime-main.20f2a541.js",
     "static/js/2.e6b8b468.chunk.js",
     "static/css/main.a068936c.chunk.css",
-    "static/js/main.11a8993b.chunk.js"
+    "static/js/main.c7739080.chunk.js"
   ]
 }
