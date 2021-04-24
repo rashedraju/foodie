@@ -4,18 +4,20 @@ import { useHistory } from 'react-router-dom';
 import styles from './SearchBar.module.scss';
 
 const SearchBar = (props) => {
-    const { queryChange, center } = props;
+    const { center } = props;
     const searchQueryRef = useRef();
     const history = useHistory();
 
     const searchHandler = (e) => {
         e.preventDefault();
         const query = searchQueryRef.current.value;
-        queryChange(query);
-        history.push({
-            pathname: '/search',
-            search: `?q=${query}`,
-        });
+        if (query !== '') {
+            // queryChange(query);
+            history.push({
+                pathname: '/search',
+                search: `?q=${query}`,
+            });
+        }
     };
 
     return (

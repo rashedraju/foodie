@@ -1,8 +1,8 @@
+import Foods from 'components/Foods/Foods';
+import SearchBar from 'components/UI/SearchBar/SearchBar';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import Foods from '../../components/Foods/Foods';
-import SearchBar from '../../components/UI/SearchBar/SearchBar';
-import * as actions from '../../store/actions';
+import * as actions from 'store/actions';
 
 const Search = (props) => {
     const {
@@ -20,24 +20,39 @@ const Search = (props) => {
 
     useEffect(() => {
         // redirect if no search query
-        const urlParams = new URLSearchParams(location.search);
-        if (urlParams.has('q') && urlParams.get('q') !== '') {
-            const query = urlParams.get('q');
-            onQueryChange(query);
-        } else {
+        if (searchQuery === '') {
             history.replace('./');
         }
-        onSearchFood(searchQuery, cartItems);
-    }, [cartItems, history, location.search, onQueryChange, onSearchFood, searchQuery]);
+
+        const urlParams = new URLSearchParams(location.search);
+        if (urlParams.has('q')) {
+            const searchQueryParams = urlParams.get('q');
+            if (
+                searchQueryParams !== '' &&
+                (searchQuery !== searchQueryParams || foods.length === 0)
+            ) {
+                onQueryChange(searchQueryParams);
+                onSearchFood(searchQueryParams, cartItems);
+            }
+        }
+    }, [
+        cartItems,
+        foods.length,
+        history,
+        location.search,
+        onQueryChange,
+        onSearchFood,
+        searchQuery,
+    ]);
 
     let searchResult;
     if (foods.length > 0) searchResult = <Foods foods={foods} toggleToCart={onToggleToCart} />;
-    if (loading) searchResult = <Foods foods={new Array(10).fill({})} />;
     if (error) searchResult = <p style={{ textAlign: 'center' }}>Foods not found!</p>;
+    if (loading) searchResult = <Foods foods={new Array(10).fill({})} />;
 
     return (
         <>
-            <SearchBar center queryChange={onQueryChange} />
+            <SearchBar center />
             {searchResult}
         </>
     );

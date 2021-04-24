@@ -7,7 +7,7 @@ const hero = (props) => (
         <div className={styles.hero__bg} />
         <div className={styles.hero__content}>
             <h1 className={`${styles.hero__text}`}>It&apos;s the food you love, delivered.</h1>
-            <SearchBar {...props} />
+            <SearchBar queryChange={props.queryChange} />
         </div>
     </section>
 );

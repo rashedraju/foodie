@@ -44,6 +44,7 @@ const Home = (props) => {
 };
 const mapStateToProps = (state) => ({
     foods: state.home.foods,
+    query: state.search.query,
     cartItems: state.cart.cartItems,
 });
 
