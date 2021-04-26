@@ -1,12 +1,12 @@
+import Foods from 'components/Foods/Foods';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import Feature from '../../components/Feature/Feature';
-import Foods from '../../components/Foods/Foods';
-import Hero from '../../components/Hero/Hero';
-import OurApp from '../../components/OurApp/OurApp';
-import Partner from '../../components/Partner/Partner';
-import SocialMedia from '../../components/SocialMedia/SocialMedia';
-import * as actions from '../../store/actions';
+import * as actions from 'store/actions';
+import Feature from 'views/Feature/Feature';
+import Hero from 'views/Hero/Hero';
+import OurApp from 'views/OurApp/OurApp';
+import Partner from 'views/Partner/Partner';
+import SocialMedia from 'views/SocialMedia/SocialMedia';
 
 const Home = (props) => {
     const {

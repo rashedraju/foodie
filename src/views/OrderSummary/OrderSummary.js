@@ -1,8 +1,9 @@
+import CartItem from 'components/Cart/CartItem/CartItem';
 import React from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
+import CheckoutStepButtons from '../../components/UI/CheckoutStepButtons/CheckoutStepButtons';
 import AmountSummary from '../AmountSummary/AmountSummary';
-import CartItem from '../Cart/CartItem/CartItem';
-import CheckoutStepButtons from '../UI/CheckoutStepButtons/CheckoutStepButtons';
 
 const OrderSummary = ({ cartItems, price, toggleToCart, updateCount, buttonBack, buttonNext }) => (
     <div className="p-2 w-md-75 checkout__step">
@@ -31,14 +32,13 @@ const OrderSummary = ({ cartItems, price, toggleToCart, updateCount, buttonBack,
                 <Card.Body>
                     <h4 className="text-center"> Your cart is empty! </h4>
                     <p className="text-center"> Start adding items to your cart </p>
-                    <Button
-                        type="button"
-                        variant="primary"
-                        className="d-block mx-auto shadow-none text-uppercase"
-                        onClick={buttonNext}
+                    <NavLink
+                        to="./"
+                        className="btn btn-primary d-block mx-auto shadow-none text-uppercase"
+                        style={{ maxWidth: '20rem' }}
                     >
                         Continue shopping
-                    </Button>
+                    </NavLink>
                 </Card.Body>
             </Card>
         )}

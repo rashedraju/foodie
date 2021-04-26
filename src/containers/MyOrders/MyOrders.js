@@ -1,9 +1,9 @@
 import { database } from 'adapters/firebase';
-import MyOrderItems from 'components/MyOrderItems/MyOrderItems';
 import Loader from 'components/UI/Loader/Loader';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import MyOrderItems from 'views/MyOrderItems/MyOrderItems';
 import styles from './MyOrders.module.scss';
 
 const MyOrders = ({ isAuthenticated, uid }) => {

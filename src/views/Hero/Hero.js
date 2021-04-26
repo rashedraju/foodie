@@ -1,5 +1,5 @@
+import SearchBar from 'components/UI/SearchBar/SearchBar';
 import React from 'react';
-import SearchBar from '../UI/SearchBar/SearchBar';
 import styles from './Hero.module.scss';
 
 const hero = (props) => (

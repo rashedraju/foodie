@@ -1,12 +1,12 @@
+import { submitOrder } from 'adapters/firebase';
+import Payment from 'components/Payment/Payment';
+import ShippingDetails from 'components/ShippingDetails/ShippingDetails';
+import OrderConfirm from 'components/UI/OrderConfirm/OrderConfirm';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { submitOrder } from '../../adapters/firebase';
-import OrderSummary from '../../components/OrderSummary/OrderSummary';
-import Payment from '../../components/Payment/Payment';
-import ShippingDetails from '../../components/ShippingDetails/ShippingDetails';
-import OrderConfirm from '../../components/UI/OrderConfirm/OrderConfirm';
-import selector from '../../shared/selector';
-import * as actions from '../../store/actions';
+import selector from 'shared/selector';
+import * as actions from 'store/actions';
+import OrderSummary from 'views/OrderSummary/OrderSummary';
 import styles from './Checkout.module.scss';
 
 const Checkout = (props) => {

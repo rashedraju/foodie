@@ -1,7 +1,7 @@
+import ficon1 from 'assets/img/ic_Food_Feature_1.png';
+import ficon2 from 'assets/img/ic_Food_Feature_2.png';
+import ficon3 from 'assets/img/ic_Food_Feature_3.png';
 import React from 'react';
-import ficon1 from '../../assets/img/ic_Food_Feature_1.png';
-import ficon2 from '../../assets/img/ic_Food_Feature_2.png';
-import ficon3 from '../../assets/img/ic_Food_Feature_3.png';
 
 const feature = () => {
     const featureItem = [

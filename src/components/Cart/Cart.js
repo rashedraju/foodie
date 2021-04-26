@@ -1,11 +1,11 @@
 import { ReactComponent as DeliveryIcon } from 'assets/svg/bicycle-outline.svg';
 import { ReactComponent as CartIcon } from 'assets/svg/cart-outline.svg';
-import LoginBeforeCheckout from 'components/LoginBeforeCheckout/LoginBeforeCheckout';
 import Modal from 'components/UI/Modal/Modal';
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-import AmountSummary from '../AmountSummary/AmountSummary';
+import AmountSummary from 'views/AmountSummary/AmountSummary';
+import LoginBeforeCheckout from 'views/LoginBeforeCheckout/LoginBeforeCheckout';
 import styles from './Cart.module.scss';
 import CartItem from './CartItem/CartItem';
 

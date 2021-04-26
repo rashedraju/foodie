@@ -1,12 +1,12 @@
 import { login, logout } from 'adapters/firebase';
 import Cart from 'components/Cart/Cart';
 import LoginForm from 'components/Form/LoginForm/LoginForm';
-import LogoutConfirmDialog from 'components/LogoutConfirmDialog/LogoutConfirmDialog';
 import Logo from 'components/UI/Logo/Logo';
 import Modal from 'components/UI/Modal/Modal';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import * as actions from 'store/actions';
+import LogoutConfirmDialog from 'views/LogoutConfirmDialog/LogoutConfirmDialog';
 import HeaderNav from './HeaderNav/HeaderNav';
 
 const Header = (props) => {
