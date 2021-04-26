@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1bc3df787c2edc58ce30c8b03c9061c3",
+    "revision": "2f689569d8120133d6e3da3da8dccb43",
     "url": "/foodie/index.html"
   },
   {
-    "revision": "f8b2890f007d9b36e573",
+    "revision": "9adca43a4a1c1f4ccd59",
     "url": "/foodie/static/css/4.89cc85fc.chunk.css"
   },
   {
@@ -12,12 +12,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/foodie/static/css/5.5293285f.chunk.css"
   },
   {
-    "revision": "4f1d571f2d4e9a93f578",
+    "revision": "9a635b872a84a3272a5d",
     "url": "/foodie/static/css/6.a837ba30.chunk.css"
   },
   {
-    "revision": "a1f34bcd3414c74408d1",
-    "url": "/foodie/static/css/main.a068936c.chunk.css"
+    "revision": "4e0846367a26ed377cd3",
+    "url": "/foodie/static/css/main.fdd60f53.chunk.css"
   },
   {
     "revision": "0fded799aa4facfcb988",
@@ -32,28 +32,28 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/foodie/static/js/3.13fe6dc1.chunk.js"
   },
   {
-    "revision": "f8b2890f007d9b36e573",
-    "url": "/foodie/static/js/4.1a3516f1.chunk.js"
+    "revision": "9adca43a4a1c1f4ccd59",
+    "url": "/foodie/static/js/4.2141b53b.chunk.js"
   },
   {
     "revision": "97518897fae60f4d074e",
     "url": "/foodie/static/js/5.52ed4c64.chunk.js"
   },
   {
-    "revision": "4f1d571f2d4e9a93f578",
-    "url": "/foodie/static/js/6.44f13245.chunk.js"
+    "revision": "9a635b872a84a3272a5d",
+    "url": "/foodie/static/js/6.4f71e310.chunk.js"
   },
   {
     "revision": "4905a4ae708ba8936bb6",
     "url": "/foodie/static/js/7.435cf5ec.chunk.js"
   },
   {
-    "revision": "a1f34bcd3414c74408d1",
-    "url": "/foodie/static/js/main.c7739080.chunk.js"
+    "revision": "4e0846367a26ed377cd3",
+    "url": "/foodie/static/js/main.88704a07.chunk.js"
   },
   {
-    "revision": "4b024ae2401c9f6fe930",
-    "url": "/foodie/static/js/runtime-main.20f2a541.js"
+    "revision": "7c1c7b156612d0be8c68",
+    "url": "/foodie/static/js/runtime-main.826403e4.js"
   },
   {
     "revision": "08d37409a924ae95fff8df77747b0c42",
