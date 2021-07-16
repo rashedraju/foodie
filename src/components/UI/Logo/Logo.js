@@ -1,15 +1,20 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { ReactComponent as Icon } from '../../../assets/svg/logo.svg';
-import styles from './Logo.module.scss';
+import { LogoTitle, StyledLogo } from './styled';
 
-const logo = () => (
-    <NavLink exact to="/" className="d-inline-flex align-items-center text-decoration-none">
-        <div className={styles.logo}>
+const Logo = () => (
+    <NavLink
+        exact
+        to="/"
+        style={{ display: 'inline-flex', alignItems: 'center', textDecoration: 'none' }}
+    >
+        <StyledLogo>
             <Icon width="24px" height="24px" />
-        </div>
-        <span className="text-primary font-weight-bold ml-1">Foodie</span>
+        </StyledLogo>
+        {/* <span className="text-primary font-weight-bold ml-1">Foodie</span> */}
+        <LogoTitle>Foodie</LogoTitle>
     </NavLink>
 );
 
-export default logo;
+export default Logo;

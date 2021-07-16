@@ -1,12 +1,8 @@
 import Foods from 'components/Foods/Foods';
+import Hero from 'components/UI/Hero/Hero';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as actions from 'store/actions';
-import Feature from 'views/Feature/Feature';
-import Hero from 'views/Hero/Hero';
-import OurApp from 'views/OurApp/OurApp';
-import Partner from 'views/Partner/Partner';
-import SocialMedia from 'views/SocialMedia/SocialMedia';
 
 const Home = (props) => {
     const {
@@ -19,29 +15,27 @@ const Home = (props) => {
     } = props;
 
     useEffect(() => {
-        // set auth redirect path
         onAuthRedirectPath('/');
+    }, [onAuthRedirectPath]);
 
+    useEffect(() => {
         // fetch initial foods
-        if (!foods.length > 0) {
-            onGetInitialFoods(cartItems);
+        if (foods.length <= 0) {
+            // onGetInitialFoods(cartItems);
         }
-    }, [cartItems, foods.length, onAuthRedirectPath, onGetInitialFoods]);
+    }, [cartItems, foods.length, onGetInitialFoods]);
 
     return (
         <>
             <Hero queryChange={onQueryChange} />
             <Foods
-                foods={foods.length > 0 ? foods : new Array(6).fill({})}
+                foods={foods.length > 0 ? foods : new Array(8).fill({})}
                 toggleToCart={onToggleToCart}
             />
-            <Feature />
-            <OurApp />
-            <Partner />
-            <SocialMedia />
         </>
     );
 };
+
 const mapStateToProps = (state) => ({
     foods: state.home.foods,
     query: state.search.query,

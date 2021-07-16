@@ -1,13 +1,13 @@
-import { ReactComponent as DeliveryIcon } from 'assets/svg/bicycle-outline.svg';
 import { ReactComponent as CartIcon } from 'assets/svg/cart-outline.svg';
 import Modal from 'components/UI/Modal/Modal';
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-import AmountSummary from 'views/AmountSummary/AmountSummary';
-import LoginBeforeCheckout from 'views/LoginBeforeCheckout/LoginBeforeCheckout';
-import styles from './Cart.module.scss';
+import { Box } from 'styled/custom/components';
+import LoginBeforeCheckout from 'components/LoginBeforeCheckout/LoginBeforeCheckout';
+import AmountSummary from '../AmountSummary/AmountSummary';
+import Button from '../UI/Button/Button';
 import CartItem from './CartItem/CartItem';
+import { CartAmount, CartItemsStyled, CartWrapper } from './styled';
 
 const Cart = (props) => {
     const {
@@ -20,11 +20,9 @@ const Cart = (props) => {
         showLoginModal,
         isAuthenticated,
     } = props;
+
     const history = useHistory();
     const [showModal, setShowModal] = useState(false);
-    // Add style conditionaly
-    const cartStyle = [styles.cart];
-    if (cartShow) cartStyle.push(styles.show);
 
     const itemElements = cartItems.length ? (
         cartItems.map((item) => (
@@ -36,48 +34,40 @@ const Cart = (props) => {
             />
         ))
     ) : (
-        <p className="text-center my-2"> Start adding items to your cart </p>
+        <p style={{ margin: '0 2rem', textAlign: 'center' }}> Start adding items to your cart </p>
     );
 
     return (
-        <div className={cartStyle.join(' ')}>
-            <div className="card-header d-flex justify-content-between bg-white">
+        <CartWrapper show={cartShow}>
+            <Box justify="space-between">
                 <div>
-                    <CartIcon />{' '}
-                    <span className="text-primary">
+                    <CartIcon />
+                    <span>
                         {cartItems.length} {cartItems.length > 1 ? 'ITEMS' : 'ITEM'}
                     </span>
                 </div>
-                <Button
-                    className="p-1 btn btn-light bg-white px-3 shadow-none border border-secondary"
-                    onClick={toggleCartUI}
-                >
+                <Button variant="outline-light" onClick={toggleCartUI}>
                     Close
                 </Button>
-            </div>
-            <div className="bg-primary text-white p-2 my-2">Shop $30 more and get 20% cashback</div>
-            <div className={styles.cartSummary}>
-                <div className="bg-white px-3 py-2">
-                    <DeliveryIcon width="32" height="32" /> <span>Regular Delivery</span>
-                </div>
-                {/* render all cart items */}
-                <div className={styles.orderItems}>{itemElements}</div>
+            </Box>
 
-                {cartItems.length > 0 && (
-                    <div className={styles.orderAmount}>
-                        <AmountSummary price={price} />
-                        <button
-                            type="button"
-                            className="btn btn-primary text-uppercase p-2 y-2 w-100 d-block"
-                            onClick={() =>
-                                isAuthenticated ? history.replace('./checkout') : setShowModal(true)
-                            }
-                        >
-                            go to checkout
-                        </button>
-                    </div>
-                )}
-            </div>
+            {/* render all cart items */}
+            <CartItemsStyled>{itemElements}</CartItemsStyled>
+
+            {cartItems.length > 0 && (
+                <CartAmount>
+                    <AmountSummary price={price} />
+                    <Button
+                        variant="primary"
+                        width="100"
+                        onClick={() =>
+                            isAuthenticated ? history.replace('./checkout') : setShowModal(true)
+                        }
+                    >
+                        GO TO CHECKOUT
+                    </Button>
+                </CartAmount>
+            )}
             <Modal
                 show={showModal}
                 setShow={() => setShowModal(true)}
@@ -91,7 +81,7 @@ const Cart = (props) => {
                     modalClose={() => setShowModal(false)}
                 />
             </Modal>
-        </div>
+        </CartWrapper>
     );
 };
 

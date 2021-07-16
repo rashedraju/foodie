@@ -1,13 +1,13 @@
 import { submitOrder } from 'adapters/firebase';
 import Payment from 'components/Payment/Payment';
 import ShippingDetails from 'components/ShippingDetails/ShippingDetails';
-import OrderConfirm from 'components/UI/OrderConfirm/OrderConfirm';
+import Steps from 'components/Steps/Steps';
+import OrderConfirm from 'components/OrderConfirm/OrderConfirm';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import selector from 'shared/selector';
 import * as actions from 'store/actions';
-import OrderSummary from 'views/OrderSummary/OrderSummary';
-import styles from './Checkout.module.scss';
+import { Container, Section } from 'styled/custom/components';
+import OrderSummary from 'components/OrderSummary/OrderSummary';
 
 const Checkout = (props) => {
     const {
@@ -35,10 +35,6 @@ const Checkout = (props) => {
         if (!user.isAuthenticated) history.replace(authRedirectPath);
 
         onToggleCartUI(false);
-        selector('id', 'cartToggler').style.pointerEvents = 'none';
-        return () => {
-            selector('id', 'cartToggler').style.pointerEvents = 'auto';
-        };
     }, [authRedirectPath, history, onToggleCartUI, user.isAuthenticated]);
 
     const submitOrderHandler = (data) => {
@@ -79,21 +75,6 @@ const Checkout = (props) => {
         }
     };
 
-    const steps = [
-        {
-            id: 1,
-            title: 'Order Summary',
-        },
-        {
-            id: 2,
-            title: 'Shipping Details',
-        },
-        {
-            id: 3,
-            title: 'Payment',
-        },
-    ];
-
     let stepView;
     if (stepNo === 1)
         stepView = (
@@ -128,27 +109,12 @@ const Checkout = (props) => {
     }
 
     return (
-        <section className={`container py-5 ${styles.checkout}`}>
-            {stepNo < 4 && (
-                <div className={styles.steps}>
-                    {steps.map((el) => (
-                        <div className={styles.stepsItem} key={el.id}>
-                            <div
-                                className={[
-                                    styles.stepsNo,
-                                    el.id === stepNo && styles.activeStepNo,
-                                ].join(' ')}
-                            >
-                                {' '}
-                                {el.id}{' '}
-                            </div>
-                            <div className={styles.stepsTitle}> {el.title} </div>
-                        </div>
-                    ))}
-                </div>
-            )}
-            {stepView}
-        </section>
+        <Section>
+            <Container>
+                {stepNo < 4 && <Steps activeStep={stepNo} />}
+                {stepView}
+            </Container>
+        </Section>
     );
 };
 

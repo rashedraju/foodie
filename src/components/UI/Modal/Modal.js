@@ -1,16 +1,12 @@
 import React from 'react';
-import { Modal as BSModal } from 'react-bootstrap';
-import styles from './Modal.module.scss';
+import { StyledModal } from './styled';
 
 const Modal = (props) => {
     const { show, setClose, children } = props;
     return (
-        <BSModal centered show={show} onHide={setClose} className={styles.modal}>
-            <div className={styles.close} role="button" tabIndex="0" onClick={setClose}>
-                <button type="button" className={styles['close-btn']} onClick={setClose} />
-            </div>
-            <BSModal.Body> {children} </BSModal.Body>
-        </BSModal>
+        <StyledModal centered show={show} onHide={setClose}>
+            <StyledModal.Body> {children} </StyledModal.Body>
+        </StyledModal>
     );
 };
 

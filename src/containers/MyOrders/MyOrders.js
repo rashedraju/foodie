@@ -3,8 +3,8 @@ import Loader from 'components/UI/Loader/Loader';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import MyOrderItems from 'views/MyOrderItems/MyOrderItems';
-import styles from './MyOrders.module.scss';
+import MyOrderItems from 'components/MyOrderItems/MyOrderItems';
+import { Section } from 'styled/custom/components';
 
 const MyOrders = ({ isAuthenticated, uid }) => {
     const history = useHistory();
@@ -45,7 +45,7 @@ const MyOrders = ({ isAuthenticated, uid }) => {
             </>
         );
 
-    return <section className={`container my-3 ${styles.myOrders}`}>{orders}</section>;
+    return <Section>{orders}</Section>;
 };
 
 const mapStateToProps = ({ auth }) => ({

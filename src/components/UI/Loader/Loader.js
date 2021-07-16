@@ -1,13 +1,13 @@
 import React from 'react';
-import styles from './Loader.module.scss';
+import { StyledLoader } from './styled';
 
 const loader = () => (
-    <div className={`${styles.ldrRing} my-1`}>
+    <StyledLoader>
         <div />
         <div />
         <div />
         <div />
-    </div>
+    </StyledLoader>
 );
 
 export default loader;

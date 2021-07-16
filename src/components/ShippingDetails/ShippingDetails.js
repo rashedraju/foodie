@@ -1,14 +1,16 @@
 import { Formik } from 'formik';
 import React from 'react';
 import { Col, Form, Row } from 'react-bootstrap';
+import { DangerText, H4 } from 'styled/custom/components';
+import { StyledCheckoutStep } from 'styled/custom/typography';
 import * as Yup from 'yup';
-import CheckoutStepButtons from '../UI/CheckoutStepButtons/CheckoutStepButtons';
+import Button, { ButtonGroup } from '../UI/Button/Button';
 
 const ShippingDetails = ({ fullName, email, buttonBack, submitSippingInfo }) => {
     const phoneNumberRegex = /^(\+8801)[1-9]\d{8}/g;
     return (
-        <div className="p-2 w-md-75 checkout__step">
-            <h4 className="text-center"> Shipping Details </h4>
+        <StyledCheckoutStep>
+            <H4> Shipping Details </H4>
             <Formik
                 initialValues={{
                     fullname: fullName,
@@ -32,21 +34,19 @@ const ShippingDetails = ({ fullName, email, buttonBack, submitSippingInfo }) => 
                 {(formik) => (
                     <Form className="form" onSubmit={formik.handleSubmit}>
                         <Row>
-                            <Col sm={6} className="my-3">
+                            <Col sm={6}>
                                 <Form.Control
                                     id="fullname"
                                     placeholder="Full Name"
                                     {...formik.getFieldProps('fullname')}
                                 />
                                 {formik.touched.fullname && formik.errors.fullname ? (
-                                    <p className="pl-2 text-danger mb-0">
-                                        {formik.errors.fullname}
-                                    </p>
+                                    <DangerText>{formik.errors.fullname}</DangerText>
                                 ) : (
                                     <div> &nbsp;</div>
                                 )}
                             </Col>
-                            <Col sm={6} className="my-3">
+                            <Col sm={6}>
                                 <Form.Control
                                     id="email"
                                     type="email"
@@ -54,24 +54,24 @@ const ShippingDetails = ({ fullName, email, buttonBack, submitSippingInfo }) => 
                                     {...formik.getFieldProps('email')}
                                 />
                                 {formik.touched.email && formik.errors.email ? (
-                                    <p className="pl-2 text-danger mb-0">{formik.errors.email}</p>
+                                    <DangerText>{formik.errors.email}</DangerText>
                                 ) : (
                                     <div> &nbsp;</div>
                                 )}
                             </Col>
-                            <Col sm={6} className="my-3">
+                            <Col sm={6}>
                                 <Form.Control
                                     id="address"
                                     placeholder="Enter full shipping address"
                                     {...formik.getFieldProps('address')}
                                 />
                                 {formik.touched.address && formik.errors.address ? (
-                                    <p className="pl-2 text-danger mb-0">{formik.errors.address}</p>
+                                    <DangerText>{formik.errors.address}</DangerText>
                                 ) : (
                                     <div> &nbsp;</div>
                                 )}
                             </Col>
-                            <Col sm={6} className="my-3">
+                            <Col sm={6}>
                                 <Form.Control
                                     id="phone"
                                     type="phone"
@@ -79,21 +79,24 @@ const ShippingDetails = ({ fullName, email, buttonBack, submitSippingInfo }) => 
                                     {...formik.getFieldProps('phone')}
                                 />
                                 {formik.touched.phone && formik.errors.phone ? (
-                                    <p className="pl-2 text-danger mb-0">{formik.errors.phone}</p>
+                                    <DangerText>{formik.errors.phone}</DangerText>
                                 ) : (
                                     <div> &nbsp;</div>
                                 )}
                             </Col>
                         </Row>
-                        <CheckoutStepButtons
-                            backTitle="go back"
-                            nextTitle="continue to payment"
-                            buttonBack={buttonBack}
-                        />
+                        <ButtonGroup justify="space-between">
+                            <Button variant="outline-primary" onClick={buttonBack}>
+                                go back
+                            </Button>
+                            <Button type="submit" variant="primary">
+                                continue to payment
+                            </Button>
+                        </ButtonGroup>
                     </Form>
                 )}
             </Formik>
-        </div>
+        </StyledCheckoutStep>
     );
 };
 

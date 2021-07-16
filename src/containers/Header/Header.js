@@ -6,7 +6,8 @@ import Modal from 'components/UI/Modal/Modal';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import * as actions from 'store/actions';
-import LogoutConfirmDialog from 'views/LogoutConfirmDialog/LogoutConfirmDialog';
+import { StyledHeader } from 'styled/custom/typography';
+import LogoutConfirmDialog from 'components/LogoutConfirmDialog/LogoutConfirmDialog';
 import HeaderNav from './HeaderNav/HeaderNav';
 
 const Header = (props) => {
@@ -92,12 +93,8 @@ const Header = (props) => {
         );
 
     return (
-        <header
-            className={`sticky-top py-2 px-4 bg-white d-flex justify-content-between ${
-                scroll && 'shadow-md'
-            }`}
-        >
-            <div className="flex-md-grow-1 order-2">
+        <StyledHeader isscrolling={scroll}>
+            <div style={{ order: 2 }}>
                 <Logo />
             </div>
 
@@ -125,7 +122,7 @@ const Header = (props) => {
             <Modal show={showModal} setShow={handleModalShow} setClose={handleModalClose}>
                 {modalContent}
             </Modal>
-        </header>
+        </StyledHeader>
     );
 };
 

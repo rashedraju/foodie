@@ -1,8 +1,9 @@
 import Foods from 'components/Foods/Foods';
-import SearchBar from 'components/UI/SearchBar/SearchBar';
+import SearchBar from 'components/SearchBar/SearchBar';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as actions from 'store/actions';
+import { Section } from 'styled/custom/components';
 
 const Search = (props) => {
     const {
@@ -51,10 +52,10 @@ const Search = (props) => {
     if (loading) searchResult = <Foods foods={new Array(10).fill({})} />;
 
     return (
-        <>
+        <Section>
             <SearchBar center />
             {searchResult}
-        </>
+        </Section>
     );
 };
 

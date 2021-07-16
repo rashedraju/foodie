@@ -2,6 +2,7 @@ import valid from 'card-validator';
 import { Formik, useFormikContext } from 'formik';
 import React, { useEffect } from 'react';
 import { Col, Form, Row } from 'react-bootstrap';
+import { DangerText } from 'styled/custom/components';
 import * as Yup from 'yup';
 
 const AutoFormSubmit = ({ executeSubmit }) => {
@@ -68,7 +69,7 @@ const PaymentForm = ({ submitCardInfo, executeSubmit }) => (
         {(formik) => (
             <Form className="form">
                 <Row>
-                    <Col sm={6} className="mt-3">
+                    <Col sm={6}>
                         <Form.Control
                             id="name"
                             type="text"
@@ -76,12 +77,12 @@ const PaymentForm = ({ submitCardInfo, executeSubmit }) => (
                             {...formik.getFieldProps('name')}
                         />
                         {formik.touched.name && formik.errors.name ? (
-                            <p className="pl-2 text-danger mb-0">{formik.errors.name}</p>
+                            <DangerText>{formik.errors.name}</DangerText>
                         ) : (
-                            <div> &nbsp;</div>
+                            <div>&nbsp;</div>
                         )}
                     </Col>
-                    <Col sm={6} className="mt-3">
+                    <Col sm={6}>
                         <Form.Control
                             id="cardnumber"
                             type="text"
@@ -89,12 +90,12 @@ const PaymentForm = ({ submitCardInfo, executeSubmit }) => (
                             {...formik.getFieldProps('cardnumber')}
                         />
                         {formik.touched.cardnumber && formik.errors.cardnumber ? (
-                            <p className="pl-2 text-danger mb-0">{formik.errors.cardnumber}</p>
+                            <DangerText>{formik.errors.cardnumber}</DangerText>
                         ) : (
-                            <div> &nbsp;</div>
+                            <div>&nbsp;</div>
                         )}
                     </Col>
-                    <Col sm={6} className="mt-3">
+                    <Col sm={6}>
                         <Form.Control
                             id="expiry"
                             type="text"
@@ -102,12 +103,12 @@ const PaymentForm = ({ submitCardInfo, executeSubmit }) => (
                             {...formik.getFieldProps('expiry')}
                         />
                         {formik.touched.expiry && formik.errors.expiry ? (
-                            <p className="pl-2 text-danger mb-0">{formik.errors.expiry}</p>
+                            <DangerText>{formik.errors.expiry}</DangerText>
                         ) : (
-                            <div> &nbsp;</div>
+                            <div>&nbsp;</div>
                         )}
                     </Col>
-                    <Col sm={6} className="mt-3">
+                    <Col sm={6}>
                         <Form.Control
                             id="cvv"
                             type="text"
@@ -116,9 +117,9 @@ const PaymentForm = ({ submitCardInfo, executeSubmit }) => (
                             {...formik.getFieldProps('cvv')}
                         />
                         {formik.touched.cvv && formik.errors.cvv ? (
-                            <p className="pl-2 text-danger mb-0">{formik.errors.cvv}</p>
+                            <DangerText>{formik.errors.cvv}</DangerText>
                         ) : (
-                            <div> &nbsp;</div>
+                            <div>&nbsp;</div>
                         )}
                     </Col>
                 </Row>

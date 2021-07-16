@@ -1,8 +1,10 @@
+import Button from 'components/UI/Button/Button';
 import { Formik } from 'formik';
 import React from 'react';
-import { Alert, Button, Form, Spinner } from 'react-bootstrap';
+import { Alert, Form, Spinner } from 'react-bootstrap';
+import { DangerText, H1, Label } from 'styled/custom/components';
 import * as Yup from 'yup';
-import styles from './SignupForm.module.scss';
+import { Checkbox, StyledValidation } from './styled';
 
 const signupForm = (props) => {
     const formData = {
@@ -45,20 +47,14 @@ const signupForm = (props) => {
         Object.keys(formData).forEach((key) => {
             const item = (
                 <Form.Group key={key}>
-                    <Form.Control
-                        {...formData[key].config}
-                        className="w-md-75"
-                        {...formik.getFieldProps(key)}
-                    />
-                    <Form.Label className={styles.signupLabel}> {formData[key].label} </Form.Label>
+                    <Form.Control {...formData[key].config} {...formik.getFieldProps(key)} />
 
                     {formik.touched[key] && formik.errors[key] ? (
-                        <small className={`${styles.validation} text-muted`}>
-                            <span className="text-danger">* </span>
-                            {formik.errors[key]}
-                        </small>
+                        <StyledValidation>
+                            <DangerText>* {formik.errors[key]}</DangerText>
+                        </StyledValidation>
                     ) : (
-                        <span className="mb-3">&nbsp;</span>
+                        <span>&nbsp;</span>
                     )}
                 </Form.Group>
             );
@@ -96,7 +92,7 @@ const signupForm = (props) => {
         >
             {(formik) => (
                 <Form onSubmit={formik.handleSubmit}>
-                    <h1 className="text-primary mb-5"> Sign Up</h1>
+                    <H1> Sign Up </H1>
 
                     {/** show error */}
                     {props.error && (
@@ -109,35 +105,19 @@ const signupForm = (props) => {
                     {formInput(formik)}
 
                     <Form.Group>
-                        <Form.Check
-                            type="checkbox"
-                            name="acceptedTerms"
-                            id="customControlInline"
-                            label="I've read and agree with Terms of Service and our Privacy Policy"
-                            className={`${styles.checkbox} ml-1 mb-4 w-md-75`}
-                            {...formik.getFieldProps('acceptedTerms')}
-                            custom
-                        />
-
+                        <Checkbox {...formik.getFieldProps('acceptedTerms')} />
+                        <Label>
+                            I&apos;ve read and agree with Terms of Service and our Privacy Policy
+                        </Label>
                         {formik.touched.acceptedTerms && formik.errors.acceptedTerms ? (
-                            <small
-                                className={`${styles.validation} text-muted`}
-                                style={{ marginTop: '-.5rem' }}
-                            >
-                                <span className="text-danger">* </span>
-                                {formik.errors.acceptedTerms}
-                            </small>
+                            <StyledValidation style={{ marginTop: '0rem' }}>
+                                <DangerText>* {formik.errors.acceptedTerms}</DangerText>
+                            </StyledValidation>
                         ) : (
                             <span>&nbsp;</span>
                         )}
                     </Form.Group>
-
-                    <Button
-                        type="submit"
-                        variant="primary"
-                        className={`shadow-none ${styles.button}`}
-                        disabled={props.disabled}
-                    >
+                    <Button type="submit" width="100" disabled={props.disabled}>
                         {props.loading ? (
                             <Spinner as="span" role="status" animation="border" size="sm" />
                         ) : (

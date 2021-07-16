@@ -1,54 +1,57 @@
 import React from 'react';
-import { FiShoppingCart } from 'react-icons/fi';
+import { Col } from 'react-bootstrap';
 import Skeleton from 'react-loading-skeleton';
-import styles from './Foods.module.scss';
+import { Box } from 'styled/custom/components';
+import Button from '../UI/Button/Button';
+import {
+    AddCartBtnWrapper,
+    AddCartLayer,
+    FoodPrice,
+    FoodSkeleton,
+    FoodTitle,
+    Fugure,
+    Image,
+    Picture,
+    StyledCartIcon,
+    FoodsWrapper,
+} from './styled';
 
 const Foods = (props) => {
     const { foods, toggleToCart } = props;
+
     const foodElelments = foods.map((item, index) => (
-        <div className="col-lg-3 col-md-4 col-sm-6" key={item.id || `skeleton${index}`}>
-            <figure className={styles.figure}>
-                <picture className={styles.imageWrapper}>
+        <Col lg="3" md="4" sm="6" key={item.id || `skeleton${index}`} style={{ padding: '0.5rem' }}>
+            <Fugure>
+                <Picture>
                     {item.image ? (
                         <>
-                            <div
-                                className={styles.image}
-                                style={{ backgroundImage: `url(${item.image})` }}
-                            />
-                            <div className={styles.addCart}>
-                                <button
-                                    type="button"
-                                    className={styles.addCartTitle}
-                                    onClick={() => toggleToCart(!item.isAddedToCart, item)}
-                                >
-                                    {' '}
-                                    {item.isAddedToCart ? 'remove from cart' : 'add to cart'}{' '}
-                                </button>
-                            </div>
+                            <Image image={item.image} />
+                            <AddCartLayer>
+                                <AddCartBtnWrapper>
+                                    <Button onClick={() => toggleToCart(!item.isAddedToCart, item)}>
+                                        {' '}
+                                        {item.isAddedToCart
+                                            ? 'REMOVE FROM CART'
+                                            : 'ADD TO CART'}{' '}
+                                    </Button>
+                                </AddCartBtnWrapper>
+                            </AddCartLayer>
                         </>
                     ) : (
-                        <Skeleton className={styles.image} />
+                        <FoodSkeleton />
                     )}
-                </picture>
+                </Picture>
                 <figcaption>
-                    {item.title ? (
-                        <div className={styles.headline}>{item.title} </div>
-                    ) : (
-                        <Skeleton width={100} />
-                    )}
+                    {item.title ? <FoodTitle>{item.title} </FoodTitle> : <Skeleton width={100} />}
                 </figcaption>
-                <div className="d-flex justify-content-between align-items-center px-2">
+                <Box justify="space-between">
                     {item.price ? (
                         <>
-                            <strong className="text-primary">${item.price}</strong>
+                            <FoodPrice>${item.price}</FoodPrice>
 
-                            <FiShoppingCart
+                            <StyledCartIcon
                                 icon={['fas', 'cart-plus']}
-                                className={styles.cartIcon}
-                                style={{
-                                    color: item.isAddedToCart ? '#d60e64' : '#495057',
-                                    fontSize: '1.2rem',
-                                }}
+                                isadded={item.isAddedToCart.toString()}
                                 onClick={() => toggleToCart(!item.isAddedToCart, item)}
                             />
                         </>
@@ -58,15 +61,11 @@ const Foods = (props) => {
                             <Skeleton width={30} />
                         </>
                     )}
-                </div>
-            </figure>
-        </div>
+                </Box>
+            </Fugure>
+        </Col>
     ));
-    return (
-        <section className="container">
-            <div className="row">{foodElelments}</div>
-        </section>
-    );
+    return <FoodsWrapper>{foodElelments}</FoodsWrapper>;
 };
 
 export default Foods;

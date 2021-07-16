@@ -1,12 +1,12 @@
 import { auth } from 'adapters/firebase';
+import 'assets/style/custom.scss';
 import Header from 'containers/Header/Header';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import Routes from 'routes';
 import * as actions from 'store/actions';
-import 'styles/app.scss';
-import 'styles/custom.scss';
-import Footer from 'views/Footer/Footer';
+import GlobalStyle from 'styled/globalStyle';
+import ThemeProvider from 'styled/theme';
 import Layout from './hoc/Layout/Layout';
 
 const App = (props) => {
@@ -27,13 +27,13 @@ const App = (props) => {
         });
     }, [onAuthStateChanged]);
     return (
-        <>
+        <ThemeProvider>
+            <GlobalStyle />
             <Header />
             <Layout>
                 <Routes />
             </Layout>
-            <Footer />
-        </>
+        </ThemeProvider>
     );
 };
 
