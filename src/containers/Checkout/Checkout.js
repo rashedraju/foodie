@@ -1,13 +1,13 @@
 import { submitOrder } from 'adapters/firebase';
+import OrderConfirm from 'components/OrderConfirm/OrderConfirm';
+import OrderSummary from 'components/OrderSummary/OrderSummary';
 import Payment from 'components/Payment/Payment';
 import ShippingDetails from 'components/ShippingDetails/ShippingDetails';
 import Steps from 'components/Steps/Steps';
-import OrderConfirm from 'components/OrderConfirm/OrderConfirm';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import * as actions from 'store/actions';
 import { Container, Section } from 'styled/custom/components';
-import OrderSummary from 'components/OrderSummary/OrderSummary';
 
 const Checkout = (props) => {
     const {
@@ -75,6 +75,10 @@ const Checkout = (props) => {
         }
     };
 
+    const buttonBackHandler = () => {
+        setStepNo((count) => count - 1);
+    };
+
     let stepView;
     if (stepNo === 1)
         stepView = (
@@ -92,7 +96,7 @@ const Checkout = (props) => {
             <ShippingDetails
                 fullName={user.displayName}
                 email={user.email}
-                buttonBack={() => setStepNo((count) => count - 1)}
+                buttonBack={buttonBackHandler}
                 submitSippingInfo={(values) => shippingDetailsHandler(values)}
             />
         );
@@ -100,7 +104,7 @@ const Checkout = (props) => {
         stepView = (
             <Payment
                 loading={loading}
-                buttonBack={() => setStepNo((count) => count - 1)}
+                buttonBack={buttonBackHandler}
                 submitCardInfo={(values) => paymentHandler(values)}
             />
         );

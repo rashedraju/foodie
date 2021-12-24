@@ -26,6 +26,7 @@ const App = (props) => {
             }
         });
     }, [onAuthStateChanged]);
+
     return (
         <ThemeProvider>
             <GlobalStyle />
