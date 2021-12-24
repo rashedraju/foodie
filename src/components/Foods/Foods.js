@@ -8,12 +8,12 @@ import {
     AddCartLayer,
     FoodPrice,
     FoodSkeleton,
+    FoodsWrapper,
     FoodTitle,
     Fugure,
     Image,
     Picture,
     StyledCartIcon,
-    FoodsWrapper,
 } from './styled';
 
 const Foods = (props) => {
@@ -25,7 +25,7 @@ const Foods = (props) => {
                 <Picture>
                     {item.image ? (
                         <>
-                            <Image image={item.image} />
+                            <Image src={item.image} />
                             <AddCartLayer>
                                 <AddCartBtnWrapper>
                                     <Button onClick={() => toggleToCart(!item.isAddedToCart, item)}>

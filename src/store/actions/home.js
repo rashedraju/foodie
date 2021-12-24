@@ -11,6 +11,7 @@ export const getInitialFoodSuccess = (foods, cartItems) => ({
 // fetch initial foods
 export const getInitailFood = (cartItems) => (dispatch) => {
     const initialFoodsRef = database.ref('initialfoods');
+
     initialFoodsRef.on('value', (snapshot) => {
         const data = snapshot.val();
         dispatch(getInitialFoodSuccess(data, cartItems));

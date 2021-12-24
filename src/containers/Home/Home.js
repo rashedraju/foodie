@@ -21,7 +21,7 @@ const Home = (props) => {
     useEffect(() => {
         // fetch initial foods
         if (foods.length <= 0) {
-            // onGetInitialFoods(cartItems);
+            onGetInitialFoods(cartItems);
         }
     }, [cartItems, foods.length, onGetInitialFoods]);
 

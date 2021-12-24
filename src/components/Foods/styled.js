@@ -52,9 +52,9 @@ const BaseImage = css`
     }
 `;
 
-export const Image = styled.image`
+export const Image = styled.div`
     ${BaseImage}
-    background-image: url(${({ image }) => image});
+    background-image: url(${({ src }) => src});
 `;
 
 export const AddCartBtnWrapper = styled.div`

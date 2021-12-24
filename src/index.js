@@ -6,12 +6,10 @@ import { PersistGate } from 'redux-persist/integration/react';
 import App from './App';
 import { persistor, store } from './store';
 
-require('dotenv').config();
-
 const app = (
     <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-            <Router basename="/foodie">
+            <Router basename="/">
                 <App />
             </Router>
         </PersistGate>
